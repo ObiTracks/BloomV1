@@ -1,0 +1,8 @@
+.verified_res{
+    width: 100%;
+    max-width: 20rem;
+    height: fit-content;
+    padding: 1rem;
+    background-color: blue;
+    font-family: 'Courier New', Courier, monospace;
+}

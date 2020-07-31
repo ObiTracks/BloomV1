@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/reservations.css' %}">
+<title>Available Reservations</title>
+{% endblock %}
+
+{% block left_strip%}
+{% endblock %}
+
+{% block center %}
+<!-- Availability -->
+<div class="container spots">
+    {% with ''|center:10 as range %}
+        {% for _ in range %}
+            <div class="circle">a</div>
+        {% endfor %}
+    {% endwith %}
+    <div class="circle"></div>
+</div>
+{% endblock %}
+
+{% block right_side %}
+<h1 class="container">3 spots left</h1>
+{% endblock %}

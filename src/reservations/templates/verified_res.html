@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/verified_res.css' %}">
+
+{% block left_strip%}
+<button class="container">
+    Change Reservation
+</button>
+<button class="container">
+    Cancel Reservation
+</button>
+{% endblock %}
+
+
+{% block center %}
+<div class="container verified_res">
+    <h1>Your Reservation</h1>
+    <h3>12-2pm{{ time_slot}}</h3>
+    <h3>Saturday Aril 5th is booked</h3>
+    <p>Please remember to show up to you reservation at a reasonable time</p>
+</div>
+
+{% endblock %}
+
+{% block right_side %}
+{% endblock %}

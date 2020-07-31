@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Montserrat&display=swap" rel="stylesheet">
+    <!-- <title>Document</title> -->
+    {% block extra_head %}
+    {% endblock %}
+    
+</head>
+<body>
+    <span class="nav">
+        <div>
+            <h2 class="logo">Bloom</h2>
+            <h1>{{home_title}}</h1>
+        </div>
+    </span>
+
+    <div class="subbody">
+    <div>
+        <div class="side_strip">
+            {% block left_strip%}
+            {% endblock %}
+        </div>
+
+        <div class="center_strip">
+            {% block center%}
+            {% endblock %}
+        </div>
+
+        <div class="side_strip">
+            {% block right_side%}
+            {% endblock %}
+        </div>
+    </div>
+    </div>
+</body>
+</html>

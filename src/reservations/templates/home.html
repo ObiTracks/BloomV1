@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+<title>Bloom Reservations</title>
+{% endblock %}
+
+{% block left_strip%}
+<div class="container ">
+    <h1>On Lease</h1>
+    <p>Mutombo Oniydo</p>
+</div>
+{% endblock %}
+
+{% block center %}
+<div class="container slots">
+    <h1>Availability Tomorrow</h1>
+    <h2>Monday, July 26th 2020 {{ tomorrow_date }}</h2>
+    <span>
+        <div class="time_slot">
+            <h2>9am-11am</h2>
+            <p>Full</p>
+        </div>
+        <div class="time_slot">
+            <h2>9am-11am</h2>
+            <p>Full</p>
+        </div>
+        <div class="time_slot">
+            <h2>9am-11am</h2>
+            <p>Full</p>
+        </div>
+    </span>
+</div>
+
+<div class="container reservation">
+    <h1>Next Reservation</h1>
+    <h2>No Reservations Tomorrow {{ Reservation_status}}</h2>
+    <h1>Total Reservations this week</h1>
+    <h2>3</h2>
+</div>
+
+<div class="container statistics">
+    <h1>Average Pool Time</h1>
+    <h2>2 Hours</h2>
+</div>
+{% endblock %}
+
+{% block right_side %}
+<div class="container"></div>
+{% endblock %}
