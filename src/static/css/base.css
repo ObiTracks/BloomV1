@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right, rgba(237,244,245,1) 8%, rgb(219, 228, 235) 46%, rgb(199, 212, 221) 98%);
+    background: linear-gradient(to bottom right, rgba(237,244,245,1) 8%, rgb(227, 243, 255) 46%, rgb(144, 185, 214) 98%);
 }
 .subbody{
     margin: 0;
@@ -58,6 +58,7 @@ p{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    z-index: 100;
     /* padding: 0 20% 0 20%; */
 }
 .nav > div{
@@ -97,6 +98,7 @@ p{
     /* border: solid grey 1px; */
     border-radius: 10px;
     margin-bottom: 20px;
+    z-index: 100;
 }
 .center_strip{
     width: 56%;

@@ -1,36 +1,45 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.template.loader import get_template
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 
-from .models import PoolDay
+from .models import PoolDay, TimeSlot, Reservation
 
 def home_page(request):
     # id = models.IntegerField() #px
+    # obj = get_object_or_404(TimeSlot)
     context = {
+    # "object":obj,
     "home_title":"Pool Reservations",
-    "reservations":"5 Reservations",
-    "my_list":[1,2,3,4,5]
+    "reservations":"5 Reservations"
     }
     # qs = Time_Slot.objects.all()
     template_name = 'home.html'
     
     return render(request, template_name, context)
 
-# def reservations_page(request):
-#     # id = models.IntegerField() #px
-#     context = {
-#     "home_title":"Pool Reservations",
-#     "time_slot":"12-2pm"
-#     }
+def reservation_page(request):
+    # id = models.IntegerField() #px
+    context = {
+    "home_title":"Add Reservations for {}".format("12-2"),
+    "time_slot":"12-2pm"
+    }
+    template_name = 'timeslot.html'
 
-#     return render(request, "reservations.html", context)
+    return render(request, template_name, context)
 
-# def booked_page(request):
-#     # id = models.IntegerField() #px
-#     context = {
-#     "home_title":"Pool Reservations",
-#     "time_slot":"12-2pm"
-#     }
+def confirmation_page(request):
+    # id = models.IntegerField() #px
+    # obj = get_object_or_404(Reservation, slug=id)
+    obj = get_object_or_404(Reservation)
+    context = {
+    "object":obj,
+    "reservation_date":"Pool Reservations",
+    "time_slot":"12-2pm",
+    "party_size":"5 people",
+    "people_in_party": "X person, X person, X person"
+    }
+    template_name = "confirmation_page.html"
     
-    # return render(request, "verified_res.html", context)
+    return render(request, template_name, context)
 
