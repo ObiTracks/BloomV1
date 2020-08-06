@@ -3,17 +3,14 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
-from .models import PoolDay, TimeSlot, Reservation
+# from .models import PoolDay, TimeSlot, Reservation
 
 def home_page(request):
-    # id = models.IntegerField() #px
-    # obj = get_object_or_404(TimeSlot)
     context = {
     # "object":obj,
     "home_title":"Pool Reservations",
     "reservations":"5 Reservations"
     }
-    # qs = Time_Slot.objects.all()
     template_name = 'home.html'
     
     return render(request, template_name, context)
@@ -31,7 +28,7 @@ def reservation_page(request):
 def confirmation_page(request):
     # id = models.IntegerField() #px
     # obj = get_object_or_404(Reservation, slug=id)
-    obj = get_object_or_404(Reservation)
+    # obj = get_object_or_404(Reservation)
     context = {
     "object":obj,
     "reservation_date":"Pool Reservations",

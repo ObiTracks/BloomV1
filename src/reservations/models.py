@@ -2,25 +2,63 @@ from django.db import models
 # from django_counter_field import CounterField
 # from django_counter_field import CounterMixin, connect_counter
 # from .slotclass import Slot
-import datetime
+import datetime, calendar
 
-class PoolDay(models.Model):
-    date = models.CharField(default="July 30th 2020 (Just Text)", max_length=50)
-    day_notes = models.TextField(null=True, default="Todays Notes: ")
-    # date = models.DateField(default="Friday")
-    # date = models.DateField()
-    # timeslot_count = CounterField()
+class Customer(models.Model):
+    name = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    lease_members = models.ManyToManyField('self', blank=True)
+    
+    def __str__(self):
+        return self.name
+
+
+class Day(models.Model):
+    # Time information about today
+    today = datetime.date.today()
+    today_day = today.day
+    today_weekday = calendar.day_name[today.weekday()]
+    today_month = calendar.month_name[today.month]
+
+    # Time information about tomorrow
+    tomorrow = today + datetime.timedelta(days=1)
+    tomorrow_day = tomorrow.day
+    tomorrow_weekday = calendar.day_name[tomorrow.weekday()]
+    tomorrow_month = calendar.month_name[tomorrow.month]
+
+    # Fields
+    date = models.DateField(default=tomorrow)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    string_date = calendar.day_name[datetime.date.today().weekday()]
+
+
+    def __str__(self):
+        return "{} {} {} |{:>10} Created on {}".format(
+            self.tomorrow_weekday,
+            self.tomorrow_month,
+            self.tomorrow_day,
+            " ",
+            self.date_created
+            )
 
 class TimeSlot(models.Model):
-    PoolDay = models.ForeignKey(PoolDay, on_delete=models.CASCADE)
-    time = models.IntegerField()
-    pool_status = models.BooleanField(default="Full")
-    # time_window = models.DateTime()
+    time_name = models.CharField(max_length=10, null=True, default="Choose a time window")
+    day = models.ForeignKey(Day, null=True, on_delete= models.SET_NULL)
+    pool_status_full = models.BooleanField(default=False, verbose_name='Time slot at capacity')
+    capacity = models.IntegerField(blank=True, default=13)
+    num_reservations = "Current space: 3 spots left"
+
+    def __str__(self):
+        return self.time_name
 
 class Reservation(models.Model):
-    TimeSlot = models.ForeignKey(TimeSlot, on_delete=models.CASCADE)
-    # date = datetime.date.tomorrow()
-    party = models.TextField(blank=True)
+    customer = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
+    timeslot = models.ForeignKey(TimeSlot, null=True, on_delete= models.SET_NULL)
     party_size = models.IntegerField(blank=True)
-    condition = models.TextField(default="Not Full")
-    # creation_stamp = models.TimeField(auto_now_add=True)
+    no_show = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    
+    # def __str__(self):
+    #     return "Reservation: {} at {} for {} people".format(self.customer.name, self.timeslot, self.party_size)
