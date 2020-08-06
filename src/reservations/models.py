@@ -44,21 +44,27 @@ class Day(models.Model):
             )
 
 class TimeSlot(models.Model):
-    time_name = models.CharField(max_length=10, null=True, default="Choose a time window")
+    time_slot = models.CharField(max_length=10, null=True, default="Choose a time window")
     day = models.ForeignKey(Day, null=True, on_delete= models.SET_NULL)
     pool_status_full = models.BooleanField(default=False, verbose_name='Time slot at capacity')
     capacity = models.IntegerField(blank=True, default=13)
     num_reservations = "Current space: 3 spots left"
 
     def __str__(self):
-        return self.time_name
+        return self.time_slot
 
 class Reservation(models.Model):
-    customer = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
+    # Basic information
+    customer = models.ForeignKey(Customer, related_name="customer", null=True, on_delete= models.SET_NULL)
     timeslot = models.ForeignKey(TimeSlot, null=True, on_delete= models.SET_NULL)
-    party_size = models.IntegerField(blank=True)
+
+    # Bring alongs
+    party_members = models.ManyToManyField(Customer, related_name="party_members", blank=True)
+
+
+    # Details
     no_show = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    
-    # def __str__(self):
-    #     return "Reservation: {} at {} for {} people".format(self.customer.name, self.timeslot, self.party_size)
+
+    def __str__(self):
+        return "{} for {} for {} people".format(self.timeslot.time_slot, self.customer, "3")

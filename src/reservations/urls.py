@@ -1,12 +1,7 @@
 from django.urls import path
-from .views import (
-    home_page, 
-    reservation_page, 
-    confirmation_page
-)
-
+from .views import *
 urlpatterns = [
     path('', home_page),    
-    path('reserve/', reservation_page),
-    path('confirmation/', confirmation_page),
+    # path('reserve/', reservation_page),
+    # path('confirmation/', confirmation_page),
 ]
