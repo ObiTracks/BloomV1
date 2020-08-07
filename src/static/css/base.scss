@@ -43,7 +43,7 @@ body {
 
 // CARD
 .card{
-    height: auto;
+    height: fit fit-content;
     min-height: 2rem;
     width: 60%;
     position: relative;
@@ -75,6 +75,7 @@ body {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
+        flex-wrap: wrap;
         padding: 1rem;
     }
 }

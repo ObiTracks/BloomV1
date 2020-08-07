@@ -22,31 +22,32 @@
     <div class="card">
         <header>
             <h2>Bookings Tomorrow</h2>
-            <h4>Date Goes Here</h4>
+            <h4>{{next_day.today}}</h4>
         </header>
 
         <div class="body">
+            {% for slot in next_day_slots %}
             <div class="slot">
-                <h3 class="name">9-11am</h3>
+                <h3 class="name">{{slot.time_slot}}</h3>
                 <table>
                     <tr>
-                        <!-- <th></th> -->
                         <th id="name">Name</th>
                         <th>View</th>
                         <th>Apartment</th>
                         <th>Phone</th>
-                        <th>Party of</th>
                     </tr>
-    
+            
                     <tr class="data">
-                        <td>{customer.name}</td>
-                        <td>{customer.apartment}</td>
-                        <td>{customer.phone}</td>
-                        <td>{reservation.size}</td>
+                        {% for reservation in slot.reservation_set.all %}
+                        <td>{{reservation.customer}}</td>
                         <td><a href="">View</a></td>
+                        <td>{{reservation.customer}}</td>
+                        <td>{{reservation.customer}}</td>
+                        {% endfor %}
                     </tr>
                 </table>
             </div>
+            {% endfor %}
         </div>
     </div>
 
@@ -62,3 +63,4 @@
 </div>
 
 {% endblock %}
+

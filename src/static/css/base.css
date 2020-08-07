@@ -63,7 +63,9 @@ body {
 }
 
 .card {
-  height: auto;
+  height: fit -webkit-fit-content;
+  height: fit -moz-fit-content;
+  height: fit fit-content;
   min-height: 2rem;
   width: 60%;
   position: relative;
@@ -111,6 +113,8 @@ body {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 1rem;
 }
 
