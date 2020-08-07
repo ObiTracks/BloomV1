@@ -1,0 +1,13 @@
+.navbar{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #496179, #18222c);
+    padding: 0 2rem 0 2rem;
+
+    h1{
+        font-family: 'Poppins', sans-serif;
+        color: white;
+    }
+}

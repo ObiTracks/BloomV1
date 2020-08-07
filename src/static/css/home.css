@@ -1,0 +1,116 @@
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  z-index: 100;
+  margin-bottom: 1rem;
+}
+
+#stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.stat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 20%;
+  height: auto;
+  padding: 1rem;
+  border-left: solid #2457e4 7px;
+  -webkit-box-shadow: #ececec 0 0 10px 10px;
+          box-shadow: #ececec 0 0 10px 10px;
+  border-radius: 5px;
+  background: white;
+}
+
+.stat .title {
+  width: 80%;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  color: #2457e4;
+  margin: 0;
+}
+
+.stat .value {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.slot {
+  width: 100%;
+  padding: 5px;
+}
+
+.slot .name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-align: right;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: grey;
+  counter-reset: rowNumber;
+  /* background: blue; */
+}
+
+table th {
+  height: 2rem;
+  font-family: "Nunito", sans-serif;
+  text-align: left;
+  padding: 0 0  0 8px;
+  background: #f0e004;
+}
+
+table th #name {
+  font-weight: 700;
+  color: black;
+}
+
+table td {
+  height: 2.5rem;
+  text-align: left;
+  padding: 2px;
+}
+
+table tr.data::before {
+  font-family: "Poppins", sans-serif;
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  counter-increment: rowNumber;
+  content: counter(rowNumber);
+  padding: 5px;
+}
+/*# sourceMappingURL=home.css.map */

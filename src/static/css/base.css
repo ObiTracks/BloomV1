@@ -1,98 +1,136 @@
+/* SITE WIDE STYLING */
 * {
-    box-sizing: border-box;
-    margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
 }
 
 /* SITE WIDE STYLING */
 body {
-    height: fit-content;
-    margin: 0;
-    align-items: center;
-    background: rgb(221, 221, 221);
-}
-.content{
-    width: 100%;
-    height: auto;
-    min-height: 100vh;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    border: solid black 3px;
-    padding: 1rem;
-}
-.title{
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.6rem;
-    margin-bottom: 0.2rem;
-}
-.section{
-    position: relative;
-    width: 100%;
-    height: fit-content;
-    min-height: 8rem;
-    display: flex;
-    justify-content: space-between;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    /* border: solid black 2px; */
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: whitesmoke;
 }
 
-.card{
-    position: relative;
-    background: white;
-    border: solid rgb(235, 235, 235) 1px;
-    border-radius: 6px;
-    /* padding: 2rem; */
-}
-.card header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border-bottom: solid rgb(219, 219, 219) 1px;
-}
-.card .timeslots{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 1rem;
-}
-.card .timeslot {
-    border: solid rgb(235, 235, 235) 1px;
-    border-radius: 6px;
-    padding: 5px;
+.content {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 2rem;
 }
 
-/* HOME CSS */
-.stat{
-    width: 24%;
-    height: 5rem;
-    padding: 2rem;
-    border-left: solid blue 5px;
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  margin-bottom: 0.2rem;
 }
-.stat-title{
-    text-transform: uppercase;
-    font-size: 1rem;
+
+.section {
+  position: relative;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1rem 0 1rem 0;
 }
+
+.card {
+  height: auto;
+  min-height: 2rem;
+  width: 60%;
+  position: relative;
+  background: white;
+  border: solid white 1px;
+  -webkit-box-shadow: #e2e2e2 0 0 10px 5px;
+          box-shadow: #e2e2e2 0 0 10px 5px;
+  border-radius: 6px;
+}
+
+.card header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+  border-bottom: solid #e2e2e2 1px;
+}
+
+.card header h2 {
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  color: #2457e4;
+  margin-right: 2rem;
+}
+
+.card header h4 {
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+.card .body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 1rem;
+}
+
 table {
-    width: 100%;
-    border: solid rgb(122, 122, 122) 1px;
-    border-collapse: collapse;
-    color: grey;
-    /* background: blue; */
-}
-table th{
-    height: 1.5rem;
-    /* border: solid black 1px; */
-}
-table td{
-    height: 2.5rem;
-    border: solid rgb(126, 126, 126) 1px;
-    text-align: right;
-    padding: 2px;
+  width: 100%;
+  border: solid #7a7a7a 1px;
+  border-collapse: collapse;
+  color: grey;
+  /* background: blue; */
 }
 
+table th {
+  height: 1.5rem;
+  /* border: solid black 1px; */
+}
 
-
+table td {
+  height: 2.5rem;
+  border: solid #7e7e7e 1px;
+  text-align: right;
+  padding: 2px;
+}
+/*# sourceMappingURL=base.css.map */

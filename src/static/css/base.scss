@@ -1,0 +1,104 @@
+$font1: 'Poppins', sans-serif;
+$font2: 'Montserrat', sans-serif;
+$font3: 'Nunito', sans-serif;
+$color1: rgb(36, 87, 228);
+
+/* SITE WIDE STYLING */* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* SITE WIDE STYLING */
+body {
+    height: fit-content;
+    margin: 0;
+    align-items: center;
+    background: rgb(245, 245, 245);
+}
+.content{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    // border: solid black 3px;
+    padding: 2rem;
+}
+.title{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.6rem;
+    margin-bottom: 0.2rem;
+}
+.section{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    // border: solid black 2px;
+    padding: 1rem 0 1rem 0;
+}
+
+// CARD
+.card{
+    height: auto;
+    min-height: 2rem;
+    width: 60%;
+    position: relative;
+    background: white;
+    border: solid rgb(255, 255, 255) 1px;
+    box-shadow: rgb(226, 226, 226) 0 0 10px 5px;
+    border-radius: 6px;
+
+    header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: solid rgb(226, 226, 226) 1px;
+
+        h2{
+            font-size: 1.2rem;
+            font-family: $font1;
+            color: $color1;
+            margin-right: 2rem;
+        }
+        h4{
+            font-size: 0.8rem;
+            font-family: $font2;
+            text-transform: uppercase;
+        }
+    }
+    .body{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+}
+// Table
+table {
+    width: 100%;
+    border: solid rgb(122, 122, 122) 1px;
+    border-collapse: collapse;
+    color: grey;
+    /* background: blue; */
+}
+table th{
+    height: 1.5rem;
+    /* border: solid black 1px; */
+}
+table td{
+    height: 2.5rem;
+    border: solid rgb(126, 126, 126) 1px;
+    text-align: right;
+    padding: 2px;
+}
+
+
+

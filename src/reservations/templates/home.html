@@ -7,46 +7,58 @@
 {% endblock %}
 
 {% block content %}
-<h1 class=>Dashboard</h1>
-<div class="section">
-
-    <div class="stat card">
-        <h2 class="stat-title">Earnings</h2>
+<h1 class="title">Dashboard</h1>
+<div id="stats" class="section">
+    <div class="stat">
+        <h2 class="title">Total Reservations Today</h2>
+        <h3 class="value">3</h3>
     </div>
 </div>
 
+<hr>
 
 <div class="section">
 
     <div class="card">
         <header>
-            <h2>Bookings for Tomorrow</h2>
+            <h2>Bookings Tomorrow</h2>
+            <h4>Date Goes Here</h4>
         </header>
 
-        <div class="timeslots">
-            <div class="timeslot">
-                <h3 class="timeslot-name">9-11am</h3>
+        <div class="body">
+            <div class="slot">
+                <h3 class="name">9-11am</h3>
                 <table>
                     <tr>
-                        <th>Name</th>
+                        <th></th>
+                        <th id="name">Name</th>
                         <th>View</th>
                         <th>Apartment</th>
                         <th>Phone</th>
                         <th>Party of</th>
                     </tr>
     
-                    <tr>
+                    <tr class="data">
                         <td>{customer.name}</td>
-                        <td><a href="">View</a></td>
                         <td>{customer.apartment}</td>
                         <td>{customer.phone}</td>
                         <td>{reservation.size}</td>
+                        <td><a href="">View</a></td>
                     </tr>
                 </table>
             </div>
         </div>
-        
     </div>
+
+    <!-- <div class="card">
+        <header>
+            <h2>Manage Residents</h2>
+            <button>Create Resident</button>
+        </header>
+
+        <div class="body">
+        </div>
+    </div> -->
 </div>
 
 {% endblock %}

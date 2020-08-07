@@ -1,0 +1,93 @@
+$font1: 'Poppins', sans-serif;
+$font2: 'Montserrat', sans-serif;
+$font3: 'Nunito', sans-serif;
+$color1: rgb(36, 87, 228);
+
+.title{
+    font-family: $font1;
+    font-size: 2rem;
+    z-index: 100;
+    margin-bottom: 1rem;
+}
+#stats{
+    display: flex;
+    align-items: flex-start;
+}
+.stat{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    height: auto;
+    padding: 1rem;
+    border-left: solid $color1 7px;
+    box-shadow: rgb(236, 236, 236) 0 0 10px 10px;
+    border-radius: 5px;
+    background: white;
+
+    .title{
+        width: 80%;
+        font-size: 1rem;
+        font-family: $font2;
+        font-weight: 100;
+        color: $color1;
+        margin: 0;
+    }
+    .value{
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        font-family: $font1;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+.slot{
+    width: 100%;
+    // border: solid rgb(177, 53, 53) 5px;
+    // border-radius: 6px;
+    padding: 5px;
+    .name{
+        font-family: $font2;
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        text-align: right;
+    }
+}
+table {
+    width: 100%;
+    // border: solid rgb(122, 122, 122) 1px;
+    border-radius: 5px;
+    border-collapse: collapse;
+    color: grey;
+    counter-reset: rowNumber;
+        border-radius: ;
+    /* background: blue; */
+    th{
+        height: 2rem;
+        font-family: $font3;
+        text-align: left;
+        padding: 0 0  0 8px;
+        background: rgb(240, 224, 4);
+        #name{
+            font-weight: 700;
+            color: black;
+        }
+    }
+    td{
+        height: 2.5rem;
+        text-align: left;
+        padding: 2px;
+    }
+    tr.data::before{  
+        font-family: $font1;
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        counter-increment: rowNumber;
+        content: counter(rowNumber);
+        padding: 5px;
+    }
+}
