@@ -8,7 +8,7 @@ from .models import (Customer, Day, TimeSlot, Reservation)
 def home_page(request):
     next_day = Day.objects.last()
     days = Day.objects.all().count()
-    present_day = None
+    present_day = Day.objects.last()
     if days >= 2:
         present_day = Day.objects.all()[-2]
 

@@ -1,7 +1,4 @@
-$font1: 'Poppins', sans-serif;
-$font2: 'Montserrat', sans-serif;
-$font3: 'Nunito', sans-serif;
-$color1: rgb(36, 87, 228);
+@import './variables';
 
 .title{
     font-family: $font1;
@@ -12,6 +9,7 @@ $color1: rgb(36, 87, 228);
 #stats{
     display: flex;
     align-items: flex-start;
+
 }
 .stat{
     display: flex;
@@ -44,50 +42,59 @@ $color1: rgb(36, 87, 228);
 }
 .slot{
     width: 100%;
-    // border: solid rgb(177, 53, 53) 5px;
-    // border-radius: 6px;
     padding: 5px;
     .name{
-        font-family: $font2;
-        font-size: 1.3rem;
+        font-family: $font1;
+        font-size: 1.6rem;
         margin-bottom: 0.5rem;
-        text-align: right;
+        text-align: center;
+        text-transform: uppercase;
+        background: #496179;
+        border-radius: 5px 5px 0 0 ;
+        margin: 0;
+        padding: 4px;
     }
 }
 table {
     width: 100%;
-    // border: solid rgb(122, 122, 122) 1px;
-    border-radius: 5px;
+    border: none;
     border-collapse: collapse;
-    color: grey;
-    counter-reset: rowNumber;
-        border-radius: ;
-    /* background: blue; */
+    color: rgb(66, 66, 66);
+    overflow: hidden;
+    padding: 2px;
     th{
-        height: 2rem;
-        font-family: $font3;
+        height: 2.5rem;
+        font-family: 'Open Sans', sans-serif;
         text-align: left;
+        border: none;
+        font-weight: 200;
         padding: 0 0  0 8px;
-        background: rgb(240, 224, 4);
-        #name{
+        // background: rgb(240, 224, 4);
+        background: #94abc2;
+        
+    }
+    #name{
             font-weight: 700;
             color: black;
         }
-    }
     td{
-        height: 2.5rem;
+        height: 2rem;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 15px;
+        color: rgb(155, 155, 155);
         text-align: left;
+        border: solid rgb(218, 218, 218) 2px;
         padding: 2px;
     }
-    tr.data::before{  
-        font-family: $font1;
-        list-style-type: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        counter-increment: rowNumber;
-        content: counter(rowNumber);
-        padding: 5px;
-    }
+    // tr.data::before{  
+    //     font-family: $font1;
+    //     list-style-type: none;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     text-align: center;
+    //     counter-increment: rowNumber;
+    //     content: counter(rowNumber);
+    //     padding: 5px;
+    // }
 }

@@ -9,8 +9,11 @@
           align-items: center;
   background: -webkit-gradient(linear, left top, right top, from(#496179), to(#18222c));
   background: linear-gradient(to right, #496179, #18222c);
-  font-family: 'Poppins' sans-serif;
-  color: white;
   padding: 0 2rem 0 2rem;
+}
+
+.navbar h1 {
+  font-family: 'Poppins', sans-serif;
+  color: white;
 }
 /*# sourceMappingURL=navbar.css.map */
