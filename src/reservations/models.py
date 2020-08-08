@@ -36,11 +36,10 @@ class Day(models.Model):
 
 
     def __str__(self):
-        return "{} {} {} |{:>10} Created on {}".format(
+        return "{} {} {} | Created on {}".format(
             self.tomorrow_weekday,
             self.tomorrow_month,
             self.tomorrow_day,
-            " ",
             self.date_created
             )
 

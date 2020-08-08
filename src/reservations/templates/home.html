@@ -7,44 +7,98 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="title">Dashboard</h1>
-<div id="stats" class="section">
-    <div class="stat">
-        <h2 class="title">Total Reservations Today</h2>
-        <h3 class="value">3</h3>
-    </div>
-</div>
-
-<hr>
-
 <div class="section">
-
-    <div class="card">
+    <!-- Day card -->
+    <div class="card card-lg">
         <header>
             <h2>Bookings Tomorrow</h2>
-            <h4>{{next_day.today}}</h4>
+            <h4>{{next_day.tomorrow}}</h4>
         </header>
 
         <div class="body">
             {% for slot in next_day_slots %}
             <div class="slot">
                 <h3 class="name">{{slot.time_slot}}</h3>
-                <table>
+                <table class="table-slot">
                     <tr>
                         <th id="name">Name</th>
                         <th>View</th>
                         <th>Apartment</th>
                         <th>Phone</th>
                     </tr>
-            
+
+                    {% for reservation in slot.reservation_set.all %}
                     <tr class="data">
-                        {% for reservation in slot.reservation_set.all %}
-                        <td>{{reservation.customer}}</td>
+                        <td>{{reservation.customer.name}}</td>
                         <td><a href="">View</a></td>
-                        <td>{{reservation.customer}}</td>
-                        <td>{{reservation.customer}}</td>
-                        {% endfor %}
+                        <td>{{reservation.customer.apt_number}}</td>
+                        <td>{{reservation.customer.phone}}</td>
                     </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <!-- Resident card -->
+    <div class="card card-md">
+        <header>
+            <h2>Residents</h2>
+            <h4>{{residents.count}}</h4>
+        </header>
+    
+        <div class="body">
+            <table class="table-resident">
+                <tr>
+                    <th id="name">Name</th>
+                    <th>Apartment</th>
+                    <th>Phone</th>
+                </tr>
+            
+                {% for residents in residents %}
+                <tr class="data">
+                    <a href="">
+                        <td>{{residents.name}}</td>
+                        <td>{{residents.apt_number}}</td>
+                        <td>{{residents.phone}}</td>
+                    </a>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+    </div>
+
+
+    <!-- Day card -->
+    <div class="card card-lg">
+        <header>
+            <h2>Current Availability</h2>
+            <h4>{{present_day.today}}</h4>
+        </header>
+
+        <div class="body">
+            {% for slot in present_day_slots %}
+            <div class="slot">
+                <h3 class="name">{{slot.time_slot}}</h3>
+                <table class="table-slot">
+                    <tr>
+                        <th id="name">Name</th>
+                        <th>View</th>
+                        <th>Apartment</th>
+                        <th>Phone</th>
+                    </tr>
+
+                    {% for reservation in slot.reservation_set.all %}
+                    <tr class="data">
+                        <td>{{reservation.customer.name}}</td>
+                        <td><a href="">View</a></td>
+                        <td>{{reservation.customer.apt_number}}</td>
+                        <td>{{reservation.customer.phone}}</td>
+                    </tr>
+                    {% endfor %}
                 </table>
             </div>
             {% endfor %}

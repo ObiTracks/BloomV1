@@ -1,4 +1,5 @@
 @import './variables';
+@import './buttons';
 
 .title{
     font-family: $font1;
@@ -6,43 +7,12 @@
     z-index: 100;
     margin-bottom: 1rem;
 }
-#stats{
-    display: flex;
-    align-items: flex-start;
-
-}
-.stat{
-    display: flex;
-    flex-direction: row;
-    width: 20%;
-    height: auto;
-    padding: 1rem;
-    border-left: solid $color1 7px;
-    box-shadow: rgb(236, 236, 236) 0 0 10px 10px;
-    border-radius: 5px;
-    background: white;
-
-    .title{
-        width: 80%;
-        font-size: 1rem;
-        font-family: $font2;
-        font-weight: 100;
-        color: $color1;
-        margin: 0;
-    }
-    .value{
-        width: 20%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        font-family: $font1;
-        font-size: 2rem;
-        font-weight: 700;
-    }
-}
 .slot{
     width: 100%;
     padding: 5px;
+    // background: #eeeeee;
+    border-radius: 8px;
+    margin-bottom: 2rem;
     .name{
         font-family: $font1;
         font-size: 1.2rem;
@@ -55,7 +25,7 @@
         padding: 4px;
     }
 }
-table {
+.table-slot {
     width: 100%;
     border: none;
     border-collapse: collapse;
@@ -63,9 +33,10 @@ table {
     overflow: hidden;
     padding: 2px;
     th{
-        height: 2.5rem;
+        height: 2rem;
         font-family: 'Open Sans', sans-serif;
         font-size: 0.9rem;
+        color: white;
         text-align: left;
         border: none;
         font-weight: 200;
@@ -77,15 +48,17 @@ table {
     #name{
             font-size: 1.1rem;
             font-weight: 700;
-            color: #496179;
+            // color: #496179;
+            color: white;
         }
     td{
-        height: 2rem;
+        height: 1.5rem;
+        width: 25%;
         font-family: 'Open Sans', sans-serif;
         font-size: 15px;
-        color: rgb(155, 155, 155);
+        color: rgb(66, 66, 66);
         text-align: left;
-        border: solid rgb(218, 218, 218) 2px;
+        border: solid rgb(221, 221, 221) 1px;
         padding: 2px;
     }
     // tr.data::before{  
@@ -99,4 +72,39 @@ table {
     //     content: counter(rowNumber);
     //     padding: 5px;
     // }
+}
+.table-resident {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+    color: rgb(66, 66, 66);
+    overflow: hidden;
+    padding: 2px;
+    th{
+        height: 2rem;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.9rem;
+        color: black;
+        text-align: left;
+        border: none;
+        font-weight: 200;
+        padding: 0 0  0 8px;
+    }
+    #name{
+            font-size: 1.1rem;
+            font-weight: 700;
+            // color: #496179;
+            color: black;
+        }
+    td{
+        height: 2rem;
+        width: 25%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 15px;
+        color: rgb(66, 66, 66);
+        text-align: left;
+        border: none;
+        border-bottom: solid rgb(221, 221, 221) 1px;
+        padding: 2px;
+    }
 }

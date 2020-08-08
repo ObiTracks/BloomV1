@@ -1,8 +1,64 @@
-.title {
+#big-btn {
+  width: 20%;
+  height: 5rem;
+}
+
+#big-btn .title {
+  width: 80%;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: black;
+  margin: 0;
+}
+
+#big-btn .value {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   font-family: "Poppins", sans-serif;
-  font-size: 2rem;
-  z-index: 100;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+}
+
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: black;
+  overflow: hidden;
+  border: none;
+  border-radius: 5rem;
+}
+
+.btn:focus {
+  border-radius: 5rem;
+}
+
+.btn-info {
+  background: #2457e4;
+}
+
+.btn-danger {
+  color: white;
+  background: #ff2d12;
 }
 
 #stats {
@@ -12,6 +68,9 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .stat {
@@ -23,13 +82,15 @@
       -ms-flex-direction: row;
           flex-direction: row;
   width: 20%;
-  height: auto;
+  height: 5rem;
   padding: 1rem;
   border-left: solid #2457e4 7px;
   -webkit-box-shadow: #ececec 0 0 10px 10px;
           box-shadow: #ececec 0 0 10px 10px;
   border-radius: 5px;
   background: white;
+  margin-right: 1rem;
+  overflow: hidden;
 }
 
 .stat .title {
@@ -57,9 +118,18 @@
   font-weight: 700;
 }
 
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  z-index: 100;
+  margin-bottom: 1rem;
+}
+
 .slot {
   width: 100%;
   padding: 5px;
+  border-radius: 8px;
+  margin-bottom: 2rem;
 }
 
 .slot .name {
@@ -73,7 +143,7 @@
   padding: 4px;
 }
 
-table {
+.table-slot {
   width: 100%;
   border: none;
   border-collapse: collapse;
@@ -82,10 +152,11 @@ table {
   padding: 2px;
 }
 
-table th {
-  height: 2.5rem;
+.table-slot th {
+  height: 2rem;
   font-family: 'Open Sans', sans-serif;
   font-size: 0.9rem;
+  color: white;
   text-align: left;
   border: none;
   font-weight: 200;
@@ -93,19 +164,58 @@ table th {
   background: #94abc2;
 }
 
-table #name {
+.table-slot #name {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #496179;
+  color: white;
 }
 
-table td {
-  height: 2rem;
+.table-slot td {
+  height: 1.5rem;
+  width: 25%;
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
-  color: #9b9b9b;
+  color: #424242;
   text-align: left;
-  border: solid #dadada 2px;
+  border: solid #dddddd 1px;
+  padding: 2px;
+}
+
+.table-resident {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+  color: #424242;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.table-resident th {
+  height: 2rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  color: black;
+  text-align: left;
+  border: none;
+  font-weight: 200;
+  padding: 0 0  0 8px;
+}
+
+.table-resident #name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: black;
+}
+
+.table-resident td {
+  height: 2rem;
+  width: 25%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: #424242;
+  text-align: left;
+  border: none;
+  border-bottom: solid #dddddd 1px;
   padding: 2px;
 }
 /*# sourceMappingURL=home.css.map */

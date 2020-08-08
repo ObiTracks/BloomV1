@@ -1,0 +1,47 @@
+@import './variables';
+// Genereal button styling
+#big-btn{
+    width: 20%;
+    height: 5rem;
+    .title{
+        width: 80%;
+        font-size: 1rem;
+        font-family: $font2;
+        font-weight: 700;
+        color: black;
+        margin: 0;
+    }
+    .value{
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        font-family: $font1;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: black;
+    }
+}
+.btn{
+    // border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-family: $font2;
+    font-weight: 700;
+    color: black;
+    overflow: hidden;
+    border: none;
+    border-radius: 5rem;
+}
+.btn:focus{
+    border-radius: 5rem;
+}
+.btn-info{
+    background: $color1;
+}
+.btn-danger{
+    color: white;
+    background: rgb(255, 45, 18);
+}

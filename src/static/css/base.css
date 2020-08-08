@@ -1,3 +1,66 @@
+#big-btn {
+  width: 20%;
+  height: 5rem;
+}
+
+#big-btn .title {
+  width: 80%;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: black;
+  margin: 0;
+}
+
+#big-btn .value {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+}
+
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: black;
+  overflow: hidden;
+  border: none;
+  border-radius: 5rem;
+}
+
+.btn:focus {
+  border-radius: 5rem;
+}
+
+.btn-info {
+  background: #2457e4;
+}
+
+.btn-danger {
+  color: white;
+  background: #ff2d12;
+}
+
 /* SITE WIDE STYLING */
 * {
   -webkit-box-sizing: border-box;
@@ -51,9 +114,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -62,18 +125,76 @@ body {
   padding: 1rem 0 1rem 0;
 }
 
+#stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.stat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 20%;
+  height: 5rem;
+  padding: 1rem;
+  border-left: solid #2457e4 7px;
+  -webkit-box-shadow: #ececec 0 0 10px 10px;
+          box-shadow: #ececec 0 0 10px 10px;
+  border-radius: 5px;
+  background: white;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
+.stat .title {
+  width: 80%;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  color: #2457e4;
+  margin: 0;
+}
+
+.stat .value {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
 .card {
   height: fit -webkit-fit-content;
   height: fit -moz-fit-content;
   height: fit fit-content;
   min-height: 2rem;
-  width: 60%;
   position: relative;
   background: white;
   border: solid white 1px;
   -webkit-box-shadow: #e2e2e2 0 0 10px 5px;
           box-shadow: #e2e2e2 0 0 10px 5px;
   border-radius: 6px;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
 }
 
 .card header {
@@ -116,6 +237,14 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 1rem;
+}
+
+.card-lg {
+  width: 60%;
+}
+
+.card-md {
+  width: 35%;
 }
 
 table {
