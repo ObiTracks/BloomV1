@@ -23,11 +23,10 @@ body {
     padding: 2rem;
 }
 .title{
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.6rem;
-    margin-bottom: 0.2rem;
+    font-family: $font1;
+    font-size: 2rem;
+    z-index: 100;
+    margin-bottom: 1rem;
 }
 .section{
     position: relative;

@@ -1,1 +1,7 @@
-/* No CSS *//*# sourceMappingURL=customer.css.map */
+.info-container {
+  width: 30%;
+  height: 15rem;
+  border: solid grey 1px;
+  border-radius: 6px;
+}
+/*# sourceMappingURL=customer.css.map */

@@ -38,6 +38,14 @@ def dayinfo_page(request):
     
     return render(request, template_name, context)
 
+def customer_page(request):
+    # resident = Customer.objects.get(id=pk)
+    page_title = "Customer"
+    context = {"page_title":page_title}
+    template_name = 'customer/customer_info.html'
+    
+    return render(request, template_name, context)
+
 def timeslot_page(request):
     context = {}
     template_name = 'home.html'
