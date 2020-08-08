@@ -1,11 +1,13 @@
 @import './variables';
 @import './buttons';
-
+@import './tables';
 
 .slot{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding: 5px;
-    // background: #eeeeee;
     border-radius: 8px;
     margin-bottom: 2rem;
     .name{
@@ -13,93 +15,10 @@
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
         text-align: left;
-        text-transform: uppercase;
+        text-transform: lowercase;
         // background: #496179;
         border-radius: 5px 5px 0 0 ;
         margin: 0;
         padding: 4px;
-    }
-}
-.table-slot {
-    width: 100%;
-    border: none;
-    border-collapse: collapse;
-    color: rgb(66, 66, 66);
-    overflow: hidden;
-    padding: 2px;
-    th{
-        height: 2rem;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 0.9rem;
-        color: white;
-        text-align: left;
-        border: none;
-        font-weight: 200;
-        padding: 0 0  0 8px;
-        // background: rgb(240, 224, 4);
-        background: #94abc2;
-        
-    }
-    #name{
-            font-size: 1.1rem;
-            font-weight: 700;
-            // color: #496179;
-            color: white;
-        }
-    td{
-        height: 1.5rem;
-        width: 25%;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 15px;
-        color: rgb(66, 66, 66);
-        text-align: left;
-        border: solid rgb(221, 221, 221) 1px;
-        padding: 2px;
-    }
-    // tr.data::before{  
-    //     font-family: $font1;
-    //     list-style-type: none;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     text-align: center;
-    //     counter-increment: rowNumber;
-    //     content: counter(rowNumber);
-    //     padding: 5px;
-    // }
-}
-.table-resident {
-    width: 100%;
-    border: none;
-    border-collapse: collapse;
-    color: rgb(66, 66, 66);
-    overflow: hidden;
-    padding: 2px;
-    th{
-        height: 2rem;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 0.9rem;
-        color: black;
-        text-align: left;
-        border: none;
-        font-weight: 200;
-        padding: 0 0  0 8px;
-    }
-    #name{
-            font-size: 1.1rem;
-            font-weight: 700;
-            // color: #496179;
-            color: black;
-        }
-    td{
-        height: 2rem;
-        width: 25%;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 15px;
-        color: rgb(66, 66, 66);
-        text-align: left;
-        border: none;
-        border-bottom: solid rgb(221, 221, 221) 1px;
-        padding: 2px;
     }
 }

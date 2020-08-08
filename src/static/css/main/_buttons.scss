@@ -24,6 +24,8 @@
 }
 .btn{
     // border-radius: 8px;
+    box-sizing: border-box;
+    height: 1.7rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,11 +34,20 @@
     font-weight: 700;
     color: black;
     overflow: hidden;
+    padding: 0 0.7rem 0 0.7rem;
     border: none;
     border-radius: 5rem;
+    background: rgb(255, 255, 255);
+    border: solid black 2px;
+}
+.btn:hover{
+    background: rgb(0, 0, 0);
+    color: white;
 }
 .btn:focus{
-    border-radius: 5rem;
+    height: 1.5rem;
+    border: none;
+    outline: none;
 }
 .btn-info{
     background: $color1;

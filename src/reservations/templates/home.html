@@ -19,6 +19,7 @@
             {% for slot in next_day_slots %}
             <div class="slot">
                 <h3 class="name">{{slot.time_slot}}</h3>
+                <button class="btn">Add Reservation +</button>
                 <table class="table-slot">
                     <tr>
                         <th id="name">Name</th>
@@ -46,7 +47,7 @@
     <div class="card card-md">
         <header>
             <h2>Residents</h2>
-            <h4>{{residents.count}}</h4>
+            <h4>Total {{residents.count}}</h4>
         </header>
     
         <div class="body">
@@ -83,6 +84,7 @@
             {% for slot in present_day_slots %}
             <div class="slot">
                 <h3 class="name">{{slot.time_slot}}</h3>
+                <button class="btn">Add Reservation +</button>
                 <table class="table-slot">
                     <tr>
                         <th id="name">Name</th>

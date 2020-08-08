@@ -30,6 +30,9 @@
 }
 
 .btn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 1.7rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,12 +47,22 @@
   font-weight: 700;
   color: black;
   overflow: hidden;
+  padding: 0 0.7rem 0 0.7rem;
   border: none;
   border-radius: 5rem;
+  background: white;
+  border: solid black 2px;
+}
+
+.btn:hover {
+  background: black;
+  color: white;
 }
 
 .btn:focus {
-  border-radius: 5rem;
+  height: 1.5rem;
+  border: none;
+  outline: none;
 }
 
 .btn-info {
@@ -61,24 +74,6 @@
   background: #ff2d12;
 }
 
-.slot {
-  width: 100%;
-  padding: 5px;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
-
-.slot .name {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  text-align: left;
-  text-transform: uppercase;
-  border-radius: 5px 5px 0 0;
-  margin: 0;
-  padding: 4px;
-}
-
 .table-slot {
   width: 100%;
   border: none;
@@ -86,22 +81,24 @@
   color: #424242;
   overflow: hidden;
   padding: 2px;
+  border-radius: 6px 6px 0 0;
 }
 
 .table-slot th {
   height: 2rem;
   font-family: 'Open Sans', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: white;
   text-align: left;
   border: none;
   font-weight: 200;
   padding: 0 0  0 8px;
-  background: #94abc2;
+  background: #729dc9;
+  background: black;
 }
 
 .table-slot #name {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: white;
 }
@@ -109,12 +106,13 @@
 .table-slot td {
   height: 1.5rem;
   width: 25%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
+  font-family: 'Verdana', sans-serif;
+  font-size: 12px;
   color: #424242;
   text-align: left;
-  border: solid #dddddd 1px;
-  padding: 2px;
+  border: none;
+  border-bottom: #c9c9c9 solid 1px;
+  padding: 0 0 0 8px;
 }
 
 .table-resident {
@@ -138,20 +136,47 @@
 }
 
 .table-resident #name {
+  width: 40%;
   font-size: 1.1rem;
   font-weight: 700;
   color: black;
 }
 
 .table-resident td {
-  height: 2rem;
+  height: 1.5rem;
   width: 25%;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
+  font-family: 'Verdana', sans-serif;
+  font-size: 12px;
   color: #424242;
   text-align: left;
   border: none;
-  border-bottom: solid #dddddd 1px;
-  padding: 2px;
+  border-bottom: #c9c9c9 solid 1px;
+  padding: 0 0 0 8px;
+}
+
+.slot {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.slot .name {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  text-transform: lowercase;
+  border-radius: 5px 5px 0 0;
+  margin: 0;
+  padding: 4px;
 }
 /*# sourceMappingURL=home.css.map */
