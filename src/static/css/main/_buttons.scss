@@ -14,7 +14,7 @@
     color: white;
     overflow: hidden;
     padding: 0 0.7rem 0 0.7rem;
-    margin: 4px 0 4px 0;
+    margin: 5px;
     border-radius: 3px;
     border: none;
     background: $color1;
@@ -27,8 +27,12 @@
     background: rgb(248, 226, 22);
     color: black;
     &:hover{
-    background: rgb(170, 154, 103);
+    background: rgb(248, 207, 22);
     color: black;
+    }
+    &:focus{
+        outline: none;
+    }
 }
 .btn-danger{
     color: white;
@@ -36,4 +40,5 @@
     &:hover{
     background: rgb(216, 36, 13);
     color: rgb(255, 255, 255);
+    }
 }

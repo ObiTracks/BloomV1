@@ -16,8 +16,9 @@
 </div>
 <div class="card">
     <header>
-        <h2>All Customers</h2>
-        <h4>Total Customers: {{residents.count}}</h4>
+        <h4>Total Days: {{days.reservation_set.count}}</h4>
+        <h2>All Days</h2>
+        <button class="btn">Add New Day</button>
     </header>
 
     <div class="body">
@@ -32,12 +33,13 @@
 
             {% for day in days %}
             <tr class="data">
+                <a href="{% url 'day' day.id %}"/>
                 <td>{{day.day}}</td>
                 <td>{{day.timeslot_set.count}}</td>
                 <td>{{day.date_created}}</td>
                 <td><button class='btn btn-info'>Update</button></td>
                 <td><button class='btn btn-danger'>Delete</button></td>
-
+                </a>
 
             </tr>
             {% endfor %}

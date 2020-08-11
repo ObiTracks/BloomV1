@@ -45,6 +45,7 @@ class TimeSlot(models.Model):
     time_slot = models.CharField(max_length=10, null=True, choices=TIMESLOTS, default="Choose a time window")
     day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
+    notes = models.TextField(max_length=2000, null=True, blank=True)
 
     def __str__(self):
         return "{} Day:{}".format(self.time_slot, self.day.__str__()[0:10])

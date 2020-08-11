@@ -17,15 +17,10 @@
   color: white;
   overflow: hidden;
   padding: 0 0.7rem 0 0.7rem;
-  margin: 4px 0 4px 0;
+  margin: 5px;
   border-radius: 3px;
   border: none;
   background: #2457e4;
-}
-
-.btn:hover {
-  background: #1f4abe;
-  color: white;
 }
 
 .btn:focus {
@@ -39,13 +34,22 @@
 }
 
 .btn-info:hover {
-  background: #cab814;
-  color: white;
+  background: #f8cf16;
+  color: black;
+}
+
+.btn-info:focus {
+  outline: none;
 }
 
 .btn-danger {
   color: white;
   background: #ff2d12;
+}
+
+.btn-danger:hover {
+  background: #d8240d;
+  color: white;
 }
 
 table {
@@ -58,9 +62,9 @@ table {
 
 table th, table td {
   height: 2rem;
-  width: 16%;
+  width: 13%;
   font-family: 'Nunito', sans-serif;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: grey;
   text-align: left;
   padding: 0 0  0 8px;

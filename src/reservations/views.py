@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import (Customer, Day, TimeSlot, Reservation)
 
+# Main views
 def home_page(request):
     days = Day.objects.all()
     residents = Customer.objects.all()
@@ -30,7 +31,8 @@ def home_page(request):
     
     return render(request, template_name, context)
 
-def customer_page(request, pk):
+# Customer views
+def customer(request, pk):
     resident = Customer.objects.get(id=pk)
     reservations = resident.reservation_set.all()
     page_title = "Customer " + resident.name
@@ -38,20 +40,50 @@ def customer_page(request, pk):
     template_name = 'customer/customer_info.html'
     
     return render(request, template_name, context)
+
+def customers_all(request):
+    residents = Customer.objects.all()
+    page_title = "All Customers"
+    context = {"page_title":page_title, 'residents':residents}
+    template_name = 'customer/customers_all.html'
     
-def day_page(request):
-    context = {}
+    return render(request, template_name, context)
+# Day views
+def day(request, pk):
+    day = Day.objects.get(id=pk)
+    stats = {'stat1':{'name':'Total Reservations','value':day}}
+    page_title = "Day "+ str(day.day)
+    context = {"page_title":page_title,'day':day, 'stats':stats}
     template_name = 'day/day_info.html'
     
     return render(request, template_name, context)
 
-def timeslot_page(request):
+def days_all(request):
+    days = Day.objects.all()
+    page_title = "All Days"
+    context = {"page_title":page_title, 'days':days}
+    template_name = 'day/days_all.html'
+    
+    return render(request, template_name, context)
+
+# Timeslot views
+def timeslot(request):
     context = {}
     template_name = 'timeslot/timeslot_info.html'
     
     return render(request, template_name, context)
 
-def reservation_page(request):
+def timeslots_all(request):
+    timeslots = TimeSlot.objects.all()
+    page_title = "All TimeSlots"
+    context = {"page_title":page_title, 'timeslots':timeslots}
+    template_name = 'timeslot/timeslots_all.html'
+    
+    return render(request, template_name, context)
+
+
+# Reservation views
+def reservation(request):
     context = {}
     template_name = 'reservation/reservation_info.html'
     
