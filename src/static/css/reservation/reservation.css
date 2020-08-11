@@ -1,0 +1,66 @@
+.btn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 1.7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: white;
+  overflow: hidden;
+  padding: 0 0.7rem 0 0.7rem;
+  margin: 4px 0 4px 0;
+  border-radius: 3px;
+  border: none;
+  background: #2457e4;
+}
+
+.btn:hover {
+  background: #1f4abe;
+  color: white;
+}
+
+.btn:focus {
+  outline: solid #c2c2c2 2px;
+  -moz-outline-radius: 3px;
+}
+
+.btn-info {
+  background: #f8e216;
+  color: black;
+}
+
+.btn-info:hover {
+  background: #cab814;
+  color: white;
+}
+
+.btn-danger {
+  color: white;
+  background: #ff2d12;
+}
+
+.info-container {
+  width: 100%;
+  min-height: 10rem;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  color: #4f4f4f;
+  padding: 4px;
+  margin: 0 0 1rem 0;
+}
+
+.info-container h2 {
+  margin-bottom: 4px;
+}
+/*# sourceMappingURL=reservation.css.map */

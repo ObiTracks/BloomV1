@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
+<title>{Customer Name}</title>
+{% endblock %}
+
+{% block stats %}
+
+{% endblock%}
+
+{% block content %}
+<div class="section">
+
+</div>
+<div class="card">
+    <header>
+        <h2>All Customers</h2>
+        <h4>Total Customers: {{residents.count}}</h4>
+    </header>
+
+    <div class="body">
+        <table class="table-slot">
+            <tr>
+                <th id="name">Date</th>
+                <th>Date Created</th>
+                <th>Total Reservations</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for day in days %}
+            <tr class="data">
+                <td>{{day.day}}</td>
+                <td>{{day.date_created}}</td>
+                <td>{{day.timeslot_set.count()}}</td>
+                <td><button class='btn btn-info'>Update</button></td>
+                <td><button class='btn btn-danger'>Delete</button></td>
+
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

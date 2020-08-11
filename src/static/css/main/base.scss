@@ -75,8 +75,7 @@ hr{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    flex: 25%;
-    max-width: 12rem;
+    flex-grow: 1;
     height: 4rem;
     padding: 1rem;
     border-left-style: solid;
@@ -84,8 +83,9 @@ hr{
     box-shadow: rgb(236, 236, 236) 0 0 10px 10px;
     border-radius: 5px;
     background: white;
-    margin-right: 1rem;
+    margin: 0 1rem 1rem 0;
     overflow: hidden;
+    z-index: 100;
 
     > .title{
         font-size: 12px;
@@ -140,6 +140,7 @@ hr{
         align-items: flex-start;
         flex-wrap: wrap;
         padding: 1rem 1.5rem 1rem 1.5rem;
+
     }
 }
 .card-lg{

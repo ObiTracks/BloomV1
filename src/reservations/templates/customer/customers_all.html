@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
+<title>{Customer Name}</title>
+{% endblock %}
+
+{% block stats %}
+
+{% endblock%}
+
+{% block content %}
+<div class="section">
+
+</div>
+<div class="card">
+    <header>
+        <h2>All Customers</h2>
+        <h4>Total Customers: {{residents.count}}</h4>
+    </header>
+
+    <div class="body">
+        <table class="table-slot">
+            <tr>
+                <th id="name">Name</th>
+                <th>Apartment</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date Added</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for resident in residents %}
+            <tr class="data">
+                <td>{{resident.name}}</td>
+                <td>{{resident.apt}}</td>
+                <td>{{resident.email}}</td>
+                <td>{{resident.phone}}</td>
+                <td>{{resident.date_created}}</td>
+                <td><button class='btn btn-info'>Update</button></td>
+                <td><button class='btn btn-danger'>Delete</button></td>
+
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

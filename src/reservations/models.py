@@ -2,69 +2,66 @@ from django.db import models
 # from django_counter_field import CounterField
 # from django_counter_field import CounterMixin, connect_counter
 # from .slotclass import Slot
-import datetime, calendar
+import calendar
+from datetime import date, time, timedelta
 
 class Customer(models.Model):
-    name = models.CharField(max_length=200, null=True)
-    apt_number = models.IntegerField(default=0, blank=False)
-    phone = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
+    name = models.CharField(default='Person Name', max_length=200, null=True)
+    apt = models.IntegerField(default='205', blank=False)
+    phone = models.CharField(default='805.555.3809', max_length=200, null=True)
+    email = models.CharField(default='someemail@gmail.com', max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    id = models.AutoField(primary_key=True, editable=False)
     lease_members = models.ManyToManyField('self', blank=True)
+    notes = models.TextField(max_length=2000, null=True, blank=True)
     
     def __str__(self):
-        return self.name
+        return "{} ID-{}".format(self.name, self.id)
 
 
 class Day(models.Model):
-    # Time information about today
-    today = datetime.date.today()
-    today_day = today.day
-    today_weekday = calendar.day_name[today.weekday()]
-    today_month = calendar.month_name[today.month]
-
-    # Time information about tomorrow
-    tomorrow = today + datetime.timedelta(days=1)
-    tomorrow_day = tomorrow.day
-    tomorrow_weekday = calendar.day_name[tomorrow.weekday()]
-    tomorrow_month = calendar.month_name[tomorrow.month]
+    
+    # today_month = calendar.month_name[today.month]
+    today = date.today()
+    tomorrow = today + timedelta(days=1)
 
     # Fields
-    date = models.DateField(default=tomorrow)
-    date_created = models.DateTimeField(auto_now_add=True, null=True)
-    string_date = calendar.day_name[datetime.date.today().weekday()]
+    # date_created = models.DateTimeField(auto_now_add=True, null=True)
+    day = models.DateField(default=tomorrow, blank=False) 
+    date_created = models.DateField(default=today, blank=False)
+    notes = models.TextField(max_length=2000, null=True, blank=True)
 
 
     def __str__(self):
-        return "{} {} {} | Created on {}".format(
-            self.tomorrow_weekday,
-            self.tomorrow_month,
-            self.tomorrow_day,
-            self.date_created
-            )
+        return "{}".format(self.day)
+    
 
 class TimeSlot(models.Model):
-    time_slot = models.CharField(max_length=10, null=True, default="Choose a time window")
-    day = models.ForeignKey(Day, null=True, on_delete= models.SET_NULL)
-    pool_status_full = models.BooleanField(default=False, verbose_name='Time slot at capacity')
-    capacity = models.IntegerField(blank=True, default=13)
-    num_reservations = "Current space: 3 spots left"
+    TIMESLOTS = (
+        ('9am-11am','9am-11am'),
+        ('12pm-2pm','12pm-2pm'),
+        ('3pm-5pm','3pm-5pm'),
+    )
+    time_slot = models.CharField(max_length=10, null=True, choices=TIMESLOTS, default="Choose a time window")
+    day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
+    capacity = models.IntegerField(blank=True, default=13, editable=False)
 
     def __str__(self):
-        return self.time_slot
+        return "{} Day:{}".format(self.time_slot, self.day.__str__()[0:10])
 
 class Reservation(models.Model):
-    # Basic information
-    customer = models.ForeignKey(Customer, related_name="customer", null=True, on_delete= models.SET_NULL)
-    timeslot = models.ForeignKey(TimeSlot, null=True, on_delete= models.SET_NULL)
-
-    # Bring alongs
-    party_members = models.ManyToManyField(Customer, related_name="party_members", blank=True)
-
-
+    # Foreign relations
+    customer = models.ForeignKey(Customer, related_name="reservation_set", null=True, on_delete= models.CASCADE)
+    timeslot = models.ForeignKey(TimeSlot, related_name="reservation_set", null=True, on_delete=models.CASCADE)
     # Details
     no_show = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    notes = models.TextField(max_length=2000, null=True, blank=True)
+    # Bring alongs
+    party_members = models.ManyToManyField(Customer, related_name="party_members", blank=True)
 
     def __str__(self):
-        return "{} for {} for {} people".format(self.timeslot.time_slot, self.customer, "3")
+        return "{}".format(self.timeslot)
+
+    def full_dscrpt(self):
+        return "{} for {}".format(self.customer, self.timeslot.day)

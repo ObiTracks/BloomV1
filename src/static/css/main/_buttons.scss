@@ -1,27 +1,6 @@
 @import './variables';
 // Genereal button styling
-#big-btn{
-    width: 20%;
-    height: 5rem;
-    .title{
-        width: 80%;
-        font-size: 1rem;
-        font-family: $font2;
-        font-weight: 700;
-        color: black;
-        margin: 0;
-    }
-    .value{
-        width: 20%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        font-family: $font1;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: black;
-    }
-}
+
 .btn{
     // border-radius: 8px;
     box-sizing: border-box;
@@ -32,27 +11,29 @@
     font-size: 12px;
     font-family: $font2;
     font-weight: 700;
-    color: black;
+    color: white;
     overflow: hidden;
     padding: 0 0.7rem 0 0.7rem;
+    margin: 4px 0 4px 0;
+    border-radius: 3px;
     border: none;
-    border-radius: 5rem;
-    background: rgb(255, 255, 255);
-    border: solid black 2px;
-}
-.btn:hover{
-    background: rgb(0, 0, 0);
-    color: white;
+    background: $color1;
 }
 .btn:focus{
-    height: 1.5rem;
-    border: none;
-    outline: none;
+    outline: solid rgb(194, 194, 194) 2px;
+    -moz-outline-radius: 3px;
 }
 .btn-info{
-    background: $color1;
+    background: rgb(248, 226, 22);
+    color: black;
+    &:hover{
+    background: rgb(170, 154, 103);
+    color: black;
 }
 .btn-danger{
     color: white;
     background: rgb(255, 45, 18);
+    &:hover{
+    background: rgb(216, 36, 13);
+    color: rgb(255, 255, 255);
 }

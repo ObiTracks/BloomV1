@@ -6,6 +6,9 @@
 <title>{Customer Name}</title>
 {% endblock %}
 
+{% block stats %}
+
+{% endblock%}
 
 {% block content %}
 <div class="section">
@@ -13,19 +16,48 @@
 </div>
 <div class="card">
         <header>
+            <div>
+                <button class="btn">Update Customer</button>
+                <button class="btn">Delete Customer</button>
+            </div>
             <h2>{{resident.name}}</h2>
-            <h4>{Total Reservation 7}</h4>
+            <h4>Total Reservations: {{resident.reservation_set.all.count}}</h4>
         </header>
         
         <div class="body">
-            <div class="container-info">
-                sdf
-            </div>
-            <div class="container-history">
-                sas
+            <div class="info-container">
+                <h2>Name: {{resident.name}}</h2>
+                <h2>Apartment: {{resident.apt_number}}</h2>
+                <h2>Email: {{resident.email}}</h2>
+                <h2>Phone: {{resident.phone}}</h2>
+                <h2>Date Added: {{resident.date_created}}</h2>
+                <h2>Notes: {{resident.notes}}</h2>
             </div>
 
+            <table class="table-slot">
+                <tr>
+                    <th id="name">Time</th>
+                    <th>Day</th>
+                    <th>Notes</th>
+                    <th>No Show</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            
+                {% for reservation in reservations %}
+                <tr class="data">
+                    <td>{{reservation.timeslot}}</td>
+                    <td>{{reservation.timeslot.day}}</td>
+                    <td>{{reservation.notes}}</td>
+                    <td>{{reservation.no_show}}</td>
+                    <td><button class='btn btn-info'>Update</button></td>
+                    <td><button class='btn btn-danger'>Delete</button></td>
+                    
+                    
+                </tr>
+                {% endfor %}
+            </table>
         </div>
-</>
+</div>
 
 {% endblock %}

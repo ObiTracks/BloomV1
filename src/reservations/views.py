@@ -21,8 +21,6 @@ def home_page(request):
     present_day_slots = present_day.timeslot_set.all()
     total_days = days.count()
 
-    if total_days >= 2:
-        present_day = days[2]
 
     page_title = "Dashboard"
     # total_reservations = timeslots.reservation_set.all().count()
@@ -31,29 +29,30 @@ def home_page(request):
     template_name = 'home.html'
     
     return render(request, template_name, context)
-    
-def dayinfo_page(request):
-    context = {}
-    template_name = 'home.html'
+
+def customer_page(request, pk):
+    resident = Customer.objects.get(id=pk)
+    reservations = resident.reservation_set.all()
+    page_title = "Customer " + resident.name
+    context = {"page_title":page_title, 'resident':resident, 'reservations':reservations}
+    template_name = 'customer/customer_info.html'
     
     return render(request, template_name, context)
-
-def customer_page(request):
-    # resident = Customer.objects.get(id=pk)
-    page_title = "Customer"
-    context = {"page_title":page_title}
-    template_name = 'customer/customer_info.html'
+    
+def day_page(request):
+    context = {}
+    template_name = 'day/day_info.html'
     
     return render(request, template_name, context)
 
 def timeslot_page(request):
     context = {}
-    template_name = 'home.html'
+    template_name = 'timeslot/timeslot_info.html'
     
     return render(request, template_name, context)
 
 def reservation_page(request):
     context = {}
-    template_name = 'home.html'
+    template_name = 'reservation/reservation_info.html'
     
     return render(request, template_name, context)
