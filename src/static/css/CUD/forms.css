@@ -84,61 +84,79 @@
   color: white;
 }
 
-table {
+.section {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card {
+  margin-top: 1rem;
+}
+
+.card header {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #2457e4;
+}
+
+.card header h2 {
+  color: white;
+}
+
+.card form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem 2rem 3rem 2rem;
+}
+
+.card form hr {
   width: 100%;
-  border: solid #cfcfcf 1px;
-  border-collapse: collapse;
-  color: #424242;
-  overflow: hidden;
+  height: 3px;
+  background: #cccccc;
+  border-radius: 2px;
+  margin: 10px 0 10px 0;
 }
 
-table th, table td {
-  height: 2rem;
-  width: 13%;
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.8rem;
-  color: grey;
+.card form label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
   text-align: left;
-  padding: 0 0  0 12px;
-  border: solid #e6e6e6 1px;
 }
 
-table th {
-  border-bottom: solid #cfcfcf 2px;
-  font-weight: 700;
+.card form select {
+  border: solid grey 1px;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
 }
 
-table tr:hover {
-  background: whitesmoke;
-  cursor: default;
+.card form textarea {
+  height: 3rem;
+  border: solid grey 1px;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
 }
 
-table tr:first-child:hover {
-  background: none;
-}
-
-.slot {
+.card form .buttons {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 5px;
-  border-radius: 8px;
-  margin-bottom: 2rem;
 }
-
-.slot .name {
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  text-align: left;
-  text-transform: lowercase;
-  color: grey;
-  margin: 0;
-}
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=forms.css.map */

@@ -7,10 +7,6 @@
 {% endblock %}
 
 
-{% block extra_head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main/home.css' %}">
-<title>Dashboard</title>
-{% endblock %}
 {% block content %}
 <div class="section">
     <!-- Day card -->
@@ -28,17 +24,17 @@
                 <table class="table-slot">
                     <tr>
                         <th id="name">Name</th>
-                        <th>View</th>
                         <th>Apartment</th>
                         <th>Phone</th>
+                        <th>Total On Lease</th>
                     </tr>
 
                     {% for reservation in slot.reservation_set.all %}
-                    <tr class="data">
+                    <tr class="data" onclick="window.location='{% url "resident" reservation.customer.id %}';">
                         <td>{{reservation.customer.name}}</td>
-                        <td><a href="">View</a></td>
-                        <td>{{reservation.customer.apt_number}}</td>
+                        <td>{{reservation.customer.apt}}</td>
                         <td>{{reservation.customer.phone}}</td>
+                        <td>{{reservation.customer.lease_members.count}}</td>
                     </tr>
                     {% endfor %}
                 </table>

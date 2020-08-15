@@ -18,10 +18,28 @@
     border-radius: 3px;
     border: none;
     background: $color1;
+    a {
+        color: black;
+        text-decoration: none;
+        outline: none;
+    }
 }
 .btn:focus{
     outline: solid rgb(194, 194, 194) 2px;
     -moz-outline-radius: 3px;
+}
+.btn-cancel{
+    background: none;
+    border: solid black 2px;
+    border-radius: 5px;
+    color: black;
+    &:hover{
+    border-color: rgb(159, 159, 159);
+    color: rgb(159, 159, 159);
+    }
+    &:focus{
+        outline: none;
+    }
 }
 .btn-info{
     background: rgb(248, 226, 22);
@@ -38,7 +56,15 @@
     color: white;
     background: rgb(255, 45, 18);
     &:hover{
-    background: rgb(216, 36, 13);
+    background: rgb(169, 24, 4);
+    color: rgb(255, 255, 255);
+    }
+}
+.btn-confirm{
+    color: white;
+    background: rgb(21, 221, 214);
+    &:hover{
+    background: rgb(0, 255, 247);
     color: rgb(255, 255, 255);
     }
 }

@@ -1,0 +1,58 @@
+@import '../main/buttons';
+@import '../main/variables';
+
+.section{
+    justify-content: center;
+}
+.card{
+    max-width: 500px;
+    header{
+        justify-content: center;
+        h2{
+            color: rgb(255, 45, 18);
+        }
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+
+        
+        .info-container{ 
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            // width: 100%;
+            width: fit-content;
+            min-height: 10rem;
+            border: solid rgb(235, 235, 235) 2px;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 0 0 1rem 0;
+            h1{
+                text-align: center;
+                font-family: $font1;
+                font-size: 1rem;
+                font-weight: 700;
+                color: black;
+                margin-bottom: 0.5rem;
+            }
+            h2{
+                font-family: $font2;
+                font-size: 1rem;
+                font-weight: 700;
+                color: rgb(79, 79, 79);
+                margin-bottom: 4px;
+            }
+        }
+
+        .buttons{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+}

@@ -9,10 +9,10 @@ table{
         height: 2rem;
         width: 13%;
         font-family: 'Nunito', sans-serif;
-        font-size: 1rem;
+        font-size: 0.8rem;
         color: grey;
         text-align: left;
-        padding: 0 0  0 8px;
+        padding: 0 0  0 12px;
         border: solid rgb(230, 230, 230) 1px;
     }
     th{
@@ -20,7 +20,7 @@ table{
         font-weight: 700;
     }
     tr:hover{
-        background: rgb(247, 247, 247);
+        background: rgb(245, 245, 245);
         cursor: default;
     }
     tr:first-child:hover{

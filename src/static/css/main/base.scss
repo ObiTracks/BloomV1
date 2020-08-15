@@ -5,6 +5,14 @@
 /* SITE WIDE STYLING */* {
     box-sizing: border-box;
     margin: 0;
+    
+}
+
+a{
+    text-decoration: none;
+    font-style: none;
+    color: inherit;
+    margin: 0;
 }
 
 /* SITE WIDE STYLING */
@@ -113,6 +121,7 @@ hr{
     border-radius: 6px;
     overflow: hidden;
     margin-bottom: 2rem;
+
     header{
         display: flex;
         align-items: center;
@@ -122,8 +131,29 @@ hr{
         background: rgb(247, 247, 247);
 
         h2{
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-family: $font1;
+            color: $color1;
+        }
+        h4{
+            font-size: 0.8rem;
+            font-family: $font2;
+            color: rgb(179, 179, 179);
+            // text-transform: uppercase;
+        }
+    }
+
+    footer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        border-top: solid rgb(226, 226, 226) 1px;
+        background: rgb(247, 247, 247);
+
+        h2{
+            font-size: 0.8rem;
+            font-family: $font2;
             color: $color1;
             margin-right: 2rem;
         }
@@ -140,6 +170,7 @@ hr{
         align-items: flex-start;
         flex-wrap: wrap;
         padding: 1rem 1.5rem 1rem 1.5rem;
+        padding: 2rem;
 
     }
 }

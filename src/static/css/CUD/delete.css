@@ -84,61 +84,85 @@
   color: white;
 }
 
-table {
-  width: 100%;
-  border: solid #cfcfcf 1px;
-  border-collapse: collapse;
-  color: #424242;
-  overflow: hidden;
+.section {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-table th, table td {
-  height: 2rem;
-  width: 13%;
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.8rem;
-  color: grey;
-  text-align: left;
-  padding: 0 0  0 12px;
-  border: solid #e6e6e6 1px;
+.card {
+  max-width: 500px;
 }
 
-table th {
-  border-bottom: solid #cfcfcf 2px;
+.card header {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card header h2 {
+  color: #ff2d12;
+}
+
+.card form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+}
+
+.card form .info-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-height: 10rem;
+  border: solid #ebebeb 2px;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0 0 1rem 0;
+}
+
+.card form .info-container h1 {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
   font-weight: 700;
+  color: black;
+  margin-bottom: 0.5rem;
 }
 
-table tr:hover {
-  background: whitesmoke;
-  cursor: default;
+.card form .info-container h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4f4f4f;
+  margin-bottom: 4px;
 }
 
-table tr:first-child:hover {
-  background: none;
-}
-
-.slot {
+.card form .buttons {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 5px;
-  border-radius: 8px;
-  margin-bottom: 2rem;
 }
-
-.slot .name {
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  text-align: left;
-  text-transform: lowercase;
-  color: grey;
-  margin: 0;
-}
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=delete.css.map */

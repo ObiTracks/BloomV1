@@ -23,9 +23,31 @@
   background: #2457e4;
 }
 
+.btn a {
+  color: black;
+  text-decoration: none;
+  outline: none;
+}
+
 .btn:focus {
   outline: solid #c2c2c2 2px;
   -moz-outline-radius: 3px;
+}
+
+.btn-cancel {
+  background: none;
+  border: solid black 2px;
+  border-radius: 5px;
+  color: black;
+}
+
+.btn-cancel:hover {
+  border-color: #9f9f9f;
+  color: #9f9f9f;
+}
+
+.btn-cancel:focus {
+  outline: none;
 }
 
 .btn-info {
@@ -48,7 +70,17 @@
 }
 
 .btn-danger:hover {
-  background: #d8240d;
+  background: #a91804;
+  color: white;
+}
+
+.btn-confirm {
+  color: white;
+  background: #15ddd6;
+}
+
+.btn-confirm:hover {
+  background: #00fff7;
   color: white;
 }
 
