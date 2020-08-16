@@ -24,14 +24,19 @@
 }
 
 .btn a {
-  color: black;
+  color: none;
   text-decoration: none;
   outline: none;
 }
 
-.btn:focus {
-  outline: solid #c2c2c2 2px;
+.btn:active {
+  outline: none;
+  background: #1a48c7;
   -moz-outline-radius: 3px;
+}
+
+.btn:focus {
+  outline: white 2px solid;
 }
 
 .btn-cancel {

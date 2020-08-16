@@ -24,14 +24,19 @@
 }
 
 .btn a {
-  color: black;
+  color: none;
   text-decoration: none;
   outline: none;
 }
 
-.btn:focus {
-  outline: solid #c2c2c2 2px;
+.btn:active {
+  outline: none;
+  background: #1a48c7;
   -moz-outline-radius: 3px;
+}
+
+.btn:focus {
+  outline: white 2px solid;
 }
 
 .btn-cancel {
@@ -110,10 +115,15 @@ table th {
 
 table tr:hover {
   background: whitesmoke;
-  cursor: default;
+  cursor: pointer;
+}
+
+table tr:first-child {
+  border-radius: 20px;
 }
 
 table tr:first-child:hover {
+  cursor: default;
   background: none;
 }
 
@@ -129,7 +139,7 @@ table tr:first-child:hover {
           justify-content: space-between;
   padding: 5px;
   border-radius: 8px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .slot .name {
@@ -138,7 +148,8 @@ table tr:first-child:hover {
   margin-bottom: 0.5rem;
   text-align: left;
   text-transform: lowercase;
-  color: grey;
-  margin: 0;
+  color: #b1b1b1;
+  color: #2457e4;
+  margin: 7px;
 }
 /*# sourceMappingURL=home.css.map */

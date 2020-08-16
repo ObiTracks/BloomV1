@@ -48,11 +48,11 @@ hr{
     min-height: 2rem;
     display: flex;
     justify-content: space-between;
+    justify-items: flex-end;
     align-items: flex-start;
-    align-content: flex-start;
     flex-wrap: wrap;
     // border: solid black 2px;
-    padding: 0.5rem 0 0.5rem 0;
+    padding: 1rem 0 1rem 0;
 }
 
 // General statsbar styling
@@ -83,15 +83,15 @@ hr{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    flex-grow: 1;
+    flex: 1;
     height: 4rem;
     padding: 1rem;
     border-left-style: solid;
-    border-left-width: 4px;
+    border-left-width: 6px;
     box-shadow: rgb(236, 236, 236) 0 0 10px 10px;
     border-radius: 5px;
     background: white;
-    margin: 0 1rem 1rem 0;
+    margin-right: 2rem;
     overflow: hidden;
     z-index: 100;
 
@@ -170,7 +170,6 @@ hr{
         align-items: flex-start;
         flex-wrap: wrap;
         padding: 1rem 1.5rem 1rem 1.5rem;
-        padding: 2rem;
 
     }
 }

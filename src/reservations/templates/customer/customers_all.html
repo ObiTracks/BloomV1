@@ -11,9 +11,9 @@
 {% endblock%}
 
 {% block content %}
-<div class="section">
+<!-- <div class="section">
 
-</div>
+</div> -->
 <div class="card">
     <header>
         <h2>All Customers</h2>
@@ -39,7 +39,7 @@
                 <td>{{resident.email}}</td>
                 <td>{{resident.phone}}</td>
                 <td>{{resident.date_created}}</td>
-                <td><button class='btn btn-info'>Update</button></td>
+                <td><button class='btn btn-info'><a href="{% url 'create_reservation' resident.id %}">Update</a></button></td>
                 <td><button class='btn btn-danger'>Delete</button></td>
 
 

@@ -24,14 +24,19 @@
 }
 
 .btn a {
-  color: black;
+  color: none;
   text-decoration: none;
   outline: none;
 }
 
-.btn:focus {
-  outline: solid #c2c2c2 2px;
+.btn:active {
+  outline: none;
+  background: #1a48c7;
   -moz-outline-radius: 3px;
+}
+
+.btn:focus {
+  outline: white 2px solid;
 }
 
 .btn-cancel {
@@ -110,10 +115,15 @@ table th {
 
 table tr:hover {
   background: whitesmoke;
-  cursor: default;
+  cursor: pointer;
+}
+
+table tr:first-child {
+  border-radius: 20px;
 }
 
 table tr:first-child:hover {
+  cursor: default;
   background: none;
 }
 
@@ -184,14 +194,13 @@ hr {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  justify-items: flex-end;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 1rem 0 1rem 0;
 }
 
 #stats {
@@ -242,17 +251,17 @@ hr {
       -ms-flex-align: start;
           align-items: flex-start;
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+      -ms-flex: 1;
+          flex: 1;
   height: 4rem;
   padding: 1rem;
   border-left-style: solid;
-  border-left-width: 4px;
+  border-left-width: 6px;
   -webkit-box-shadow: #ececec 0 0 10px 10px;
           box-shadow: #ececec 0 0 10px 10px;
   border-radius: 5px;
   background: white;
-  margin: 0 1rem 1rem 0;
+  margin-right: 2rem;
   overflow: hidden;
   z-index: 100;
 }
@@ -357,7 +366,6 @@ hr {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 1rem 1.5rem 1rem 1.5rem;
-  padding: 2rem;
 }
 
 .card-lg {

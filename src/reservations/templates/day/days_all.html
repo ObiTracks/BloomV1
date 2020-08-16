@@ -3,7 +3,7 @@
 
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
-<title>{Customer Name}</title>
+<title>{{day.day}}</title>
 {% endblock %}
 
 {% block stats %}
@@ -11,39 +11,36 @@
 {% endblock%}
 
 {% block content %}
-<div class="section">
+<!-- <div class="section">
 
-</div>
+</div> -->
+
 <div class="card">
     <header>
-        <h4>Total Days: {{days.reservation_set.count}}</h4>
-        <h2>All Days</h2>
-        <button class="btn">Add New Day</button>
+        <h2>Days</h2>
     </header>
 
     <div class="body">
         <table class="table-slot">
             <tr>
                 <th id="name">Date</th>
-                <th>Total Reservations</th>
-                <th>Date Created</th>
+                <th>Timeslots</th>
+                <th>Notes</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
 
             {% for day in days %}
-            <tr class="data">
-                <a href="{% url 'day' day.id %}"/>
+            <tr class="data" onclick="window.location='{% url 'day' day.id %}';">
                 <td>{{day.day}}</td>
-                <td>{{day.timeslot_set.count}}</td>
-                <td>{{day.date_created}}</td>
+                <td>{{day.timeslot_set.all.count}}</td>
+                <td>{{day.notes}}</td>
                 <td><button class='btn btn-info'>Update</button></td>
                 <td><button class='btn btn-danger'>Delete</button></td>
-                </a>
-
             </tr>
             {% endfor %}
         </table>
+
     </div>
 </div>
 

@@ -19,14 +19,18 @@
     border: none;
     background: $color1;
     a {
-        color: black;
+        color: none;
         text-decoration: none;
         outline: none;
     }
 }
-.btn:focus{
-    outline: solid rgb(194, 194, 194) 2px;
+.btn:active{
+    outline: none;
+    background: rgb(26, 72, 199);
     -moz-outline-radius: 3px;
+}
+.btn:focus{
+    outline: white 2px solid;
 }
 .btn-cancel{
     background: none;

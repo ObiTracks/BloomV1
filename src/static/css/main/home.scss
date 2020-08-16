@@ -9,14 +9,15 @@
     justify-content: space-between;
     padding: 5px;
     border-radius: 8px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     .name{
         font-family: $font1;
         font-size: 1rem;
         margin-bottom: 0.5rem;
         text-align: left;
         text-transform: lowercase;
-        color: grey;
-        margin: 0;
+        color: rgb(177, 177, 177);
+        color: $color1;
+        margin: 7px;
     }
 }

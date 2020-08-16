@@ -9,18 +9,51 @@
 
 {% block content %}
 <div class="section">
+    <!-- RESIDENT CARD -->
+    <div class="card card-md">
+        <header>
+            <h2><a href='{% url "residents" %}'>Residents</a></h2>
+            <h4>Total {{residents.count}}</h4>
+        </header>
+    
+        <div class="body">
+            <table class="table-resident">
+                <tr>
+                    <th id="name">Name</th>
+                    <th>Apartment</th>
+                    <th>Phone</th>
+                </tr>
+    
+                {% for residents in residents %}
+                <tr class="data">
+                    <a href="">
+                        <td>{{residents.name}}</td>
+                        <td>{{residents.apt_number}}</td>
+                        <td>{{residents.phone}}</td>
+                    </a>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
     <!-- Day card -->
+    {% for day in days %}
     <div class="card card-lg">
         <header>
-            <h2>Bookings Tomorrow</h2>
-            <h4>{{next_day.tomorrow}}</h4>
+            {% if day.date == today_date%}
+                <h2>Today</h2>
+            {% else %}
+                <h2><a href='{% url "day" day.id %}'>Some Date</a></h2>
+            {% endif %}
+            <h4>{{day.date}}</h4>
         </header>
 
         <div class="body">
-            {% for slot in next_day_slots %}
+            {% for slot in day.timeslot_set.all %}
             <div class="slot">
                 <h3 class="name">{{slot.time_slot}}</h3>
-                <button class="btn">Add Reservation +</button>
+                <button class="btn"><a href="{% url 'create_reservation' slot.id %}">Add Reservation +</a></button>
                 <table class="table-slot">
                     <tr>
                         <th id="name">Name</th>
@@ -42,81 +75,9 @@
             {% endfor %}
         </div>
     </div>
+    {% endfor %}
 
 
-    <!-- Resident card -->
-    <div class="card card-md">
-        <header>
-            <h2>Residents</h2>
-            <h4>Total {{residents.count}}</h4>
-        </header>
-    
-        <div class="body">
-            <table class="table-resident">
-                <tr>
-                    <th id="name">Name</th>
-                    <th>Apartment</th>
-                    <th>Phone</th>
-                </tr>
-            
-                {% for residents in residents %}
-                <tr class="data">
-                    <a href="">
-                        <td>{{residents.name}}</td>
-                        <td>{{residents.apt_number}}</td>
-                        <td>{{residents.phone}}</td>
-                    </a>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-        
-    </div>
-
-
-    <!-- Day card -->
-    <div class="card card-lg">
-        <header>
-            <h2>Current Availability</h2>
-            <h4>{{present_day.today}}</h4>
-        </header>
-
-        <div class="body">
-            {% for slot in present_day_slots %}
-            <div class="slot">
-                <h3 class="name">{{slot.time_slot}}</h3>
-                <button class="btn">Add Reservation +</button>
-                <table class="table-slot">
-                    <tr>
-                        <th id="name">Name</th>
-                        <th>View</th>
-                        <th>Apartment</th>
-                        <th>Phone</th>
-                    </tr>
-
-                    {% for reservation in slot.reservation_set.all %}
-                    <tr class="data">
-                        <td>{{reservation.customer.name}}</td>
-                        <td><a href="">View</a></td>
-                        <td>{{reservation.customer.apt_number}}</td>
-                        <td>{{reservation.customer.phone}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <!-- <div class="card">
-        <header>
-            <h2>Manage Residents</h2>
-            <button>Create Resident</button>
-        </header>
-
-        <div class="body">
-        </div>
-    </div> -->
 </div>
 
 {% endblock %}

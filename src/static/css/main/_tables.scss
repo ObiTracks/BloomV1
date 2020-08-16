@@ -21,9 +21,13 @@ table{
     }
     tr:hover{
         background: rgb(245, 245, 245);
-        cursor: default;
+        cursor: pointer;
+    }
+    tr:first-child{
+        border-radius: 20px;
     }
     tr:first-child:hover{
+        cursor: default;
         background: none;
     }
 }
