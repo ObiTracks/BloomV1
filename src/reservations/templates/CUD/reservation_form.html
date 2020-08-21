@@ -16,12 +16,15 @@
 
 
         <form action="" method="POST">
-            {% csrf_token %}
+            <!-- {% csrf_token %}
             {{ formset.management_form }}
             {% for form in formset %}
             {{form}}
             <hr>
-            {% endfor %}
+            {% endfor %} -->
+
+            {% csrf_token %}
+            {{form}}
 
             <div class='buttons'>
                 <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>

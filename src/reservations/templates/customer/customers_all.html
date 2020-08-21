@@ -14,6 +14,7 @@
 <!-- <div class="section">
 
 </div> -->
+<!-- <h1>{{timeslot}}</h1> -->
 <div class="card">
     <header>
         <h2>All Customers</h2>
@@ -39,7 +40,17 @@
                 <td>{{resident.email}}</td>
                 <td>{{resident.phone}}</td>
                 <td>{{resident.date_created}}</td>
-                <td><button class='btn btn-info'><a href="{% url 'create_reservation' resident.id %}">Update</a></button></td>
+                
+                {% if timeslot != None %}
+                    <!-- <td><button class="btn"><a href="{% url 'create_reservation' timeslot.id resident.id %}">Create Reservationn +</a></button></td> -->
+                    <td><button class="btn"><a href="{% url 'create_reservation' time_id resident.id %}">Create Reservationn +</a></button></td>
+                    
+                {% else %}
+                    <td><button class="btn"><a href="{% url 'create_reservation' None resident.id %}">Create Reservation +</a></button></td>
+                {% endif %}
+
+                
+                <td><button class='btn btn-info'><a href="{% url 'create_reservation' resident.id 5 %}">Update</a></button></td>
                 <td><button class='btn btn-danger'>Delete</button></td>
 
 

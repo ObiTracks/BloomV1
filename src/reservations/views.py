@@ -10,44 +10,38 @@ from .forms import *
 #****************************************************
 # CRUD Views
 #****************************************************
-# def createReservation(request, pk):
-#     ReservationFormSet = inlineformset_factory(Customer, Reservation, fields=('customer','timeslot', 'notes', 'partymembers'), extra=4)
-#     customer = Customer.objects.get(id=pk)
-#     formset = ReservationFormSet(queryset=Order.objects.none(),instance=customer)
-#     # form = OrderForm(initial={'customer':customer})
-#     if request.method == 'POST':
-#         # print('Printing POST:', request.POST)
-#         # form = OrderForm(request.POST)
-#         # formset = ReservationFor
-#         if formset.is_valid():
-#             formset.save()
-#             return redirect('/')
-
-#     context = {'formset':formset}
-#     return render(request, 'accounts/reservation_form.html', context)
 
 
-def createReservation(request, pk):
-    ReservationFormSet = inlineformset_factory(Customer,
-                                               Reservation,
-                                               fields=('timeslot', 'notes'),
-                                               max_num=1)
+def createReservation(request, tk, pk, *args, **kwargs):
     customer = Customer.objects.get(id=pk)
-    formset = ReservationFormSet(queryset=Reservation.objects.none(),
-                                 instance=customer)
-    # form = OrderForm(initial={'customer':customer})
-    if request.method == 'POST':
-        # print('Printing POST:', request.POST)
-        # form = OrderForm(request.POST)
-        formset = ReservationFormSet(request.POST, instance=customer)
-        if formset.is_valid():
-            formset.save()
-            return redirect('/')
+    if tk != 'None':
+        timeslot = TimeSlot.objects.get(id=tk)
+    else:
+        timeslot = None
 
+    if timeslot != None:
+        # form = ReservationForm(initial={'customer': customer, 'timeslot':timeslot})
+        form = ReservationForm(initial={
+            'customer': customer,
+            'timeslot': timeslot
+        })
+    else:
+        form = ReservationForm(initial={
+            'customer': customer,
+        })
+
+    if request.method == 'POST':
+        print('Printing POST:', request.POST)
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    #
     context = {
-        'formset': formset,
-        'page_title': 'Create Reservation - {}'.format(customer.name),
-        'customer': customer
+        'form': form,
+        'page_title': 'New Reservation',
+        'customer': customer,
+        'time_slot': timeslot
     }
     return render(request, 'CUD/reservation_form.html', context)
 
@@ -114,6 +108,7 @@ def home_page(request):
         'days': days,
         'today_date': today_date,
         'stats': stats,
+        'residents':residents,
         'total_days': total_days
     }
 
@@ -159,10 +154,21 @@ def customer(request, pk):
     return render(request, template_name, context)
 
 
-def customers_all(request):
+def customers_all(request, tk):
+    if tk != 'None':
+        timeslot = TimeSlot.objects.get(id=tk)
+        time_id = timeslot.id
+    else:
+        timeslot = None
+        time_id = tk
+
     residents = Customer.objects.all()
     page_title = "All Customers"
-    context = {"page_title": page_title, 'residents': residents}
+    context = {
+        "page_title": page_title,
+        'residents': residents,
+        'time_id': time_id
+    }
     template_name = 'customer/customers_all.html'
 
     return render(request, template_name, context)

@@ -8,12 +8,14 @@ table{
     th, td{
         height: 2rem;
         width: 13%;
+        flex-grow: 1;
         font-family: 'Nunito', sans-serif;
         font-size: 0.8rem;
         color: grey;
         text-align: left;
         padding: 0 0  0 12px;
         border: solid rgb(230, 230, 230) 1px;
+        overflow: scroll;
     }
     th{
         border-bottom: solid rgb(207, 207, 207) 2px;

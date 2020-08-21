@@ -12,7 +12,7 @@
     <!-- RESIDENT CARD -->
     <div class="card card-md">
         <header>
-            <h2><a href='{% url "residents" %}'>Residents</a></h2>
+            <h2><a href='{% url "residents" None %}'>Residents</a></h2>
             <h4>Total {{residents.count}}</h4>
         </header>
     
@@ -24,12 +24,12 @@
                     <th>Phone</th>
                 </tr>
     
-                {% for residents in residents %}
+                {% for resident in residents %}
                 <tr class="data">
                     <a href="">
-                        <td>{{residents.name}}</td>
-                        <td>{{residents.apt_number}}</td>
-                        <td>{{residents.phone}}</td>
+                        <td>{{resident.name}}</td>
+                        <td>{{resident.apt_number}}</td>
+                        <td>{{resident.phone}}</td>
                     </a>
                 </tr>
                 {% endfor %}
@@ -53,7 +53,7 @@
             {% for slot in day.timeslot_set.all %}
             <div class="slot">
                 <h3 class="name">{{slot.time_slot}}</h3>
-                <button class="btn"><a href="{% url 'create_reservation' slot.id %}">Add Reservation +</a></button>
+                <button class="btn"><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
                 <table class="table-slot">
                     <tr>
                         <th id="name">Name</th>
