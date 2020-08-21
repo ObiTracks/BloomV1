@@ -17,10 +17,10 @@ def createReservation(request, tk, pk, *args, **kwargs):
     customer = Customer.objects.get(id=pk)
     if tk != 'None':
         timeslot = TimeSlot.objects.get(id=tk)
-        print('Path A: '+ tk)
+        print('Path A: tk='+ tk)
     else:
         timeslot = None
-        print('Path B: ' + tk)
+        print('Path B: tk=' + tk)
 
     if timeslot != None:
         # form = ReservationForm(initial={'customer': customer, 'timeslot':timeslot})

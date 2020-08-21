@@ -50,12 +50,12 @@
                 <td>{{resident.phone}}</td>
                 <td>{{resident.date_created}}</td>
                 
-                {% if time_id != None %}
+                <!-- {% if time_id != None %} -->
                     <td><button class="btn"><a href="{% url 'create_reservation' time_id resident.id %}">Create Reservation +</a></button></td>
                     
-                {% else %}
-                    <td><button class="btn"><a href="{% url 'create_reservation' None resident.id %}">Create Reservation +</a></button></td>
-                {% endif %}
+                <!-- {% else %} -->
+                    <!-- <td><button class="btn"><a href="{% url 'create_reservation' None resident.id %}">Create Reservation +</a></button></td> -->
+                <!-- {% endif %} -->
 
                 
                 <td><button class='btn btn-info'><a href="{% url 'create_reservation' resident.id 5 %}">Update</a></button></td>
