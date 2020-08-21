@@ -7,6 +7,7 @@ from datetime import date
 
 from .models import (Customer, Day, TimeSlot, Reservation)
 from .forms import *
+from .filters import CustomerFilter
 #****************************************************
 # CRUD Views
 #****************************************************
@@ -16,8 +17,10 @@ def createReservation(request, tk, pk, *args, **kwargs):
     customer = Customer.objects.get(id=pk)
     if tk != 'None':
         timeslot = TimeSlot.objects.get(id=tk)
+        print('Path A: '+ tk)
     else:
         timeslot = None
+        print('Path B: ' + tk)
 
     if timeslot != None:
         # form = ReservationForm(initial={'customer': customer, 'timeslot':timeslot})
@@ -155,19 +158,42 @@ def customer(request, pk):
 
 
 def customers_all(request, tk):
+    residents = Customer.objects.all()
+    myFilter = CustomerFilter(request.GET, queryset=residents)
+    residents = myFilter.qs
     if tk != 'None':
         timeslot = TimeSlot.objects.get(id=tk)
-        time_id = timeslot.id
+        time_id = tk
     else:
         timeslot = None
         time_id = tk
 
-    residents = Customer.objects.all()
+    stats = {
+        'stat1': {
+            'title': 'Total Residents',
+            'value': Customer.objects.all().count()
+        },
+        'stat2': {
+            'title': '___',
+            'value': '___'
+        },
+        'stat3': {
+            'title': '___',
+            'value': '___'
+        },
+        'stat4': {
+            'title': '___',
+            'value': '___'
+        }
+    }
+
     page_title = "All Customers"
     context = {
         "page_title": page_title,
         'residents': residents,
-        'time_id': time_id
+        'time_id': time_id,
+        'myFilter':myFilter,
+        'stats':stats
     }
     template_name = 'customer/customers_all.html'
 

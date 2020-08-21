@@ -2,18 +2,13 @@
 @import '../main/buttons';
 
 
-.info-container{
-    width: 100%;
-    min-height: 10rem;
-    border-radius: 6px;
-    padding: 4px;
-    margin: 0 0 1rem 0;
-
-    h2{
-    font-family: $font1;
-    font-size: 12px;
-    font-weight: 700;
-    color: rgb(79, 79, 79);
-    margin-bottom: 4px;
-    }
+#customers{        
+    justify-content: space-between;
+}
+.table-slot{
+    flex-grow: 1;
+    // width: 75%;
+}
+.searchbar{
+    // flex-grow: 1;
 }

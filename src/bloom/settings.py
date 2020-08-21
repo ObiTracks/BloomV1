@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'reservations', #pluggable
-    # 'django_counter_field', #Counts the number of associated model instances to the model in question
+
+    'django_filters',
 
 ]
 

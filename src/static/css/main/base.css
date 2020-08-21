@@ -92,14 +92,14 @@
 table {
   width: 100%;
   border: solid #cfcfcf 1px;
+  border-radius: 10px;
   border-collapse: collapse;
   color: #424242;
-  overflow: hidden;
+  overflow: auto;
 }
 
 table th, table td {
   height: 2rem;
-  width: 13%;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -109,7 +109,7 @@ table th, table td {
   text-align: left;
   padding: 0 0  0 12px;
   border: solid #e6e6e6 1px;
-  overflow: scroll;
+  word-wrap: break-word;
 }
 
 table th {
@@ -370,6 +370,46 @@ hr {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 1rem 1.5rem 1rem 1.5rem;
+}
+
+.searchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 25%;
+}
+
+.searchbar form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.searchbar form > * {
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  color: grey;
+  font-weight: 300;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.searchbar form input {
+  border: solid grey 1px;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.searchbar form textarea {
+  height: 3rem;
+  padding: 5px;
+  border: solid grey 1px;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .card-lg {

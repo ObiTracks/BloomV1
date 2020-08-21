@@ -21,7 +21,15 @@
         <h4>Total Customers: {{residents.count}}</h4>
     </header>
 
-    <div class="body">
+    <div class="body" id="customers">
+        <div class="searchbar">
+            <form method="get">
+                {{myFilter.form}}
+
+                <button class='btn btn-info' type='submit'>Search</button>
+            </form>
+        </div>
+
         <table class="table-slot">
             <tr>
                 <th id="name">Name</th>
@@ -29,6 +37,7 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Date Added</th>
+                <th>New Reservation</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
@@ -41,9 +50,8 @@
                 <td>{{resident.phone}}</td>
                 <td>{{resident.date_created}}</td>
                 
-                {% if timeslot != None %}
-                    <!-- <td><button class="btn"><a href="{% url 'create_reservation' timeslot.id resident.id %}">Create Reservationn +</a></button></td> -->
-                    <td><button class="btn"><a href="{% url 'create_reservation' time_id resident.id %}">Create Reservationn +</a></button></td>
+                {% if time_id != None %}
+                    <td><button class="btn"><a href="{% url 'create_reservation' time_id resident.id %}">Create Reservation +</a></button></td>
                     
                 {% else %}
                     <td><button class="btn"><a href="{% url 'create_reservation' None resident.id %}">Create Reservation +</a></button></td>

@@ -173,6 +173,35 @@ hr{
 
     }
 }
+.searchbar{
+    display: flex;
+    width: 25%;
+    form {
+        display: flex;
+        flex-direction: column;
+
+        > *{
+            width: 100%;
+            font-family: $font1;
+            color: grey;
+            font-weight: 300;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        input{
+            border: solid grey 1px;
+            border-radius: 6px;
+            padding: 5px;
+        }
+        textarea{
+            height: 3rem;
+            padding: 5px;
+            border: solid grey 1px;
+            border-radius: 6px;
+            font-family: $font2;
+        }
+    }
+}
 .card-lg{
     width: 60%;
 }

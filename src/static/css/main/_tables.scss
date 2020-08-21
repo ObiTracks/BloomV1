@@ -2,12 +2,12 @@
 table{
     width: 100%;
     border: solid rgb(207, 207, 207) 1px;
+    border-radius: 10px;
     border-collapse: collapse;
     color: rgb(66, 66, 66);
-    overflow: hidden;
+    overflow: auto;
     th, td{
         height: 2rem;
-        width: 13%;
         flex-grow: 1;
         font-family: 'Nunito', sans-serif;
         font-size: 0.8rem;
@@ -15,7 +15,8 @@ table{
         text-align: left;
         padding: 0 0  0 12px;
         border: solid rgb(230, 230, 230) 1px;
-        overflow: scroll;
+        // overflow: auto;
+        word-wrap: break-word;
     }
     th{
         border-bottom: solid rgb(207, 207, 207) 2px;

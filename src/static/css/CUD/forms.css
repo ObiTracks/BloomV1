@@ -145,11 +145,12 @@
 .card form select {
   border: solid grey 1px;
   border-radius: 6px;
-  font-family: "Montserrat", sans-serif;
+  padding: 5px;
 }
 
 .card form textarea {
   height: 3rem;
+  padding: 5px;
   border: solid grey 1px;
   border-radius: 6px;
   font-family: "Montserrat", sans-serif;

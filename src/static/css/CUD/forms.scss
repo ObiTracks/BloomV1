@@ -36,10 +36,11 @@
         select{
             border: solid grey 1px;
             border-radius: 6px;
-            font-family: $font2;
+            padding: 5px;
         }
         textarea{
             height: 3rem;
+            padding: 5px;
             border: solid grey 1px;
             border-radius: 6px;
             font-family: $font2;
