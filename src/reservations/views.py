@@ -3,6 +3,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import inlineformset_factory
+from django.core.paginator import Paginator
 from datetime import date
 
 from .models import (Customer, Day, TimeSlot, Reservation)
@@ -158,9 +159,19 @@ def customer(request, pk):
 
 
 def customers_all(request, tk):
+    # residents = Customer.objects.all()
+    # myFilter = CustomerFilter(request.GET, queryset=residents)
+    # residents = myFilter.qs
+
+
     residents = Customer.objects.all()
     myFilter = CustomerFilter(request.GET, queryset=residents)
     residents = myFilter.qs
+
+    paginator = Paginator(residents, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     if tk != 'None':
         timeslot = TimeSlot.objects.get(id=tk)
         time_id = tk
@@ -193,7 +204,8 @@ def customers_all(request, tk):
         'residents': residents,
         'time_id': time_id,
         'myFilter':myFilter,
-        'stats':stats
+        'stats':stats,
+        'page_obj':page_obj
     }
     template_name = 'customer/customers_all.html'
 
