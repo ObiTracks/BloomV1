@@ -1,11 +1,15 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import inlineformset_factory
-from django.core.paginator import Paginator
 from datetime import date
+from django.core.paginator import Paginator
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
+#View imports here
 from .models import (Customer, Day, TimeSlot, Reservation)
 from .forms import *
 from .filters import CustomerFilter
@@ -78,6 +82,45 @@ def deletePage(request, pk):
 #****************************************************
 # Main views
 #****************************************************
+@staff_member_required(login_url='login')
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
+            return redirect('/login')
+
+
+    context = {'form':form}
+    return render(request, 'register.html', context)
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'Username OR password is incorrect')
+
+
+    context = {}
+    return render(request, 'login.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
+
+
+@login_required(login_url='login')
 def home_page(request):
     days = Day.objects.all().reverse()[:2]
     residents = Customer.objects.all()[:20]
@@ -171,7 +214,7 @@ def customers_all(request, tk):
     paginator = Paginator(residents, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     if tk != 'None':
         timeslot = TimeSlot.objects.get(id=tk)
         time_id = tk
@@ -257,7 +300,8 @@ def days_all(request):
     return render(request, template_name, context)
 
 
-#****************************************************
+#**************************
+# **************************
 # Timeslot views
 #****************************************************
 def timeslot(request, pk):

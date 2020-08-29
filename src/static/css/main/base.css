@@ -1,6 +1,4 @@
 .btn {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   height: 1.7rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -16,7 +14,6 @@
   font-weight: 700;
   color: white;
   overflow: hidden;
-  padding: 0 0.7rem 0 0.7rem;
   margin: 5px;
   border-radius: 3px;
   border: none;
@@ -293,6 +290,7 @@ hr {
   height: fit -moz-fit-content;
   height: fit fit-content;
   min-height: 2rem;
+  min-width: 400px;
   position: relative;
   background: white;
   -webkit-box-shadow: #e2e2e2 0 0 10px 9px;
