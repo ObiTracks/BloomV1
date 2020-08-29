@@ -1,0 +1,45 @@
+{% extends "../base_templates/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
+<title>{{day.day}}</title>
+{% endblock %}
+
+{% block stats %}
+
+{% endblock%}
+
+{% block content %}
+<div class="card">
+    <header>
+        <h2>{{day.day}}</h2>
+    </header>
+
+    <div class="body">
+
+        <table class="table-slot">
+            <tr>
+                <th id="name">Timeslot</th>
+                <th>Total Reservations</th>
+                <th>Notes</th>
+                <th>Capacity</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for timeslot in day.timeslot_set.all %}
+            <tr class="data" onclick="window.location='{% url 'timeslot' timeslot.id %}';">
+                <td>{{timeslot.time_slot}}</td>
+                <td>{{timeslot.reservation_set.count}}</td>
+                <td>{{timeslot.notes}}</td>
+                <td>{{timeslot.capacity}}</td>
+                <td><button class='btn btn-info'>Update</button></td>
+                <td><button class='btn btn-danger'>Delete</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

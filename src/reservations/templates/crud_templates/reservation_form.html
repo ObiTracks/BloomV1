@@ -1,0 +1,38 @@
+{% extends "../base_templates/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/CUD/forms.css' %}">
+<title>{{page_title}}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="section">
+    <div class="card">
+        <header>
+            <h2>Create Reservation for {{customer.name}}</h2>
+        </header>
+
+
+        <form action="" method="POST">
+            <!-- {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+            {{form}}
+            <hr>
+            {% endfor %} -->
+
+            {% csrf_token %}
+            {{form}}
+
+            <div class='buttons'>
+                <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>
+                <input class="btn btn-confirm" type="submit" name="Confirm">
+            </div>
+        </form>
+
+
+    </div>
+</div>
+{% endblock %}
