@@ -330,27 +330,28 @@ a {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 1rem 1.5rem 1rem 1.5rem;
+  overflow-x: auto;
 }
 
-.searchbar {
+.search {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 25%;
 }
 
-.searchbar form {
+.search > form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.searchbar form > * {
-  width: 100%;
+.search > form > * {
   font-family: "Poppins", sans-serif;
   color: grey;
   font-weight: 300;
@@ -358,13 +359,22 @@ a {
   text-align: left;
 }
 
-.searchbar form input {
+.search > form label {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.search > form input {
+  width: 5rem;
+  height: 1.5rem;
   border: solid grey 1px;
   border-radius: 6px;
   padding: 5px;
+  margin: 0 0 0 3px;
 }
 
-.searchbar form textarea {
+.search > form textarea {
   height: 3rem;
   padding: 5px;
   border: solid grey 1px;
@@ -376,6 +386,7 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  white-space: nowrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -385,9 +396,11 @@ button {
   font-size: 12px;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  overflow: hidden;
+  color: black;
+  background: #2457e4;
   border-radius: 4px;
   border: none;
+  overflow: hidden;
   padding: 7px;
   margin: 5px;
   -webkit-transition: all ease-in-out 0.1s;
@@ -406,15 +419,15 @@ button:active {
 }
 
 button:hover {
+  background: #4e7bf7;
   outline: none;
   cursor: pointer;
   -moz-outline-radius: 3px;
 }
 
 button:focus {
-  background: white;
-  outline: solid black 3px;
-  color: black;
+  outline: solid 3px #0000ab;
+  border-radius: 0;
 }
 
 button.btn-info {
@@ -423,18 +436,40 @@ button.btn-info {
   background: linear-gradient(to left, #e9f8ff 40%, #4ebeee 45%, #2457e4 55%);
   background-size: 250% 100%;
   background-position-x: 99%;
+  border: solid 3px #2457e4;
+}
+
+button.btn-info a {
+  color: #2457e4;
 }
 
 button.btn-info:hover {
-  background-position-x: 0%;
+  background-position-x: 1%;
+}
+
+button.btn-info:hover a {
+  color: white;
 }
 
 button.btn-info:active {
-  background: #2457e4;
+  background-position-x: 1%;
+  background: white;
+  border: solid black 3px;
+}
+
+button.btn-info:active a {
+  color: black;
 }
 
 button.btn-info:focus {
+  outline: none;
+  background-position-x: 1%;
   background: none;
+  border: solid black 3px;
+}
+
+button.btn-info:focus a {
+  color: black;
 }
 
 button.btn-danger {
@@ -447,13 +482,14 @@ button.btn-danger {
 }
 
 button.btn-danger:hover {
-  background-position-x: 0%;
+  background-position-x: 1%;
   border: none;
-  outline: none;
+  border-radius: 0;
+  outline: solid 3px red;
 }
 
 button.btn-danger:active {
-  background-position-x: 0%;
+  background-position-x: 1%;
 }
 
 button.btn-danger:focus {
@@ -497,28 +533,54 @@ button.btn-cancel:focus {
   outline: white 2px solid;
 }
 
+button.btn-search {
+  width: 10rem;
+  color: black;
+  font-weight: 700;
+  background: #f1ea0a;
+  border: solid 3px #f1ea0a;
+  -webkit-transition: none;
+  transition: none;
+}
+
+button.btn-search:hover {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: solid 3px black;
+}
+
+button.btn-search:active {
+  background: #2457e4;
+}
+
+button.btn-search:focus {
+  background: none;
+}
+
 table {
   width: 100%;
   border: solid #cfcfcf 1px;
   border-radius: 10px;
   border-collapse: collapse;
   color: #424242;
-  overflow: auto;
+}
+
+table th {
+  white-space: nowrap;
 }
 
 table th, table td {
   height: 2rem;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  width: 10rem;
   font-family: 'Nunito', sans-serif;
   font-size: 0.8rem;
   color: grey;
   text-align: left;
-  padding: 0 0  0 12px;
+  padding: 0 12px  0 12px;
   border: solid #e6e6e6 1px;
-  overflow-x: auto;
-  word-wrap: break-word;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 table th {
@@ -541,55 +603,7 @@ table tr:hover {
   cursor: pointer;
 }
 
-form {
-  width: auto;
-  max-width: 600px;
-  height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 1rem 2rem 3rem 2rem;
-}
-
-form hr {
-  width: 100%;
-  height: 3px;
-  background: #cccccc;
-  border-radius: 2px;
-  margin: 10px 0 10px 0;
-}
-
-form label {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem;
-  text-align: left;
-}
-
-form select {
-  border: solid grey 1px;
-  border-radius: 6px;
-  padding: 5px;
-}
-
-form textarea {
-  height: 3rem;
-  padding: 5px;
-  border: solid grey 1px;
-  border-radius: 6px;
-  font-family: "Montserrat", sans-serif;
-}
-
+COMPONENTS-Forms
 .slot {
   width: 100%;
   display: -webkit-box;
@@ -605,6 +619,7 @@ form textarea {
   margin-bottom: 1rem;
 }
 
+COMPONENTS-Forms
 .slot .name {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;

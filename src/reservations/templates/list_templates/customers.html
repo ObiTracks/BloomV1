@@ -22,11 +22,11 @@
     </header>
 
     <div class="body" id="customers">
-        <div class="searchbar">
+        <div class="search">
             <form method="get">
                 {{myFilter.form}}
 
-                <button class='btn btn-info' type='submit'>Search</button>
+                <button class='btn btn-search' type='submit'>Search</button>
             </form>
         </div>
 
@@ -39,7 +39,7 @@
                 <th>Date Added</th>
                 <th>New Reservation</th>
                 <th>Update</th>
-                <th>Delete</th>
+                <!-- <th>Delete</th> -->
             </tr>
 
             {% for resident in page_obj %}
@@ -53,7 +53,7 @@
                             +</a></button></td>
                 <td><button class='btn btn-info'><a
                             href="{% url 'create_reservation' resident.id 5 %}">Update</a></button></td>
-                <td><button class='btn btn-danger'>Delete</button></td>
+                <!-- <td><button class='btn btn-danger'>Delete</button></td> -->
             </tr>
             {% endfor %}
         </table>
