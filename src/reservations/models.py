@@ -30,7 +30,10 @@ class Day(models.Model):
     date_created = models.DateField(default=today, blank=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
 
-    def string_name(self):
+    class Meta:
+        ordering = ['-date_created']
+        
+    def __str__(self):
         date = self.day
         year = date.year
         print(year)
@@ -42,9 +45,6 @@ class Day(models.Model):
         print(dayname)
 
         return '{}. {}, {}'.format(month, day_num, str(year)[-6:])
-
-    def __str__(self):
-        return "{}".format(self.string_name())
     
 
 class TimeSlot(models.Model):
