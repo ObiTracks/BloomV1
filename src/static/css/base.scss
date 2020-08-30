@@ -204,7 +204,7 @@ a{
         // background: blue;
     }
     &.non-editable{
-        background: rgb(255, 231, 14);
+        // background: rgb(255, 231, 14);
     }
 
     header{
@@ -349,31 +349,24 @@ button{
         background-size: 250% 100%;
         background-position-x: 99%;
         border: solid 3px rgb(36, 87, 228);
-        a{
-            color: rgb(36, 87, 228);
-        }
+        color: rgb(36, 87, 228);
         &:hover{
             background-position-x: 1%;
-            a{
-                color: white;
-            }
+            color: white;
         }
         &:active{
             background-position-x: 1%;
             background: white;
             border: solid black 3px;
-            a{
-                color: black;
-            }
+            color: black;
+            
         }
         &:focus{
             outline: none;
             background-position-x: 1%;
             background: none;
             border: solid black 3px;
-            a{
-                color: black;
-            }
+            color: black;
         }
     }
     
@@ -390,6 +383,7 @@ button{
             border: none;
             border-radius: 0;
             outline: solid 3px red;
+            color: white;
             // padding: 7px;
         }
         &:active{
@@ -551,9 +545,12 @@ COMPONENTS-Forms
         margin-bottom: 0.5rem;
         text-align: left;
         text-transform: lowercase;
-        color: rgb(177, 177, 177);
-        color: $color1;
+        // color: rgb(177, 177, 177);
+        // color: $color1;
         margin: 7px;
+    }
+    h3{
+        color: red;
     }
 }
 

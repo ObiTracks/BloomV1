@@ -49,24 +49,24 @@ def day(request, pk):
     #     num_reservations += n
     # print(num_reservations)
     
-    # stats = {
-    #     'stat1': {
-    #         'name': 'Total Reservations',
-    #         'value': day.timeslot_set.all().count()
-    #     },
-    #     'stat2': {
-    #         'name': 'Total No Shows',
-    #         'value': day.day
-    #     },
-    #     'stat3': {
-    #         'name': 'Total Reservations',
-    #         'value': day.day
-    #     },
-    #     'stat4': {
-    #         'name': 'Total Reservations',
-    #         'value': day.day
-    #     },
-    # }
+    stats = {
+        'stat1': {
+            'name': 'Total Reservations',
+            'value': day.timeslot_set.all().count()
+        },
+        'stat2': {
+            'name': 'Total No Shows',
+            'value': day.day
+        },
+        'stat3': {
+            'name': 'Total Reservations',
+            'value': day.day
+        },
+        'stat4': {
+            'name': 'Total Reservations',
+            'value': day.day
+        },
+    }
 
 
     page_title = 'Day: {} {}. {}'.format(dayname, month, day_num)

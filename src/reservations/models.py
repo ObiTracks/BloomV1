@@ -30,12 +30,21 @@ class Day(models.Model):
     date_created = models.DateField(default=today, blank=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
 
-    # x = day.day.weekday()
-    # month = calendar.day_name()
+    def string_name(self):
+        date = self.day
+        year = date.year
+        print(year)
+        month = calendar.month_abbr[date.month]
+        print(month)
+        day_num = date.day
+        print(day_num)
+        dayname = calendar.day_name[date.weekday()]
+        print(dayname)
+
+        return '{}. {}, {}'.format(month, day_num, str(year)[-6:])
 
     def __str__(self):
-        # return "{}".format(self.month)
-        return "{}".format(self.day)
+        return "{}".format(self.string_name())
     
 
 class TimeSlot(models.Model):
@@ -48,9 +57,19 @@ class TimeSlot(models.Model):
     day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
+    
+    # date = day
+    # year = date.day.year
+    # print(year)
+    # month = calendar.month_abbr[date.month]
+    # print(month)
+    # day_num = date.day
+    # print(day_num)
+    # dayname = calendar.day_name[date.weekday()]
+    # print(dayname)
 
     def __str__(self):
-        return "{} Day:{}".format(self.time_slot, self.day.__str__()[0:10])
+        return "{} {}".format(self.day, self.time_slot)
 
 class Reservation(models.Model):
     # Foreign relations

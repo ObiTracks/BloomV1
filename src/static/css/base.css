@@ -252,10 +252,6 @@ a {
   width: 37%;
 }
 
-.card.non-editable {
-  background: #ffe70e;
-}
-
 .card header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -437,17 +433,11 @@ button.btn-info {
   background-size: 250% 100%;
   background-position-x: 99%;
   border: solid 3px #2457e4;
-}
-
-button.btn-info a {
   color: #2457e4;
 }
 
 button.btn-info:hover {
   background-position-x: 1%;
-}
-
-button.btn-info:hover a {
   color: white;
 }
 
@@ -455,9 +445,6 @@ button.btn-info:active {
   background-position-x: 1%;
   background: white;
   border: solid black 3px;
-}
-
-button.btn-info:active a {
   color: black;
 }
 
@@ -466,9 +453,6 @@ button.btn-info:focus {
   background-position-x: 1%;
   background: none;
   border: solid black 3px;
-}
-
-button.btn-info:focus a {
   color: black;
 }
 
@@ -486,6 +470,7 @@ button.btn-danger:hover {
   border: none;
   border-radius: 0;
   outline: solid 3px red;
+  color: white;
 }
 
 button.btn-danger:active {
@@ -626,9 +611,12 @@ COMPONENTS-Forms
   margin-bottom: 0.5rem;
   text-align: left;
   text-transform: lowercase;
-  color: #b1b1b1;
-  color: #2457e4;
   margin: 7px;
+}
+
+COMPONENTS-Forms
+.slot h3 {
+  color: red;
 }
 
 .info-container {
