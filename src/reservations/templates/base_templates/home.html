@@ -8,76 +8,73 @@
 
 
 {% block content %}
-<div class="section">
-    <!-- RESIDENT CARD -->
-    <div class="card card-md">
-        <header>
-            <h2><a href='{% url "residents" None %}'>Residents</a></h2>
-            <h4>Total {{residents.count}}</h4>
-        </header>
+<!-- RESIDENT CARD -->
+<div class="card card-md" id='residents'>
+    <header>
+        <h2><a href='{% url "residents" None %}'>Residents</a></h2>
+        <h4>Total {{residents.count}}</h4>
+    </header>
 
-        <div class="body">
-            <table class="table-resident">
+    <div class="body">
+        <table class="table-resident">
+            <tr>
+                <th id="name">Name</th>
+                <th>Apartment</th>
+                <th>Phone</th>
+            </tr>
+
+            {% for resident in residents %}
+            <tr class="data">
+                <a href="">
+                    <td>{{resident.name}}</td>
+                    <td>{{resident.apt}}</td>
+                    <td>{{resident.phone}}</td>
+                </a>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<!-- Day card -->
+{% for day in days %}
+<div class="card card-lg" id='day'>
+    <header>
+        {% if day.date == today_date%}
+        <h2>Today</h2>
+        {% else %}
+        <h2><a href='{% url "day" day.id %}'>Some Date</a></h2>
+        {% endif %}
+        <h4>{{day.date}}</h4>
+    </header>
+
+    <div class="body">
+        {% for slot in day.timeslot_set.all %}
+        <div class="slot">
+            <h3 class="name">{{slot.time_slot}}</h3>
+            <button class="btn-info"><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
+            <table class="table-slot">
                 <tr>
                     <th id="name">Name</th>
                     <th>Apartment</th>
                     <th>Phone</th>
+                    <th>Total On Lease</th>
                 </tr>
 
-                {% for resident in residents %}
-                <tr class="data">
-                    <a href="">
-                        <td>{{resident.name}}</td>
-                        <td>{{resident.apt}}</td>
-                        <td>{{resident.phone}}</td>
-                    </a>
+                {% for reservation in slot.reservation_set.all %}
+                <tr class="data" onclick="window.location='{% url "resident" reservation.customer.id %}';">
+                    <td>{{reservation.customer.name}}</td>
+                    <td>{{reservation.customer.apt}}</td>
+                    <td>{{reservation.customer.phone}}</td>
+                    <td>{{reservation.customer.lease_members.count}}</td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
+        {% endfor %}
     </div>
-
-    <!-- Day card -->
-    {% for day in days %}
-    <div class="card card-lg">
-        <header>
-            {% if day.date == today_date%}
-            <h2>Today</h2>
-            {% else %}
-            <h2><a href='{% url "day" day.id %}'>Some Date</a></h2>
-            {% endif %}
-            <h4>{{day.date}}</h4>
-        </header>
-
-        <div class="body">
-            {% for slot in day.timeslot_set.all %}
-            <div class="slot">
-                <h3 class="name">{{slot.time_slot}}</h3>
-                <button class="btn-info"><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
-                <table class="table-slot">
-                    <tr>
-                        <th id="name">Name</th>
-                        <th>Apartment</th>
-                        <th>Phone</th>
-                        <th>Total On Lease</th>
-                    </tr>
-
-                    {% for reservation in slot.reservation_set.all %}
-                    <tr class="data" onclick="window.location='{% url "resident" reservation.customer.id %}';">
-                        <td>{{reservation.customer.name}}</td>
-                        <td>{{reservation.customer.apt}}</td>
-                        <td>{{reservation.customer.phone}}</td>
-                        <td>{{reservation.customer.lease_members.count}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    {% endfor %}
-
-
 </div>
+{% endfor %}
+
 
 {% endblock %}

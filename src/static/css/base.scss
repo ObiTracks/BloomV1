@@ -18,25 +18,32 @@ body {
 }
 .content{
     // width: 100vw;
+    // width: fit-content;
     height: auto;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     padding: 2rem;
+    margin: 0;
 }
 .section{
     position: relative;
-    width: 100%;
     height: fit-content;
     min-height: 2rem;
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     justify-items: flex-end;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    // border: solid black 2px;
+    align-content: flex-end;
     padding: 1rem 0 1rem 0;
     margin: 0;
+    // overflow: auto;
+
+    #resident{
+    }
+    #day{
+    }
 }
 .title{
     font-family: $font1;
@@ -107,17 +114,20 @@ a{
 
 // STATSBAR
 .stats{
+    min-width: 500px;
     position: relative;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     border-bottom: rgb(233, 233, 233) 2px solid;
+    padding-bottom: 1rem;
 
     .stat{
-        // width: 22%;
         flex: 1;
         height: 3.5rem;
+        min-width: 200px;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -130,6 +140,7 @@ a{
         background: white;
         padding: 0.2rem 0.8rem 0.2rem 0.8rem;
         overflow: hidden;
+        margin: 0.5rem;
 
         > .title{
             font-size: 12px;
@@ -175,6 +186,7 @@ a{
     height: fit-content;
     min-height: 2rem;
     min-width: 500px;
+    width: 100%;
     position: relative;
     background: white;
     box-shadow: rgb(226, 226, 226) 0 0 10px 9px;
@@ -187,6 +199,12 @@ a{
     }
     &.card-md{
         width: 37%;
+    }
+    &.editable{
+        // background: blue;
+    }
+    &.non-editable{
+        background: rgb(255, 231, 14);
     }
 
     header{
@@ -290,6 +308,7 @@ button{
     border: none;
     padding: 7px;
     margin: 5px;
+    transition: all ease-in-out 0.1s;
     // padding: 0 0.7rem 0 0.7rem;
     a{
         color: white;
@@ -302,33 +321,53 @@ button{
         outline: none;
         -moz-outline-radius: 3px;
     }
+    &:hover{
+        outline: none;
+        cursor: pointer;
+        -moz-outline-radius: 3px;
+    }
     &:focus{
-        outline: white 2px solid;
+        background: white;
+        outline: solid black 3px;
+        color: black;
     }
 
     &.btn-info{
-        background: rgb(26, 72, 199);
+        background: rgb(0, 128, 255);
+        background: linear-gradient(to left, #e9f8ff 40%, #4ebeee 45%, rgb(36, 87, 228) 55%);
+        background-size: 250% 100%;
+        background-position-x: 99%;
         &:hover{
-            background: rgb(17, 62, 184);
+            background-position-x: 0%;
         }
         &:active{
-            background: rgb(7, 45, 151);
+            background: rgb(36, 87, 228);
         }
         &:focus{
-            outline: white 2px solid;
+            background: none;
         }
     }
     
     &.btn-danger{
-        background: rgb(228, 76, 56);
+        background: rgb(255, 212, 207);
+        background: linear-gradient(to right, red 55%, #fff6f4 65%);
+        background-size: 300% 100%;
+        background-position-x: 99%;
+        // border: solid black 2px;
+        outline: solid black 3px;
+        // padding: 5px;
         &:hover{
-            background: rgb(207, 53, 32);
+            background-position-x: 0%;
+            border: none;
+            outline: none;
+            // padding: 7px;
         }
         &:active{
-            background: rgb(179, 33, 14);
+            background-position-x: 0%;
         }
         &:focus{
-            outline: white 2px solid;
+            // background: none;
+            outline: none;
         }
     }
 
@@ -341,7 +380,7 @@ button{
             background: rgb(10, 173, 48);
         }
         &:focus{
-            outline: white 2px solid;
+            background: none;
         }
     }
 
@@ -375,7 +414,7 @@ table{
     overflow: auto;
     th, td{
         height: 2rem;
-        flex-grow: 1;
+        flex: 1;
         font-family: 'Nunito', sans-serif;
         font-size: 0.8rem;
         color: grey;
@@ -388,6 +427,7 @@ table{
     th{
         border-bottom: solid rgb(207, 207, 207) 2px;
         font-weight: 700;
+        resize: horizontal;
     }
     tr:first-child{
         border-radius: 20px;

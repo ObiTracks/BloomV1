@@ -20,9 +20,11 @@
     {%  include 'base_templates/navbar.html' %}
     <div class="content">
         {%  include 'base_templates/statsbar.html' %}
-        {% block content %}
-
-        {% endblock %}
+        <div class="section">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
     </div>
 
 </body>

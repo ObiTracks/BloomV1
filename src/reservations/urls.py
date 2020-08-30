@@ -29,5 +29,5 @@ urlpatterns = [
     # LISTS URLS
     path('residents/<str:tk>/', views_e_lists.customers, name='residents'),
     path('days/', views_e_lists.days, name='days'),
-    path('timeslots/', views_e_lists.timeslots, name='timeslots'),
+   
 ]

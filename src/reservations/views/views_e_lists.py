@@ -59,7 +59,7 @@ def customers(request, tk):
         'stats':stats,
         'page_obj':page_obj
     }
-    template_name = 'customer/customers_all.html'
+    template_name = 'list_templates/customers.html'
 
     return render(request, template_name, context)
 
@@ -90,14 +90,7 @@ def days(request):
         'days': days,
         'stats': stats,
     }
-    template_name = 'day/days_all.html'
+    template_name = 'list_templates/days.html'
 
     return render(request, template_name, context)
 
-def timeslots(request):
-    timeslots = TimeSlot.objects.all()
-    page_title = "All TimeSlots"
-    context = {"page_title": page_title, 'timeslots': timeslots}
-    template_name = 'timeslot/timeslots_all.html'
-
-    return render(request, template_name, context)

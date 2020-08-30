@@ -22,27 +22,27 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 2rem;
+  margin: 0;
 }
 
 .section {
   position: relative;
-  width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   min-height: 2rem;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   justify-items: flex-end;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-line-pack: end;
+      align-content: flex-end;
   padding: 1rem 0 1rem 0;
   margin: 0;
 }
@@ -137,10 +137,15 @@ a {
 }
 
 .stats {
+  min-width: 500px;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -150,6 +155,7 @@ a {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   border-bottom: #e9e9e9 2px solid;
+  padding-bottom: 1rem;
 }
 
 .stats .stat {
@@ -157,6 +163,7 @@ a {
       -ms-flex: 1;
           flex: 1;
   height: 3.5rem;
+  min-width: 200px;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -179,6 +186,7 @@ a {
   background: white;
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   overflow: hidden;
+  margin: 0.5rem;
 }
 
 .stats .stat > .title {
@@ -226,6 +234,7 @@ a {
   height: fit-content;
   min-height: 2rem;
   min-width: 500px;
+  width: 100%;
   position: relative;
   background: white;
   -webkit-box-shadow: #e2e2e2 0 0 10px 9px;
@@ -241,6 +250,10 @@ a {
 
 .card.card-md {
   width: 37%;
+}
+
+.card.non-editable {
+  background: #ffe70e;
 }
 
 .card header {
@@ -377,6 +390,8 @@ button {
   border: none;
   padding: 7px;
   margin: 5px;
+  -webkit-transition: all ease-in-out 0.1s;
+  transition: all ease-in-out 0.1s;
 }
 
 button a {
@@ -390,40 +405,59 @@ button:active {
   -moz-outline-radius: 3px;
 }
 
+button:hover {
+  outline: none;
+  cursor: pointer;
+  -moz-outline-radius: 3px;
+}
+
 button:focus {
-  outline: white 2px solid;
+  background: white;
+  outline: solid black 3px;
+  color: black;
 }
 
 button.btn-info {
-  background: #1a48c7;
+  background: #0080ff;
+  background: -webkit-gradient(linear, right top, left top, color-stop(40%, #e9f8ff), color-stop(45%, #4ebeee), color-stop(55%, #2457e4));
+  background: linear-gradient(to left, #e9f8ff 40%, #4ebeee 45%, #2457e4 55%);
+  background-size: 250% 100%;
+  background-position-x: 99%;
 }
 
 button.btn-info:hover {
-  background: #113eb8;
+  background-position-x: 0%;
 }
 
 button.btn-info:active {
-  background: #072d97;
+  background: #2457e4;
 }
 
 button.btn-info:focus {
-  outline: white 2px solid;
+  background: none;
 }
 
 button.btn-danger {
-  background: #e44c38;
+  background: #ffd4cf;
+  background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, #fff6f4));
+  background: linear-gradient(to right, red 55%, #fff6f4 65%);
+  background-size: 300% 100%;
+  background-position-x: 99%;
+  outline: solid black 3px;
 }
 
 button.btn-danger:hover {
-  background: #cf3520;
+  background-position-x: 0%;
+  border: none;
+  outline: none;
 }
 
 button.btn-danger:active {
-  background: #b3210e;
+  background-position-x: 0%;
 }
 
 button.btn-danger:focus {
-  outline: white 2px solid;
+  outline: none;
 }
 
 button.btn-confirm {
@@ -439,7 +473,7 @@ button.btn-confirm:active {
 }
 
 button.btn-confirm:focus {
-  outline: white 2px solid;
+  background: none;
 }
 
 button.btn-cancel {
@@ -475,8 +509,8 @@ table {
 table th, table td {
   height: 2rem;
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+      -ms-flex: 1;
+          flex: 1;
   font-family: 'Nunito', sans-serif;
   font-size: 0.8rem;
   color: grey;
@@ -490,6 +524,7 @@ table th, table td {
 table th {
   border-bottom: solid #cfcfcf 2px;
   font-weight: 700;
+  resize: horizontal;
 }
 
 table tr:first-child {

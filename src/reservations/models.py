@@ -26,13 +26,15 @@ class Day(models.Model):
     tomorrow = today + timedelta(days=1)
 
     # Fields
-    # date_created = models.DateTimeField(auto_now_add=True, null=True)
     day = models.DateField(default=tomorrow, blank=False) 
     date_created = models.DateField(default=today, blank=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
 
+    # x = day.day.weekday()
+    # month = calendar.day_name()
 
     def __str__(self):
+        # return "{}".format(self.month)
         return "{}".format(self.day)
     
 

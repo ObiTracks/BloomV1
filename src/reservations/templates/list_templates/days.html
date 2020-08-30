@@ -11,10 +11,6 @@
 {% endblock%}
 
 {% block content %}
-<!-- <div class="section">
-
-</div> -->
-
 <div class="card">
     <header>
         <h2>Days</h2>
@@ -26,7 +22,6 @@
                 <th id="name">Date</th>
                 <th>Timeslots</th>
                 <th>Notes</th>
-                <th>Update</th>
                 <th>Delete</th>
             </tr>
 
@@ -35,7 +30,6 @@
                 <td>{{day.day}}</td>
                 <td>{{day.timeslot_set.all.count}}</td>
                 <td>{{day.notes}}</td>
-                <td><button class='btn btn-info'>Update</button></td>
                 <td><button class='btn btn-danger'>Delete</button></td>
             </tr>
             {% endfor %}

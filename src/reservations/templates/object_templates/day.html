@@ -3,22 +3,42 @@
 
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
-<title>{{day.day}}</title>
+<title>{{day.day| date:"l j N o"}}</title>
 {% endblock %}
 
-{% block stats %}
-
-{% endblock%}
 
 {% block content %}
-<div class="card">
+<div class="card non-editable">
     <header>
-        <h2>{{day.day}}</h2>
+        <h2>{{day.day| date:"l N j"}}</h2>
     </header>
 
     <div class="body">
 
-        <table class="table-slot">
+        {% for slot in day.timeslot_set.all %}
+        <div class="slot">
+            <h3 class="name">{{slot.time_slot}}</h3>
+            <button class="btn-info"><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
+            <table class="table-slot">
+                <tr>
+                    <th id="name">Name</th>
+                    <th>Apartment</th>
+                    <th>Phone</th>
+                    <th>Total On Lease</th>
+                </tr>
+        
+                {% for reservation in slot.reservation_set.all %}
+                <tr class="data" onclick="window.location='{% url "resident" reservation.customer.id %}';">
+                    <td>{{reservation.customer.name}}</td>
+                    <td>{{reservation.customer.apt}}</td>
+                    <td>{{reservation.customer.phone}}</td>
+                    <td>{{reservation.customer.lease_members.count}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endfor %}
+        <!-- <table class="table-slot">
             <tr>
                 <th id="name">Timeslot</th>
                 <th>Total Reservations</th>
@@ -38,7 +58,7 @@
                 <td><button class='btn btn-danger'>Delete</button></td>
             </tr>
             {% endfor %}
-        </table>
+        </table> -->
     </div>
 </div>
 

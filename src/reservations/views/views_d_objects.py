@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from calendar import weekday, week
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
@@ -24,16 +24,54 @@ def customer(request, pk):
         'resident': resident,
         'reservations': reservations
     }
-    template_name = 'customer/customer_info.html'
+    template_name = 'object_templates/customer.html'
 
     return render(request, template_name, context)
 
 def day(request, pk):
     day = Day.objects.get(id=pk)
-    stats = {'stat1': {'name': 'Total Reservations', 'value': day.day}}
-    page_title = day.day
+
+    # DATE FORMATTING
+    date = day.day
+    year = date.year
+    print(year)
+    month = calendar.month_abbr[date.month]
+    print(month)
+    day_num = date.day
+    print(day_num)
+    dayname = calendar.day_name[date.weekday()]
+    print(dayname)
+
+    # timeslots = day.timeslot_set.all()
+    # num_reservations = 0
+    # for timeslot in timeslots:
+    #     n = timeslot.reservation_set.count()
+    #     num_reservations += n
+    # print(num_reservations)
+    
+    # stats = {
+    #     'stat1': {
+    #         'name': 'Total Reservations',
+    #         'value': day.timeslot_set.all().count()
+    #     },
+    #     'stat2': {
+    #         'name': 'Total No Shows',
+    #         'value': day.day
+    #     },
+    #     'stat3': {
+    #         'name': 'Total Reservations',
+    #         'value': day.day
+    #     },
+    #     'stat4': {
+    #         'name': 'Total Reservations',
+    #         'value': day.day
+    #     },
+    # }
+
+
+    page_title = 'Day: {} {}. {}'.format(dayname, month, day_num)
     context = {"page_title": page_title, 'day': day, 'stats': stats}
-    template_name = 'day/day_info.html'
+    template_name = 'object_templates/day.html'
 
     return render(request, template_name, context)
 
@@ -64,12 +102,12 @@ def timeslot(request, pk):
         'page_title': page_title,
         'stats': stats
         }
-    template_name = 'timeslot/timeslot_info.html'
+    template_name = 'object_templates/timeslot.html'
 
     return render(request, template_name, context)
 
 def reservation(request):
     context = {}
-    template_name = 'reservation/reservation_info.html'
+    template_name = 'object_templates/reservation.html'
 
     return render(request, template_name, context)
