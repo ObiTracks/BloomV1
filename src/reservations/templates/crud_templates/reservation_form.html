@@ -1,4 +1,4 @@
-{% extends "../base_templates/base.html" %}
+{% extends "base_templates/base.html" %}
 {% load static %}
 
 {% block extra_head %}
@@ -15,14 +15,7 @@
         </header>
 
 
-        <form action="" method="POST">
-            <!-- {% csrf_token %}
-            {{ formset.management_form }}
-            {% for form in formset %}
-            {{form}}
-            <hr>
-            {% endfor %} -->
-
+        <form class="modify" action="" method="POST">
             {% csrf_token %}
             {{form}}
 

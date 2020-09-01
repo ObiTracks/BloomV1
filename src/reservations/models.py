@@ -27,22 +27,22 @@ class Day(models.Model):
 
     # Fields
     day = models.DateField(default=tomorrow, blank=False) 
-    date_created = models.DateField(default=today, blank=False)
+    date_created = models.DateField(default=today, blank=False, editable=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
 
     class Meta:
         ordering = ['-date_created']
-        
+
     def __str__(self):
         date = self.day
         year = date.year
-        print(year)
+        # print(year)
         month = calendar.month_abbr[date.month]
-        print(month)
+        # print(month)
         day_num = date.day
-        print(day_num)
+        # print(day_num)
         dayname = calendar.day_name[date.weekday()]
-        print(dayname)
+        # print(dayname)
 
         return '{}. {}, {}'.format(month, day_num, str(year)[-6:])
     
@@ -54,7 +54,7 @@ class TimeSlot(models.Model):
         ('3pm-5pm','3pm-5pm'),
     )
     time_slot = models.CharField(max_length=10, null=True, choices=TIMESLOTS, default="Choose a time window")
-    day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
+    day = models.ForeignKey(Day, related_name="timeslot_set", default=Day.objects.first(), null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
@@ -84,6 +84,15 @@ class Reservation(models.Model):
 
     def __str__(self):
         return "{}".format(self.timeslot)
+    
+# class Calculations(models.Model):
+#     total_customers = Customer.objects.all().count()
+#     total_days = Day.objects.all().count()
+#     total_reservations = Reservation.objects.all().count()
 
-    def full_dscrpt(self):
-        return "{} for {}".format(self.customer, self.timeslot.day)
+#     avg_noshows_past_week = 0
+#     count = 0
+#     for n in Day.objects.all()[:8]:
+#         if n.no_show == True:
+#             count
+#             avg_noshows_past_week = n.

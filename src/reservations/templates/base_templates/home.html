@@ -40,7 +40,7 @@
 {% for day in days %}
 <div class="card card-lg" id='day'>
     <header>
-        {% if day.date == today_date%}
+        {% if day.day == today_date%}
         <h2>Today</h2>
         {% else %}
         <h2><a href='{% url "day" day.id %}'>Some Date</a></h2>

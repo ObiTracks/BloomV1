@@ -18,10 +18,10 @@ def createReservation(request, tk, pk, *args, **kwargs):
     customer = Customer.objects.get(id=pk)
     if tk != 'None':
         timeslot = TimeSlot.objects.get(id=tk)
-        print('Path A: tk='+ tk)
+        # print('Path A: tk='+ tk)
     else:
         timeslot = None
-        print('Path B: tk=' + tk)
+        # print('Path B: tk=' + tk)
 
     if timeslot != None:
         # form = ReservationForm(initial={'customer': customer, 'timeslot':timeslot})
@@ -35,19 +35,42 @@ def createReservation(request, tk, pk, *args, **kwargs):
         })
 
     if request.method == 'POST':
-        print('Printing POST:', request.POST)
+        # print('Printing POST:', request.POST)
         form = ReservationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
     #
+
+    stats = {
+        'stat1': {
+            'title': 'Total Days',
+            'value':'some'
+        },
+        'stat2': {
+            'title': 'Total Reservations',
+            'value':''
+        },
+        'stat3': {
+            'title': 'Total Residents',
+            'value':''
+        },
+        'stat4': {
+            'title': 'Avg No Shows per Day',
+            'value':''
+        }
+    }
+    num_stats = len(stats)
+    test_dict = {'One':'1', 'Two':'2'}
+    print('Number of statistics' + str(len(test_dict)))
+    print(stats)
     context = {
         'form': form,
         'page_title': 'New Reservation',
         'customer': customer,
         'time_slot': timeslot
     }
-    return render(request, 'CUD/reservation_form.html', context)
+    return render(request, '../templates/crud_templates/reservation_form.html', context)
 
 def updateReservation(request, pk):
     reservation = Reservation.objects.get(id=pk)

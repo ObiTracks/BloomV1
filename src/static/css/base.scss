@@ -266,41 +266,61 @@ a{
 }
 
 // COMPONENTS-Searchbar
-.search{
-    display: flex;
-    > form {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
 
-        > *{
-            // width: 100%;
-            font-family: $font1;
-            color: grey;
-            font-weight: 300;
-            font-size: 0.9rem;
-            text-align: left;
-        }
-        label{
-            width: fit-content;
-        }
-        input{
-            width: 5rem;
-            height: 1.5rem;
-            border: solid grey 1px;
-            border-radius: 6px;
-            padding: 5px;
-            margin: 0 0 0 3px;
-        }
-        textarea{
-            height: 3rem;
-            padding: 5px;
-            border: solid grey 1px;
-            border-radius: 6px;
-            font-family: $font2;
-        }
+form {
+    display: flex
+    font-family: $font1;
+    font-size: 0.8rem;
+    color: grey;
+    // text-align: left;
+
+    &.search{
+        // background: blue;
+        // height: 10rem;
     }
+    // &.modify{
+    //     flex-direction: column;
+    //     flex-wrap: wrap;
+
+    //     // label{
+    //     //     width: 50%;
+    //     // }
+    //     // select{
+    //     //     background: blue;
+    //     // }
+    // }
+    // label{
+    //     display: flex;
+    //     align-items: center;
+    //     justify-self: center;
+    //     font-weight: 300;
+    //     width: fit-content;
+    // }
+    // input{
+    //     font-size: 0.7rem;
+    //     // width: 25%;
+    //     border: solid grey 1px;
+    //     border-radius: 6px;
+    //     padding: 5px;
+    //     margin: 0 0.6rem 3px 4px;
+    // }
+    // select{
+    //     background: grey;
+    //     border: solid grey 1px;
+    //     outline: none;
+    //     border-radius: 6px;
+    //     option{
+    //         font-family: $font1;
+    //         color: blue;
+    //     }
+    // }
+    // textarea{
+    //     border: solid grey 1px;
+    //     border-radius: 6px;
+    //     font-family: $font2;
+    // }
 }
+
 
 // COMPONENTS-buttons
 button{
@@ -312,17 +332,17 @@ button{
     font-family: $font2;
     font-weight: 700;
     color: black;
-
     background: rgb(36, 87, 228);
+    border: solid 3px rgb(36, 87, 228);
     border-radius: 4px;
     border: none;
     overflow: hidden;
-    padding: 7px;
+    padding: 5px;
     margin: 5px;
     transition: all ease-in-out 0.1s;
     // padding: 0 0.7rem 0 0.7rem;
     a{
-        color: white;
+        color: inherit;
         text-decoration: none;
         outline: none;
     }
@@ -333,14 +353,18 @@ button{
         -moz-outline-radius: 3px;
     }
     &:hover{
-        background: rgb(78, 123, 247);
+        background: rgb(78, 123, 247);    
+        border: solid 3px rgb(14, 64, 201);
         outline: none;
         cursor: pointer;
-        -moz-outline-radius: 3px;
+        // -moz-outline-radius: 3px;
+        a{
+            color: inherit;
+        }
     }
     &:focus{
         outline: solid 3px rgb(0, 0, 171);
-        border-radius: 0;
+        // border-radius: 0;
     }
 
     &.btn-info{
@@ -352,7 +376,7 @@ button{
         color: rgb(36, 87, 228);
         &:hover{
             background-position-x: 1%;
-            color: white;
+            // color: white;
         }
         &:active{
             background-position-x: 1%;
@@ -491,7 +515,7 @@ table{
     }
 }
 
-COMPONENTS-Forms
+// COMPONENTS-Forms
 // form{
 //     width: auto;
 //     // max-width: 600px;
@@ -548,9 +572,6 @@ COMPONENTS-Forms
         // color: rgb(177, 177, 177);
         // color: $color1;
         margin: 7px;
-    }
-    h3{
-        color: red;
     }
 }
 

@@ -329,53 +329,8 @@ a {
   overflow-x: auto;
 }
 
-.search {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.search > form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.search > form > * {
+form {
   font-family: "Poppins", sans-serif;
-  color: grey;
-  font-weight: 300;
-  font-size: 0.9rem;
-  text-align: left;
-}
-
-.search > form label {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.search > form input {
-  width: 5rem;
-  height: 1.5rem;
-  border: solid grey 1px;
-  border-radius: 6px;
-  padding: 5px;
-  margin: 0 0 0 3px;
-}
-
-.search > form textarea {
-  height: 3rem;
-  padding: 5px;
-  border: solid grey 1px;
-  border-radius: 6px;
-  font-family: "Montserrat", sans-serif;
 }
 
 button {
@@ -394,17 +349,18 @@ button {
   font-weight: 700;
   color: black;
   background: #2457e4;
+  border: solid 3px #2457e4;
   border-radius: 4px;
   border: none;
   overflow: hidden;
-  padding: 7px;
+  padding: 5px;
   margin: 5px;
   -webkit-transition: all ease-in-out 0.1s;
   transition: all ease-in-out 0.1s;
 }
 
 button a {
-  color: white;
+  color: inherit;
   text-decoration: none;
   outline: none;
 }
@@ -416,14 +372,17 @@ button:active {
 
 button:hover {
   background: #4e7bf7;
+  border: solid 3px #0e40c9;
   outline: none;
   cursor: pointer;
-  -moz-outline-radius: 3px;
+}
+
+button:hover a {
+  color: inherit;
 }
 
 button:focus {
   outline: solid 3px #0000ab;
-  border-radius: 0;
 }
 
 button.btn-info {
@@ -438,7 +397,6 @@ button.btn-info {
 
 button.btn-info:hover {
   background-position-x: 1%;
-  color: white;
 }
 
 button.btn-info:active {
@@ -588,7 +546,6 @@ table tr:hover {
   cursor: pointer;
 }
 
-COMPONENTS-Forms
 .slot {
   width: 100%;
   display: -webkit-box;
@@ -604,7 +561,6 @@ COMPONENTS-Forms
   margin-bottom: 1rem;
 }
 
-COMPONENTS-Forms
 .slot .name {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
@@ -612,11 +568,6 @@ COMPONENTS-Forms
   text-align: left;
   text-transform: lowercase;
   margin: 7px;
-}
-
-COMPONENTS-Forms
-.slot h3 {
-  color: red;
 }
 
 .info-container {

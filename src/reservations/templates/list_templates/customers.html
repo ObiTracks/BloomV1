@@ -22,13 +22,10 @@
     </header>
 
     <div class="body" id="customers">
-        <div class="search">
-            <form method="get">
-                {{myFilter.form}}
-
-                <button class='btn btn-search' type='submit'>Search</button>
-            </form>
-        </div>
+        <form class="search" method="get">
+            {{myFilter.form}}
+            <button class='btn btn-search' type='submit'>Search</button>
+        </form>
 
         <table class="table-slot">
             <tr>
@@ -57,8 +54,7 @@
             </tr>
             {% endfor %}
         </table>
-        <!-- ------------------->
-
+        <!--------------------->
 
         <div class="pagination">
             <span class="step-links">

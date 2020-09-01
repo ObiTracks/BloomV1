@@ -16,7 +16,8 @@ from ..filters import CustomerFilter
 
 @login_required(login_url='login')
 def home_page(request):
-    days = Day.objects.all().reverse()[:2]
+    days = Day.objects.all()[:3]
+    # days = Day.objects.all().reverse()[:2]
     residents = Customer.objects.all()[:20]
     today_date = date.today()
 
