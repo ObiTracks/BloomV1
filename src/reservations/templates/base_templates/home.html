@@ -24,12 +24,10 @@
             </tr>
 
             {% for resident in residents %}
-            <tr class="data">
-                <a href="">
-                    <td>{{resident.name}}</td>
-                    <td>{{resident.apt}}</td>
-                    <td>{{resident.phone}}</td>
-                </a>
+            <tr class="data" onclick="window.location='{% url "resident" resident.id %}';">
+                <td>{{resident.name}}</td>
+                <td>{{resident.apt}}</td>
+                <td>{{resident.phone}}</td>
             </tr>
             {% endfor %}
         </table>

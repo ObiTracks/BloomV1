@@ -206,6 +206,10 @@ a{
     &.non-editable{
         // background: rgb(255, 231, 14);
     }
+    &.card-form{
+        width: 30rem;
+        justify-self: center;
+    }
 
     header{
         display: flex;
@@ -266,59 +270,75 @@ a{
 }
 
 // COMPONENTS-Searchbar
-
 form {
-    display: flex
+    width: 100%;
+    display: flex;
     font-family: $font1;
     font-size: 0.8rem;
-    color: grey;
-    // text-align: left;
-
+    color: rgb(85, 85, 85);
+    text-align: left;
+    align-self: center;
+    padding: 1rem;
     &.search{
-        // background: blue;
-        // height: 10rem;
+        width: 100%;
+        height: 10rem;
+        flex-direction: column;
+        flex-wrap: wrap;
+        background: blue;
     }
-    // &.modify{
-    //     flex-direction: column;
-    //     flex-wrap: wrap;
-
-    //     // label{
-    //     //     width: 50%;
-    //     // }
-    //     // select{
-    //     //     background: blue;
-    //     // }
-    // }
-    // label{
-    //     display: flex;
-    //     align-items: center;
-    //     justify-self: center;
-    //     font-weight: 300;
-    //     width: fit-content;
-    // }
-    // input{
-    //     font-size: 0.7rem;
-    //     // width: 25%;
-    //     border: solid grey 1px;
-    //     border-radius: 6px;
-    //     padding: 5px;
-    //     margin: 0 0.6rem 3px 4px;
-    // }
-    // select{
-    //     background: grey;
-    //     border: solid grey 1px;
-    //     outline: none;
-    //     border-radius: 6px;
-    //     option{
-    //         font-family: $font1;
-    //         color: blue;
-    //     }
-    // }
-    // textarea{
-    //     border: solid grey 1px;
-    //     border-radius: 6px;
-    //     font-family: $font2;
-    // }
+    &.modify{
+        width: 100%;
+        height: 20rem;
+        flex-direction: column;
+        align-items: flex-start;
+        align-content: center;
+    }
+    &*:hover{
+        border: solid black 1px;
+        outline: none;
+    }
+    label{
+        width: fit-content;
+        display: flex;
+        font-family: $font2;
+        font-weight: 300;
+        padding: 2px 0 4px 3px;
+    }
+    input{
+        font-size: 0.7rem;
+        flex: 1;
+        align-items: flex-start;
+        vertical-align: top;
+        border: solid grey 1px;
+        border-radius: 6px;
+        padding: 5px;
+        margin: 0 0.6rem 3px 4px;
+    }
+    select{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        // background: red;
+        width: fit-content;
+        font-family: $font2;
+        font-size: 0.8rem;
+        color: inherit;
+        outline: none;
+        border: solid rgb(211, 211, 211) 1px;
+        border-radius: 15px;
+        padding: 5px 2px 5px 3px;
+        option{
+            font-family: $font2;
+            border-bottom: 1px grey solid;
+            padding: 4px 4px 4px 3px;
+        }
+    }
+    textarea{
+        font-family: $font2;
+        border: solid grey 1px;
+        border-radius: 6px;
+        padding: 0.5rem;
+    }
 }
 
 
@@ -331,11 +351,10 @@ button{
     font-size: 12px;
     font-family: $font2;
     font-weight: 700;
-    color: black;
+    color: white;
     background: rgb(36, 87, 228);
-    border: solid 3px rgb(36, 87, 228);
-    border-radius: 4px;
     border: none;
+    border-radius: 4px;
     overflow: hidden;
     padding: 5px;
     margin: 5px;
@@ -354,7 +373,6 @@ button{
     }
     &:hover{
         background: rgb(78, 123, 247);    
-        border: solid 3px rgb(14, 64, 201);
         outline: none;
         cursor: pointer;
         // -moz-outline-radius: 3px;
@@ -376,7 +394,7 @@ button{
         color: rgb(36, 87, 228);
         &:hover{
             background-position-x: 1%;
-            // color: white;
+            color: white;
         }
         &:active{
             background-position-x: 1%;
@@ -395,11 +413,11 @@ button{
     }
     
     &.btn-danger{
+        color: black;
         background: rgb(255, 212, 207);
         background: linear-gradient(to right, red 55%, #fff6f4 65%);
         background-size: 300% 100%;
         background-position-x: 99%;
-        // border: solid black 2px;
         outline: solid black 3px;
         // padding: 5px;
         &:hover{
@@ -420,9 +438,13 @@ button{
     }
 
     &.btn-confirm{
-        background: rgb(59, 223, 97);
+        background: linear-gradient(to right, rgb(0, 202, 101) 55%, #31c7d8 60%, #14d8a7);
+        background-size: 250% 100%;
+        background-position-x: 99%;
+        padding: 10px;
         &:hover{
-            background: rgb(26, 194, 65);
+            background-position-x: 1%;
+            // background: rgb(26, 194, 65);
         }
         &:active{
             background: rgb(10, 173, 48);
@@ -433,22 +455,25 @@ button{
     }
 
     &.btn-cancel{
-        background: none;
         color: black;
-        border: solid black 3px;
+        background: rgb(255, 255, 255);
+        border: solid black 2px;
+        border-radius: 3px;
+        // padding: 5px;
         &:hover{
-            background: rgba(184, 184, 184, 0.796);
-        }
-        &:active{
-            color: white;
-            background: rgb(47, 47, 47);
-        }
-        &:focus{
+            border: solid black 3px;
+            outline: none;
             color: white;
             background: black;
-            outline: white 2px solid;
+            // padding: 7px;
         }
-        
+        &:active{
+            background-position-x: 1%;
+        }
+        &:focus{
+            // background: none;
+            outline: none;
+        }
     }
 
     &.btn-search{
@@ -569,7 +594,7 @@ table{
         margin-bottom: 0.5rem;
         text-align: left;
         text-transform: lowercase;
-        // color: rgb(177, 177, 177);
+        color: rgb(131, 131, 131);
         // color: $color1;
         margin: 7px;
     }
