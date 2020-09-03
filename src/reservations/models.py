@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 # from django_counter_field import CounterField
 # from django_counter_field import CounterMixin, connect_counter
 # from .slotclass import Slot
@@ -6,6 +7,7 @@ import calendar
 from datetime import date, time, timedelta
 
 class Customer(models.Model):
+    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(default='Person Name', max_length=200, null=True)
     apt = models.IntegerField(default='205', blank=False)
     phone = models.CharField(default='805.555.3809', max_length=200, null=True)
@@ -20,8 +22,6 @@ class Customer(models.Model):
 
 
 class Day(models.Model):
-    
-    # today_month = calendar.month_name[today.month]
     today = date.today()
     tomorrow = today + timedelta(days=1)
 
@@ -33,7 +33,7 @@ class Day(models.Model):
     class Meta:
         ordering = ['-date_created']
 
-    def __str__(self):
+    def name_day(self):
         date = self.day
         year = date.year
         # print(year)
@@ -46,6 +46,8 @@ class Day(models.Model):
 
         return '{}. {}, {}'.format(month, day_num, str(year)[-6:])
     
+    def __str__(self):
+        return self.name_day()
 
 class TimeSlot(models.Model):
     TIMESLOTS = (
