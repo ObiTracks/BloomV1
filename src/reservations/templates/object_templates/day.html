@@ -26,7 +26,7 @@
                     <th>Phone</th>
                     <th>Total On Lease</th>
                 </tr>
-        
+
                 {% for reservation in slot.reservation_set.all %}
                 <tr class="data" onclick="window.location='{% url "resident" reservation.customer.id %}';">
                     <td>{{reservation.customer.name}}</td>
@@ -47,7 +47,6 @@
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
-
             {% for timeslot in day.timeslot_set.all %}
             <tr class="data" onclick="window.location='{% url 'timeslot' timeslot.id %}';">
                 <td>{{timeslot.time_slot}}</td>

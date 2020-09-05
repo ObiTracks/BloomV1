@@ -16,3 +16,13 @@ class CustomerFilter(django_filters.FilterSet):
         model = Customer
         fields = '__all__'
         exclude = ['lease_members','date_created', 'id']
+
+class DayFilter(django_filters.FilterSet):
+    day = DateFilter(field_name='date_created', label='Day')
+    start_date = DateFilter(field_name='date_created', label='Day after (mm/dd/yyyy):', lookup_expr='gte')
+    end_date = DateFilter(field_name='date_created', label='Day before (mm/dd/yyyy):', lookup_expr='lte')
+
+    class Meta:
+        model = Day
+        fields = ['day','start_date','end_date']
+        # exclude = ['lease_members','date_created', 'id']

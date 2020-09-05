@@ -5,6 +5,11 @@ from django.db import models
 import calendar
 from datetime import date, time, timedelta
 
+
+TODAY = date.today()
+TOMORROW = TODAY + timedelta(days=1)
+
+
 class Customer(models.Model):
     name = models.CharField(default='Person Name', max_length=200, null=True)
     apt = models.IntegerField(default='205', blank=False)
@@ -20,33 +25,9 @@ class Customer(models.Model):
 
 
 class Day(models.Model):
-    
-    # today_month = calendar.month_name[today.month]
-    today = date.today()
-    tomorrow = today + timedelta(days=1)
-
-    # Fields
-    day = models.DateField(default=tomorrow, blank=False) 
-    date_created = models.DateField(default=today, blank=False)
-    notes = models.TextField(max_length=2000, null=True, blank=True)
-
-    class Meta:
-        ordering = ['-date_created']
+    date_created = models.DateField(default=TODAY, blank=False, editable=True)
+    date = models.DateField(default=TOMORROW, blank=False) 
         
-    def __str__(self):
-        date = self.day
-        year = date.year
-        print(year)
-        month = calendar.month_abbr[date.month]
-        print(month)
-        day_num = date.day
-        print(day_num)
-        dayname = calendar.day_name[date.weekday()]
-        print(dayname)
-
-        return '{}. {}, {}'.format(month, day_num, str(year)[-6:])
-    
-
 class TimeSlot(models.Model):
     TIMESLOTS = (
         ('9am-11am','9am-11am'),
@@ -54,7 +35,7 @@ class TimeSlot(models.Model):
         ('3pm-5pm','3pm-5pm'),
     )
     time_slot = models.CharField(max_length=10, null=True, choices=TIMESLOTS, default="Choose a time window")
-    day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
+    # day = models.ForeignKey(Day, related_name="timeslot_set", default=Day.objects.first(), null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
@@ -84,6 +65,15 @@ class Reservation(models.Model):
 
     def __str__(self):
         return "{}".format(self.timeslot)
+    
+# class Calculations(models.Model):
+#     total_customers = Customer.objects.all().count()
+#     total_days = Day.objects.all().count()
+#     total_reservations = Reservation.objects.all().count()
 
-    def full_dscrpt(self):
-        return "{} for {}".format(self.customer, self.timeslot.day)
+#     avg_noshows_past_week = 0
+#     count = 0
+#     for n in Day.objects.all()[:8]:
+#         if n.no_show == True:
+#             count
+#             avg_noshows_past_week = n.

@@ -1,53 +1,74 @@
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import Http404
-from django.shortcuts import render, redirect, get_object_or_404
-from django.forms import inlineformset_factory
-from datetime import date
-from django.core.paginator import Paginator
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
+from ..logic import reservation_exists
 
 def createReservation(request, tk, pk, *args, **kwargs):
     customer = Customer.objects.get(id=pk)
+    current_user = request.user
+    current_user_id = current_user.id
+    print(current_user)
+
+    # Check to pass through a prefilled timeslot if it recieves an id for one
     if tk != 'None':
         timeslot = TimeSlot.objects.get(id=tk)
-        print('Path A: tk='+ tk)
-    else:
-        timeslot = None
-        print('Path B: tk=' + tk)
-
-    if timeslot != None:
-        # form = ReservationForm(initial={'customer': customer, 'timeslot':timeslot})
+        form = ReservationForm(initial={
+            'customer': customer,
+            'timeslot': timeslot
+        })
+        # print('Path A: tk='+ tk)
         form = ReservationForm(initial={
             'customer': customer,
             'timeslot': timeslot
         })
     else:
+        timeslot = None
         form = ReservationForm(initial={
             'customer': customer,
         })
+        # print('Path B: tk=' + tk)
 
+    # Creating for creating a reservation from post data
     if request.method == 'POST':
-        print('Printing POST:', request.POST)
+        # print('Printing POST:', request.POST)
         form = ReservationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
     #
+
+    stats = {
+        'stat1': {
+            'title': 'Total Days',
+            'value':'some'
+        },
+        'stat2': {
+            'title': 'Total Reservations',
+            'value':''
+        },
+        'stat3': {
+            'title': 'Total Residents',
+            'value':''
+        },
+        'stat4': {
+            'title': 'Avg No Shows per Day',
+            'value':''
+        }
+    }
+
     context = {
         'form': form,
         'page_title': 'New Reservation',
         'customer': customer,
         'time_slot': timeslot
     }
-    return render(request, 'CUD/reservation_form.html', context)
+    return render(request, '../templates/crud_templates/reservation_form.html', context)
 
 def updateReservation(request, pk):
     reservation = Reservation.objects.get(id=pk)

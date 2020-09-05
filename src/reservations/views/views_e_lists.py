@@ -12,11 +12,11 @@ from django.contrib.auth.decorators import login_required
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
-from ..filters import CustomerFilter
+from ..filters import CustomerFilter, DayFilter
 
 
 def customers(request, tk):
-    residents = Customer.objects.all()
+    residents = Customer.objects.all().order_by('-date_created')
     myFilter = CustomerFilter(request.GET, queryset=residents)
     residents = myFilter.qs
 
@@ -55,8 +55,8 @@ def customers(request, tk):
         "page_title": page_title,
         'residents': residents,
         'time_id': time_id,
-        'myFilter':myFilter,
         'stats':stats,
+        'myFilter':myFilter,
         'page_obj':page_obj
     }
     template_name = 'list_templates/customers.html'
@@ -64,8 +64,14 @@ def customers(request, tk):
     return render(request, template_name, context)
 
 def days(request):
-    days = Day.objects.all()
-    page_title = "All Days"
+    days = Day.objects.all().order_by('date_created')
+    myFilter = DayFilter(request.GET, queryset=days)
+    days = myFilter.qs
+
+    paginator = Paginator(days, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     stats = {
         'stat1': {
             'title': 'Total Days',
@@ -85,12 +91,14 @@ def days(request):
         }
     }
 
+    page_title = "All Days"
     context = {
         'page_title': page_title,
         'days': days,
         'stats': stats,
+        'myFilter':myFilter,
+        'page_obj':page_obj
     }
     template_name = 'list_templates/days.html'
 
     return render(request, template_name, context)
-
