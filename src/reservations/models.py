@@ -26,7 +26,25 @@ class Customer(models.Model):
 
 class Day(models.Model):
     date_created = models.DateField(default=TODAY, blank=False, editable=True)
-    date = models.DateField(default=TOMORROW, blank=False) 
+    date = models.DateField(default=TOMORROW, blank=False)
+    notes = models.TextField(max_length=2000, null=True, blank=True)
+    
+    class Meta:
+        ordering = ['-date_created']
+
+    def __str__(self):
+        x = self.date
+        year = x.year
+        # print(year)
+        month = calendar.month_abbr[x.month]
+        # print(month)
+        day_num = x.day
+        # print(day_num)
+        # dayname = calendar.day_name[x.weekday()]
+        # print(dayname)
+        # year = str(year)[-6:]
+        return '{}. {}, {}'.format(month, day_num, year)
+
         
 class TimeSlot(models.Model):
     TIMESLOTS = (
