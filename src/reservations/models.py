@@ -53,7 +53,7 @@ class TimeSlot(models.Model):
         ('3pm-5pm','3pm-5pm'),
     )
     time_slot = models.CharField(max_length=10, null=True, choices=TIMESLOTS, default="Choose a time window")
-    # day = models.ForeignKey(Day, related_name="timeslot_set", default=Day.objects.first(), null=True, on_delete= models.CASCADE)
+    day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
