@@ -15,6 +15,7 @@ class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
         fields = '__all__'
+        exclude = ['no_show']
 
 class CreateUserForm(UserCreationForm):
     class Meta:

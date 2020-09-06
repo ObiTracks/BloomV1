@@ -12,7 +12,7 @@ class CustomerFilter(django_filters.FilterSet):
     class Meta:
         model = Customer
         fields = '__all__'
-        exclude = ['lease_members','date_created', 'id']
+        exclude = ['user','lease_members','date_created', 'id']
         
 
 class DayFilter(django_filters.FilterSet):

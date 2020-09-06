@@ -40,3 +40,8 @@ def logoutUser(request):
 def registerPage(request):
     pass
     return redirect('login')
+
+def profilePage(request):
+    
+    context = {}
+    return render(request, '../templates/login_templates/profile.html', context)

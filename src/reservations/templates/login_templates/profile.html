@@ -1,15 +1,18 @@
-{% extends "../base_templates/base.html" %}
+{% extends "base_templates/base.html" %}
 {% load static %}
 
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
-<title>{{resident.name}}</title>
+<title>{Customer Name}</title>
 {% endblock %}
-
+<a href="../base_templates/base.html"></a>
 {% block content %}
 <div class="card">
     <header>
-        <h2>{{resident.name}}</h2>
+        <h1>{{resident.name}}</h1>
+        <h2>{{resident.apt}}</h2>
+        <h2>{{resident.phone}}</h2>
+        <h2>{{resident.email}}</h2>
     </header>
 
     <div class="body">
@@ -39,7 +42,7 @@
                 <td>{{reservation.notes}}</td>
                 <td>{{reservation.no_show}}</td>
                 <td><button class='btn btn-info'>Update</button></td>
-                <td><button class='btn btn-danger' href="{% url 'delete_page' reservation.id %}">Delete</button></td>
+                <td><button class='btn btn-danger'>Delete</button></td>
 
 
             </tr>

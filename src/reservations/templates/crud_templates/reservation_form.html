@@ -20,14 +20,13 @@
             {% csrf_token %}
             {{form}}
 
-            <div class='buttons'>
-            </div>
+            <input class="btn btn-confirm" type="submit" action="submit" value="Confirm">
         </form>
-
+        
         <footer>
             <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>
-            <input class="btn btn-confirm" type="submit" name="Confirm">
         </footer>
+        
     </div>
 </div>
 {% endblock %}

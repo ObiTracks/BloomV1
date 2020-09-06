@@ -39,8 +39,13 @@ def createReservation(request, tk, pk, *args, **kwargs):
         # print('Printing POST:', request.POST)
         form = ReservationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('/')
+            num_res = timeslot.reservation_set.all().count()
+            if timeslot != None:
+                if num_res < timeslot.capacity:
+                    form.save()
+                    return redirect('/')
+                else:
+                    print("Timeslot at capacity of {}".format(num_res))
     #
 
     stats = {
@@ -81,14 +86,27 @@ def updateReservation(request, pk):
             return redirect('/')
 
     context = {'form': form, 'page_title': 'Update Reservation'}
-    return render(request, 'CUD/reservation_form.html', context)
+    return render(request, '../templates/crud_templates/reservation_form.html', context)
+
+def updateResident(request, pk):
+    resident = Customer.objects.get(id=pk)
+    form = ReservationForm(instance=resident)
+    if request.method == 'POST':
+        # print('Printing POST:', request.POST)
+        form = ReservationForm(request.POST, instance=resident)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form, 'page_title': "Update {}'s ".format(resident.name), 'resident':resident}
+    return render(request, '../templates/crud_templates/customer_form.html', context)
 
 def deletePage(request, pk):
     reservation = Reservation.objects.get(id=pk)
     if request.method == 'POST':
         reservation.delete()
         return redirect('/')
-
+        
     context = {'item': reservation}
-    template_name = 'CUD/delete.html'
+    template_name = '../templates/crud_templates/delete.html'
     return render(request, template_name, context)

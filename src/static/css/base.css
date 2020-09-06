@@ -358,7 +358,6 @@ form.search {
           flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  background: blue;
 }
 
 form.modify {

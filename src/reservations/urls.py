@@ -12,12 +12,16 @@ urlpatterns = [
     path('update_reservation/<str:pk>/',
          views_b_crud.updateReservation,
          name='update_reservation'),
+    path('update_customer/<str:pk>/',
+         views_b_crud.updateResident,
+         name='update_resident'),
     path('delete/<str:pk>/', views_b_crud.deletePage, name='delete_page'),
 
     # LOGIN URLS
     path('register', views_c_login.registerPage, name='register'),
     path('login', views_c_login.loginPage, name='login'),
     path('logout', views_c_login.logoutUser, name='logout'),
+    path('profile', views_c_login.profilePage, name='profile'),
 
     # OBJECT URLS
     path('resident/<str:pk>/', views_d_objects.customer, name='resident'),
