@@ -8,6 +8,7 @@ from datetime import date, time, timedelta
 
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    lease_owner = models.ForeignKey('self', default=user, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(default='Person Name', max_length=200, null=True)
     apt = models.IntegerField(default='205', blank=False)
     phone = models.CharField(default='805.555.3809', max_length=200, null=True)
