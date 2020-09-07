@@ -1,22 +1,18 @@
 {% load static %}
 <h1 class="title">{{page_title}}</h1>
 <div class="stats">
-    <div id="stat1" class="stat">
-        <h2 class="title">{{stats.stat1.title}}</h2>
-        <h3 class="value">{{stats.stat1.value}}</h3>
+    {% for key, stat in stats.items %}
+    <div id="{% cycle 'stat1' 'stat2' 'stat3' 'stat4'%}" class="stat">
+        <!-- <h2 class="title">{{stat}}</h2> -->
+        {% for label, value in stat.items %}
+        {% if label == 'name' %}
+        <h2 class="title">{{value}}</h2>
+        {% else %}
+        <h3 class="value">{{value}}</h3>
+        {% endif %}
+        {% endfor %}
     </div>
-    <div id="stat2" class="stat">
-        <h2 class="title">{{stats.stat2.title}}</h2>
-        <h3 class="value">{{stats.stat2.value}}</h3>
-    </div>
-    <div id="stat3" class="stat">
-        <h2 class="title">{{stats.stat3.title}}</h2>
-        <h3 class="value">{{stats.stat3.value}}</h3>
-    </div>
-    <div id="stat4" class="stat">
-        <h2 class="title">{{stats.stat4.title}}</h2>
-        <h3 class="value">{{stats.stat4.value}}</h3>
-    </div>
+    {% endfor %}
 </div>
 
 <!-- {{stats.stat1.title}} -->

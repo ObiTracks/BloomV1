@@ -273,6 +273,10 @@ a {
   background: #2457e4;
 }
 
+.card.reservation-card header {
+  background: #0cac6e;
+}
+
 .card header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -292,12 +296,13 @@ a {
 .card header h2 {
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
+  color: white;
   margin: 0;
 }
 
 .card header h2 a {
   margin: 0;
-  color: white;
+  color: inherit;
   font-weight: 400;
 }
 
@@ -351,6 +356,12 @@ a {
       flex-wrap: wrap;
   padding: 1rem 1.5rem 1rem 1.5rem;
   overflow-x: auto;
+}
+
+.card .body.item-info {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 form {

@@ -224,6 +224,11 @@ a{
             background: $color1;
         }
     }
+    &.reservation-card{
+        header{
+            background: $color2;
+        }
+    }
 
     header{
         display: flex;
@@ -236,11 +241,11 @@ a{
         h2{
             font-size: 1rem;
             font-family: $font1;
-            // color: $color1;
+            color: white;
             margin: 0;
             a{
                 margin: 0;
-                color: white;
+                color: inherit;
                 font-weight: 400;
             }
         }
@@ -283,6 +288,9 @@ a{
         padding: 1rem 1.5rem 1rem 1.5rem;
         overflow-x: auto;
 
+        &.item-info{
+            justify-content: center;
+        }
     }
 }
 

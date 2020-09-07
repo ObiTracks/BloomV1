@@ -8,7 +8,7 @@
 
 
 {% block content %}
-<div class="card non-editable">
+<div class="card day-card">
     <header>
         <h2>{{day.day| date:"l N j"}}</h2>
     </header>
@@ -25,6 +25,7 @@
                     <th>Apartment</th>
                     <th>Phone</th>
                     <th>Total On Lease</th>
+                    <th>No Show</th>
                 </tr>
         
                 {% for reservation in slot.reservation_set.all %}
@@ -33,6 +34,7 @@
                     <td>{{reservation.customer.apt}}</td>
                     <td>{{reservation.customer.phone}}</td>
                     <td>{{reservation.customer.lease_members.count}}</td>
+                    <td>{{reservation.no_show}}</td>
                 </tr>
                 {% endfor %}
             </table>

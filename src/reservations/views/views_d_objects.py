@@ -42,30 +42,28 @@ def day(request, pk):
     dayname = calendar.day_name[date.weekday()]
     print(dayname)
 
-    # timeslots = day.timeslot_set.all()
-    # num_reservations = 0
-    # for timeslot in timeslots:
-    #     n = timeslot.reservation_set.count()
-    #     num_reservations += n
-    # print(num_reservations)
+    timeslots = day.timeslot_set.all()
+    num_reservations = 0
+    num_noshows = 0
+    for timeslot in timeslots:
+        n = timeslot.reservation_set.all()
+        num_reservations += n.count()
+
+        for r in n:
+            if r.no_show == True:
+                num_noshows += 1
+
+    print(num_reservations)
     
     stats = {
         'stat1': {
             'name': 'Total Reservations',
-            'value': day.timeslot_set.all().count()
+            'value': num_reservations
         },
         'stat2': {
             'name': 'Total No Shows',
-            'value': day.day
-        },
-        'stat3': {
-            'name': 'Total Reservations',
-            'value': day.day
-        },
-        'stat4': {
-            'name': 'Total Reservations',
-            'value': day.day
-        },
+            'value': num_noshows
+        }
     }
 
 
