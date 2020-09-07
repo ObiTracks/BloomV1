@@ -31,11 +31,19 @@
                 <button><a href="{% url 'create_reservation' slot.id customer.id %}">Make Reservation +</a></button>
             {% endif %}
 
-            <div class="info">
-                <h1>
-                    {{slot.capacity|subtract:slot.reservation_set.count}} spots left
-                </h1>
-            </div>
+            {% if slot.capacity != slot.reservation_set.count %}
+                <div class="info">
+                    <h1>
+                        {{slot.capacity|subtract:slot.reservation_set.count}} spots left
+                    </h1>
+                </div>
+            {% else %}
+                <div class="info slot-full">
+                    <h1>
+                        {{slot.capacity|subtract:slot.reservation_set.count}} spots left
+                    </h1>
+                </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>

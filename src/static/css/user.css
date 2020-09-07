@@ -37,12 +37,11 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  justify-items: flex-end;
-  -ms-flex-line-pack: end;
-      align-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
   padding: 1rem 0 1rem 0;
   margin: 0;
 }
@@ -802,6 +801,11 @@ table tr:hover {
   color: white;
   border-radius: 20rem;
   margin: 7px;
+}
+
+.slot .info.slot-full {
+  background: #b4b4b4;
+  color: grey;
 }
 
 .info-container {
