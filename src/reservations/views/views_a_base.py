@@ -20,10 +20,12 @@ def home_page(request):
     # days = Day.objects.all().reverse()[:2]
     residents = Customer.objects.all()[:20]
     today_date = date.today()
+    yesterday_date = date.today() - timedelta(days=1)
+    tomorrow_date = date.today() + timedelta(days=1)
 
-    total_days = days.count()
-    total_residents = Customer.objects.all().count
-    total_reservations = Reservation.objects.all().count
+    total_days = Day.objects.count()
+    total_residents = Customer.objects.count()
+    total_reservations = Reservation.objects.count()
 
     page_title = "Dashboard"
     stats = {
@@ -51,7 +53,9 @@ def home_page(request):
         'today_date': today_date,
         'stats': stats,
         'residents':residents,
-        'total_days': total_days
+        'total_days': total_days,
+        'yesterday_date':yesterday_date,
+        'tomorrow_date':tomorrow_date
     }
 
 

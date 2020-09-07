@@ -237,11 +237,18 @@ a {
   width: 100%;
   position: relative;
   background: white;
-  -webkit-box-shadow: #e2e2e2 0 0 10px 9px;
-          box-shadow: #e2e2e2 0 0 10px 9px;
+  -webkit-box-shadow: #e4e4e4 0 0 10px 9px;
+          box-shadow: #e4e4e4 0 0 10px 9px;
   border-radius: 6px;
   overflow: hidden;
   margin: 0rem 0 1rem 0;
+  -webkit-transition: ease-in-out 0.1s;
+  transition: ease-in-out 0.1s;
+}
+
+.card:hover {
+  -webkit-box-shadow: #c7c7c7 0 0 6px 4px;
+          box-shadow: #c7c7c7 0 0 6px 4px;
 }
 
 .card.card-lg {
@@ -258,6 +265,14 @@ a {
       justify-self: center;
 }
 
+.card.resident-card header {
+  background: #13b1bd;
+}
+
+.card.day-card header {
+  background: #2457e4;
+}
+
 .card header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -269,25 +284,28 @@ a {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 1rem;
-  border-bottom: solid #e2e2e2 1px;
   background: #f7f7f7;
+  -webkit-transition: all ease-in-out 0.1s;
+  transition: all ease-in-out 0.1s;
 }
 
 .card header h2 {
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
-  color: #2457e4;
   margin: 0;
 }
 
 .card header h2 a {
   margin: 0;
+  color: white;
+  font-weight: 400;
 }
 
 .card header h4 {
   font-size: 0.8rem;
   font-family: "Montserrat", sans-serif;
   color: #828282;
+  color: white;
   margin: 0;
 }
 

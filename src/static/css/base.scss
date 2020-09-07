@@ -189,11 +189,15 @@ a{
     width: 100%;
     position: relative;
     background: white;
-    box-shadow: rgb(226, 226, 226) 0 0 10px 9px;
+    box-shadow: rgb(228, 228, 228) 0 0 10px 9px;
     border-radius: 6px;
     overflow: hidden;
     margin: 0rem 0 1rem 0;
+    transition: ease-in-out 0.1s;
 
+    &:hover{
+        box-shadow: rgb(199, 199, 199) 0 0 6px 4px;
+    }
     &.card-lg{
         width: 60%;
     }
@@ -210,28 +214,41 @@ a{
         width: 30rem;
         justify-self: center;
     }
+    &.resident-card{
+        header{
+            background: $color3;
+        }
+    }
+    &.day-card{
+        header{
+            background: $color1;
+        }
+    }
 
     header{
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
-        border-bottom: solid rgb(226, 226, 226) 1px;
         background: rgb(247, 247, 247);
+        transition: all ease-in-out 0.1s;
 
         h2{
             font-size: 1rem;
             font-family: $font1;
-            color: $color1;
+            // color: $color1;
             margin: 0;
             a{
                 margin: 0;
+                color: white;
+                font-weight: 400;
             }
         }
         h4{
             font-size: 0.8rem;
             font-family: $font2;
             color: rgb(130, 130, 130);
+            color: white;
             margin: 0;
             // text-transform: uppercase;
         }

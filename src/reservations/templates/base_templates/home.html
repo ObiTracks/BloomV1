@@ -9,7 +9,7 @@
 
 {% block content %}
 <!-- RESIDENT CARD -->
-<div class="card card-md" id='residents'>
+<div class="card card-md resident-card" id='residents'>
     <header>
         <h2><a href='{% url "residents" None %}'>Residents</a></h2>
         <h4>Total {{residents.count}}</h4>
@@ -36,12 +36,14 @@
 
 <!-- Day card -->
 {% for day in days %}
-<div class="card card-lg" id='day'>
+<div class="card card-lg day-card" id='day'>
     <header>
-        {% if day.day == today_date%}
-        <h2>Today</h2>
+        {% if day.day == today_date %}
+        <h2><a href='{% url "day" day.id %}'>Today</a></h2>
+        {% elif day.day == tomorrow_date %}
+        <h2><a href='{% url "day" day.id %}'>Tomorrow {{day}}</a></h2>
         {% else %}
-        <h2><a href='{% url "day" day.id %}'>Some Date</a></h2>
+        <h2><a href='{% url "day" day.id %}'>Yesterday</a></h2>
         {% endif %}
         <h4>{{day.date}}</h4>
     </header>
@@ -50,7 +52,11 @@
         {% for slot in day.timeslot_set.all %}
         <div class="slot">
             <h3 class="name">{{slot.time_slot}}</h3>
-            <button><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
+            
+            {% if slot.day != yesterday_date %}
+                <button><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
+            {% endif %}
+
             <table class="table-slot">
                 <tr>
                     <th id="name">Name</th>
