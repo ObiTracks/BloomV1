@@ -1,0 +1,38 @@
+{% extends "user_templates/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<title>{Customer Name}</title>
+{% endblock %}
+
+{% block content %}
+<div class="card reservation-card">
+    <header>
+        <h2>Upcoming Reservations</h2>
+        <h4>Total Customers: {{residents.count}}</h4>
+    </header>
+
+    <div class="body">
+        <table class="table-slot">
+            <tr>
+                <th id="name">Timeslot</th>
+                <th>Name</th>
+                <th>Party Size</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for reservation in reservations %}
+            <tr class="data">
+                <td>{{reservation.timeslot}}</td>
+                <td>{{reservation.customer}}</td>
+                <td>{{reservation}}</td>
+                <td><button class='btn btn-danger'>
+                    <a href="{% url 'delete' reservation.id %}">Delete</a>
+                </button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

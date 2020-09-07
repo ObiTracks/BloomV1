@@ -1,0 +1,14 @@
+{% load static %}
+<nav class="navbar">
+    <h1><a href="{% url 'home' %}">Bloom</a></h1>
+
+    <ul>
+        <li><a href="{% url 'home' %}">Dashboard</a></li>
+        <li><a href="{% url 'reservations' %}">Reservations</a></li>
+    </ul>
+
+    
+    <div class="login">
+        <div style="color: white">Hello, {{request.user}}</div>
+        <a href="{% url 'logout' %}">Logout</a></div>
+</nav>

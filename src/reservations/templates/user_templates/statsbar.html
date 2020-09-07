@@ -1,0 +1,26 @@
+{% load static %}
+<h1 class="title">{{page_title}}</h1>
+<div class="stats">
+</div>
+
+<!-- {{stats.stat1.title}} -->
+<!-- {% for key, value in test_dict %}
+        <div id="stat1" class="stat">
+            <h2 class="title">{{stats.stat1.title}}</h2>
+            <h3 class="value">{{stats.stat1.value}}</h3>
+        </div>
+    {% endfor %} -->
+
+<!-- {% for stat in stats %}
+        {% for key, value in stat.items %}
+        <h1>Hello</h1>
+        {% endfor %}
+    {% endfor %} -->
+
+<!-- {% for stat in stats %}
+        <h1>Hello</h1>
+        <div id="{% cycle 'stat1' 'stat2' 'stat3' 'stat4' %}" class="stat">
+            <h2 class="title">{{stat.title}}</h2>
+            <h3 class="value">{{stat.value}}</h3>
+        </div>
+    {% endfor %} -->

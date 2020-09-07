@@ -5,7 +5,8 @@ from reservations.views import (home_page)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('reservations.urls')),
+    path('staff/', include('reservations.urls_staff')),
+    path('', include('reservations.urls_user')),
     # path('about/', about_page),
     # path('contact/', contact_page),
 ]
