@@ -284,8 +284,9 @@ a {
   background: #2457e4;
 }
 
-.card.reservation-card header {
-  background: #0cac6e;
+.card.change-card header {
+  background: -webkit-gradient(linear, left top, right top, from(#5433ff), color-stop(#20bdff), to(#a5ebfe));
+  background: linear-gradient(to right, #5433ff, #20bdff, #a5ebfe);
 }
 
 .card header {
@@ -299,7 +300,6 @@ a {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 1rem;
-  background: #f7f7f7;
   -webkit-transition: all ease-in-out 0.1s;
   transition: all ease-in-out 0.1s;
 }
@@ -332,12 +332,25 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   padding: 5px;
   border-top: solid #e2e2e2 1px;
   background: #f7f7f7;
+}
+
+.card footer > .buttons {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 20rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .card footer h2 {
@@ -376,6 +389,7 @@ a {
 }
 
 form {
+  max-width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -410,11 +424,6 @@ form.modify {
           align-items: flex-start;
   -ms-flex-line-pack: center;
       align-content: center;
-}
-
-form*:hover {
-  border: solid black 1px;
-  outline: none;
 }
 
 form label {
@@ -464,6 +473,11 @@ form select {
   border: solid lightgray 1px;
   border-radius: 15px;
   padding: 5px 2px 5px 3px;
+}
+
+form select:hover {
+  border: solid #545454 1px;
+  outline: none;
 }
 
 form select option {
@@ -629,28 +643,28 @@ button.btn-cancel:focus {
 }
 
 button.btn-search {
-  width: 10rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 1rem;
   color: black;
   font-weight: 700;
   background: #f1ea0a;
-  border: solid 3px #f1ea0a;
-  -webkit-transition: none;
-  transition: none;
+  border: none;
 }
 
 button.btn-search:hover {
-  background: none;
+  background: #e4dd07;
   -webkit-box-shadow: none;
           box-shadow: none;
-  border: solid 3px black;
 }
 
 button.btn-search:active {
-  background: #2457e4;
+  background: #e0d909;
 }
 
 button.btn-search:focus {
-  background: none;
+  background: #c9c309;
 }
 
 table {

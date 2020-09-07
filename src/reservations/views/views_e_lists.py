@@ -33,7 +33,7 @@ def customers(request, tk):
 
     stats = {
         'stat1': {
-            'name': 'Total Residents',
+            'title': 'Total Residents',
             'value': Customer.objects.all().count()
         },
     }

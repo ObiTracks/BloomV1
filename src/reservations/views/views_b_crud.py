@@ -39,8 +39,11 @@ def createReservation(request, tk, pk, *args, **kwargs):
         # print('Printing POST:', request.POST)
         form = ReservationForm(request.POST)
         if form.is_valid():
-            num_res = timeslot.reservation_set.all().count()
-            if timeslot != None:
+            timeslot_id = request.POST.get('timeslot')
+            timeslot = TimeSlot.objects.get(pk=timeslot_id)
+            print(timeslot)
+            if request.POST.get('timeslot') != None:
+                num_res = timeslot.reservation_set.all().count()
                 if num_res < timeslot.capacity:
                     form.save()
                     return redirect('/')

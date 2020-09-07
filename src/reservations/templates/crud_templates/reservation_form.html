@@ -9,26 +9,25 @@
 
 {% block content %}
 <div class="section">
-    <div class="card reservation-card">
+    <div class="card change-card">
         <header>
-            <h2>
-                New Reservation</h2>
+            <h2>New Reservation</h2>
         </header>
 
         <div class="body item-info">
-            <form class="modify" action="" method="POST">
+            <form id="res-form" class="modify" action="" method="POST">
                 {% csrf_token %}
                 {{form}}
-
-                <input class="btn btn-confirm" type="submit" action="submit" value="Confirm">
             </form>
         </div>
         
         
         <footer>
-            <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>
+            <div class="buttons">
+                <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>
+                <button class="btn btn-confirm" type="submit" action="submit" value="Confirm" form='res-form'>Confirm</button>
+            </div>
         </footer>
-        
     </div>
 </div>
 {% endblock %}

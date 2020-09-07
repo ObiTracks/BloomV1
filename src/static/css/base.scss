@@ -238,9 +238,9 @@ a{
             background: $color1;
         }
     }
-    &.reservation-card{
+    &.change-card{
         header{
-            background: $color2;
+            background: linear-gradient(to right, #5433ff, #20bdff, #a5ebfe);
         }
     }
 
@@ -249,7 +249,6 @@ a{
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
-        background: rgb(247, 247, 247);
         transition: all ease-in-out 0.1s;
 
         h2{
@@ -276,11 +275,17 @@ a{
     footer{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         padding: 5px;
         border-top: solid rgb(226, 226, 226) 1px;
         background: rgb(247, 247, 247);
-
+        
+        & > .buttons{
+            justify-content: center;
+            width: 20rem;
+            display: flex;
+            justify-content: space-between;
+        }
         h2{
             font-size: 0.8rem;
             font-family: $font2;
@@ -310,7 +315,7 @@ a{
 
 // COMPONENTS-Searchbar
 form {
-    // width: 100%;
+    max-width: 100%;
     display: flex;
     font-family: $font1;
     font-size: 0.8rem;
@@ -331,10 +336,9 @@ form {
         align-items: flex-start;
         align-content: center;
     }
-    &*:hover{
-        border: solid black 1px;
-        outline: none;
+    & > *{
     }
+    
     label{
         width: fit-content;
         display: flex;
@@ -365,6 +369,10 @@ form {
         border: solid rgb(211, 211, 211) 1px;
         border-radius: 15px;
         padding: 5px 2px 5px 3px;
+        &:hover{
+            border: solid rgb(84, 84, 84) 1px;
+            outline: none;
+        }
         option{
             font-family: $font2;
             border-bottom: 1px grey solid;
@@ -516,22 +524,23 @@ button{
     }
 
     &.btn-search{
-        width: 10rem;
+        // width: 100%;
+        flex: 1;
+        font-size: 1rem;
+        // text-transform: uppercase;
         color: black;
         font-weight: 700;
         background: rgb(241, 234, 10);
-        border: solid 3px rgb(241, 234, 10);
-        transition: none;
+        border: none;
         &:hover{
-            background: none;
+            background: rgb(228, 221, 7);
             box-shadow: none;
-            border: solid 3px black;
         }
         &:active{
-            background: rgb(36, 87, 228);
+            background: rgb(224, 217, 9);
         }
         &:focus{
-            background: none;
+            background: rgb(201, 195, 9);
         }
     }
 }

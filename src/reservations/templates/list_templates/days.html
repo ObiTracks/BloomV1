@@ -19,9 +19,8 @@
     <div class="body">
         
         <div class="search">
-            <form method="get">
+            <form class='search' method="get">
                 {{myFilter.form}}
-        
                 <button class='btn btn-search' type='submit'>Search</button>
             </form>
         </div>
@@ -31,7 +30,6 @@
                 <th id="name">Date</th>
                 <th>Timeslots</th>
                 <th>Notes</th>
-                <th>Delete</th>
             </tr>
 
             {% for day in days %}
@@ -39,7 +37,7 @@
                 <td>{{day.day}}</td>
                 <td>{{day.timeslot_set.all.count}}</td>
                 <td>{{day.notes}}</td>
-                <td><button class='btn btn-danger'>Delete</button></td>
+                <!-- <td><button class='btn btn-danger'>Delete</button></td> -->
             </tr>
             {% endfor %}
         </table>

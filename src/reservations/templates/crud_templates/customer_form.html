@@ -9,27 +9,25 @@
 
 {% block content %}
 <div class="section">
-    <div class="card">
+    <div class="card change-card">
         <header>
             <h2>Update Customer</h2>
         </header>
 
+        <div class="body item-info">
+            <form action="{% url 'update_resident' resident.id  %}" method="POST">
 
-        <form action="{% url 'update_resident' resident.id  %}" method="POST">
+                {% csrf_token %}
+                <div class='buttons'>
+                    <button class="btn btn-cancel" href="{% url 'home' %}">
+                        Cancel
+                    </button>
 
-            {% csrf_token %}
-            <div class='buttons'>
-                <button class="btn btn-cancel" href="{% url 'home' %}">
-                    Cancel
-                </button>
-
-                <input class="btn btn-danger" type="submit" name="Confirm">
-            </div>
-
-
-        </form>
-
-
+                    <input class="btn btn-danger" type="submit" name="Confirm">
+                </div>
+            </form>
+        </div>
+        
     </div>
 </div>
 {% endblock %}
