@@ -39,17 +39,30 @@ body {
     padding: 1rem 0 1rem 0;
     margin: 0;
     // overflow: auto;
-
+    & > .card-create{
+        justify-content: center;
+    }
     #resident{
     }
     #day{
     }
 }
 .title{
+    position: relative;
     font-family: $font1;
     font-size: 2rem;
     z-index: 100;
     margin: 0;
+
+    &.bg-title{
+        position: absolute;
+        // top: 0;
+        // right: 0;
+        font-family: $font1;
+        font-size: 12vw;
+        color: rgb(167, 167, 167);
+        z-index: 90;
+    }
 }
 hr{
     border: none;
@@ -123,6 +136,7 @@ a{
     flex-wrap: wrap;
     border-bottom: rgb(233, 233, 233) 2px solid;
     padding-bottom: 1rem;
+    z-index: 110;
 
     .stat{
         flex: 1;
@@ -135,7 +149,7 @@ a{
         align-items: flex-start;
         border-left-style: solid;
         border-left-width: 6px;
-        box-shadow: rgb(236, 236, 236) 0 0 10px 10px;
+        box-shadow: rgba(236, 236, 236, 0.7) 0 0 10px 7px;
         border-radius: 5px;
         background: white;
         padding: 0.2rem 0.8rem 0.2rem 0.8rem;
@@ -190,13 +204,13 @@ a{
     position: relative;
     background: white;
     box-shadow: rgb(228, 228, 228) 0 0 10px 9px;
+    
     border-radius: 6px;
     overflow: hidden;
     margin: 0rem 0 1rem 0;
     transition: ease-in-out 0.1s;
 
     &:hover{
-        box-shadow: rgb(199, 199, 199) 0 0 6px 4px;
     }
     &.card-lg{
         width: 60%;
@@ -296,7 +310,7 @@ a{
 
 // COMPONENTS-Searchbar
 form {
-    width: 100%;
+    // width: 100%;
     display: flex;
     font-family: $font1;
     font-size: 0.8rem;
@@ -311,7 +325,7 @@ form {
         flex-wrap: wrap;
     }
     &.modify{
-        width: 100%;
+        // width: 100%;
         height: 20rem;
         flex-direction: column;
         align-items: flex-start;
@@ -416,6 +430,7 @@ button{
         background-position-x: 99%;
         border: solid 3px rgb(36, 87, 228);
         color: rgb(36, 87, 228);
+        padding: 3px;
         &:hover{
             background-position-x: 1%;
             color: white;
@@ -613,6 +628,16 @@ table{
     border-radius: 8px;
     margin-bottom: 1rem;
     .name{
+        font-family: $font1;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        text-align: left;
+        text-transform: lowercase;
+        color: rgb(131, 131, 131);
+        // color: $color1;
+        margin: 7px;
+    }
+    .info{
         font-family: $font1;
         font-size: 1rem;
         margin-bottom: 0.5rem;

@@ -5,7 +5,7 @@
     <div id="{% cycle 'stat1' 'stat2' 'stat3' 'stat4'%}" class="stat">
         <!-- <h2 class="title">{{stat}}</h2> -->
         {% for label, value in stat.items %}
-        {% if label == 'name' %}
+        {% if label == 'title' %}
         <h2 class="title">{{value}}</h2>
         {% else %}
         <h3 class="value">{{value}}</h3>

@@ -33,24 +33,12 @@ def customers(request, tk):
 
     stats = {
         'stat1': {
-            'title': 'Total Residents',
+            'name': 'Total Residents',
             'value': Customer.objects.all().count()
         },
-        'stat2': {
-            'title': '___',
-            'value': '___'
-        },
-        'stat3': {
-            'title': '___',
-            'value': '___'
-        },
-        'stat4': {
-            'title': '___',
-            'value': '___'
-        }
     }
 
-    page_title = "All Customers"
+    page_title = "All Residents"
     context = {
         "page_title": page_title,
         'residents': residents,

@@ -52,6 +52,7 @@
         {% for slot in day.timeslot_set.all %}
         <div class="slot">
             <h3 class="name">{{slot.time_slot}}</h3>
+            <h2 class="name">{{slot.reservation_set.count}}/{{slot.capacity}}</h2>
             
             {% if slot.day != yesterday_date %}
                 <button><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>

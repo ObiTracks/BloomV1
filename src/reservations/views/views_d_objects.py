@@ -57,18 +57,19 @@ def day(request, pk):
     
     stats = {
         'stat1': {
-            'name': 'Total Reservations',
+            'title': 'Total Reservations',
             'value': num_reservations
         },
         'stat2': {
-            'name': 'Total No Shows',
+            'title': 'Total No Shows',
             'value': num_noshows
         }
     }
 
 
-    page_title = 'Day: {} {}. {}'.format(dayname, month, day_num)
-    context = {"page_title": page_title, 'day': day, 'stats': stats}
+    page_title = '{}, {}. {}'.format(dayname, month, day_num)
+    bg_title = 'Day'
+    context = {"page_title": page_title, 'day': day, 'stats': stats, 'bg_title':bg_title}
     template_name = 'object_templates/day.html'
 
     return render(request, template_name, context)

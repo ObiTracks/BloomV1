@@ -47,11 +47,26 @@ body {
   margin: 0;
 }
 
+.section > .card-create {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .title {
+  position: relative;
   font-family: "Poppins", sans-serif;
   font-size: 2rem;
   z-index: 100;
   margin: 0;
+}
+
+.title.bg-title {
+  position: absolute;
+  font-family: "Poppins", sans-serif;
+  font-size: 12vw;
+  color: #a7a7a7;
+  z-index: 90;
 }
 
 hr {
@@ -156,6 +171,7 @@ a {
       flex-wrap: wrap;
   border-bottom: #e9e9e9 2px solid;
   padding-bottom: 1rem;
+  z-index: 110;
 }
 
 .stats .stat {
@@ -180,8 +196,8 @@ a {
           align-items: flex-start;
   border-left-style: solid;
   border-left-width: 6px;
-  -webkit-box-shadow: #ececec 0 0 10px 10px;
-          box-shadow: #ececec 0 0 10px 10px;
+  -webkit-box-shadow: rgba(236, 236, 236, 0.7) 0 0 10px 7px;
+          box-shadow: rgba(236, 236, 236, 0.7) 0 0 10px 7px;
   border-radius: 5px;
   background: white;
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
@@ -244,11 +260,6 @@ a {
   margin: 0rem 0 1rem 0;
   -webkit-transition: ease-in-out 0.1s;
   transition: ease-in-out 0.1s;
-}
-
-.card:hover {
-  -webkit-box-shadow: #c7c7c7 0 0 6px 4px;
-          box-shadow: #c7c7c7 0 0 6px 4px;
 }
 
 .card.card-lg {
@@ -365,7 +376,6 @@ a {
 }
 
 form {
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -390,7 +400,6 @@ form.search {
 }
 
 form.modify {
-  width: 100%;
   height: 20rem;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -528,6 +537,7 @@ button.btn-info {
   background-position-x: 99%;
   border: solid 3px #2457e4;
   color: #2457e4;
+  padding: 3px;
 }
 
 button.btn-info:hover {
@@ -704,6 +714,16 @@ table tr:hover {
 }
 
 .slot .name {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  text-transform: lowercase;
+  color: #838383;
+  margin: 7px;
+}
+
+.slot .info {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   margin-bottom: 0.5rem;

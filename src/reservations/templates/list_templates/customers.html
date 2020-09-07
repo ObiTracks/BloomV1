@@ -32,8 +32,6 @@
                 <th id="name">Name</th>
                 <th>Apartment</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>Date Added</th>
                 <th>New Reservation</th>
                 <th>Update</th>
                 <!-- <th>Delete</th> -->
@@ -44,8 +42,6 @@
                 <td>{{resident.name}}</td>
                 <td>{{resident.apt}}</td>
                 <td>{{resident.email}}</td>
-                <td>{{resident.phone}}</td>
-                <td>{{resident.date_created}}</td>
                 <td><button class="btn"><a href="{% url 'create_reservation' time_id resident.id %}">Create Reservation
                             +</a></button></td>
                 <td><button class='btn btn-info'><a
