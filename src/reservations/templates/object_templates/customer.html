@@ -38,7 +38,7 @@
                 <td>{{reservation.timeslot.day}}</td>
                 <td>{{reservation.notes}}</td>
                 <td>{{reservation.no_show}}</td>
-                <td><button class='btn btn-info'>Update</button></td>
+                <td><button class='btn btn-info'><a href="{% url 'update_reservation' reservation.id %}">Update</a></button></td>
                 <td><button class='btn btn-danger' href="{% url 'delete_page' reservation.id %}">Delete</button></td>
 
 

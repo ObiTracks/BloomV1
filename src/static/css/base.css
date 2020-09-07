@@ -647,7 +647,8 @@ button.btn-search {
       -ms-flex: 1;
           flex: 1;
   font-size: 1rem;
-  color: black;
+  font-weight: 200;
+  color: white;
   font-weight: 700;
   background: #f1ea0a;
   border: none;

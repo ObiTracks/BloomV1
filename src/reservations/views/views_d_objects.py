@@ -85,15 +85,7 @@ def timeslot(request, pk):
         'stat2': {
             'title': 'Total No Shows',
             'value': 'some_value'
-        },
-        # 'stat3': {
-        #     'title': 'Total Residents',
-        #     'value': 'some_value'
-        # },
-        # 'stat4': {
-        #     'title': 'Avg No Shows per Day',
-        #     'value': 'some_value'
-        # }
+        }
     }
 
     context = {

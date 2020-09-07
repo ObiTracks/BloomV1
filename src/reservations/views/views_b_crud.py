@@ -39,6 +39,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
         # print('Printing POST:', request.POST)
         form = ReservationForm(request.POST)
         if form.is_valid():
+            print(request.POST)
             timeslot_id = request.POST.get('timeslot')
             timeslot = TimeSlot.objects.get(pk=timeslot_id)
             print(timeslot)
@@ -51,24 +52,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
                     print("Timeslot at capacity of {}".format(num_res))
     #
 
-    stats = {
-        'stat1': {
-            'title': 'Total Days',
-            'value':'some'
-        },
-        'stat2': {
-            'title': 'Total Reservations',
-            'value':''
-        },
-        'stat3': {
-            'title': 'Total Residents',
-            'value':''
-        },
-        'stat4': {
-            'title': 'Avg No Shows per Day',
-            'value':''
-        }
-    }
+    stats = {}
 
     context = {
         'form': form,
