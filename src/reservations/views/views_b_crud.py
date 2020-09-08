@@ -47,7 +47,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
                 num_res = timeslot.reservation_set.all().count()
                 if num_res < timeslot.capacity:
                     form.save()
-                    return redirect('/')
+                    return redirect('/reservations')
                 else:
                     print("Timeslot at capacity of {}".format(num_res))
     #

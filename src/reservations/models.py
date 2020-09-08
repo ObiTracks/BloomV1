@@ -1,13 +1,34 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
 # from django_counter_field import CounterField
 # from django_counter_field import CounterMixin, connect_counter
 # from .slotclass import Slot
 import calendar
 from datetime import date, time, timedelta
 
+
+
+class Company(models.Model):
+    company_name = models.CharField(max_length=200, null=False, blank=False)
+    company_email = models.EmailField(max_length=60,null=False, blank=False)
+    address_line = models.CharField(max_length=200, null=False, blank=False)
+    city = models.CharField("City", max_length=1024, null=False, blank=False)
+    zip_code = models.CharField("ZIP/Postal code", max_length=12, null=False, blank=False)
+    country = CountryField(blank_label="Select country", null=False, blank=False)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    
+    class Meta:
+        ordering = ["-company_name"]
+        verbose_name = "Company"
+
+    def __str__(self):
+        return "{}".format(self.company_name)
+
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name="customer_set", null=True, on_delete=models.SET_NULL)
     lease_owner = models.ForeignKey('self', default=user, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(default='Person Name', max_length=200, null=True)
     apt = models.IntegerField(default='205', blank=False)
@@ -23,6 +44,7 @@ class Customer(models.Model):
 
 
 class Day(models.Model):
+    company = models.ForeignKey(Company, related_name="day_set", null=True, on_delete=models.SET_NULL)
     today = date.today()
     tomorrow = today + timedelta(days=1)
 

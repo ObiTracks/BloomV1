@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'reservations', #pluggable
     'django_filters',
+    'django_countries',
 
 ]
 
