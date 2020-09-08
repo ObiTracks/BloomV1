@@ -90,6 +90,7 @@ def createReservation(request, tk, *args, **kwargs):
                     form.save()
                     return redirect('/')
                 else:
+                    messages.error(request, 'Timeslot is at capacity')
                     print("Timeslot at capacity of {}".format(num_res))
     #
 
