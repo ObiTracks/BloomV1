@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
+# from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 # from django_counter_field import CounterField
 # from django_counter_field import CounterMixin, connect_counter
@@ -14,7 +16,7 @@ class Company(models.Model):
     company_email = models.EmailField(max_length=60,null=False, blank=False)
     address_line = models.CharField(max_length=200, null=False, blank=False)
     city = models.CharField("City", max_length=1024, null=False, blank=False)
-    zip_code = models.CharField("ZIP/Postal code", max_length=12, null=False, blank=False)
+    zip_code = models.CharField("ZIP/Postal code", max_length=12, null=True, blank=True)
     country = CountryField(blank_label="Select country", null=False, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -112,14 +114,3 @@ class Reservation(models.Model):
     def __str__(self):
         return "{}".format(self.timeslot)
     
-# class Calculations(models.Model):
-#     total_customers = Customer.objects.all().count()
-#     total_days = Day.objects.all().count()
-#     total_reservations = Reservation.objects.all().count()
-
-#     avg_noshows_past_week = 0
-#     count = 0
-#     for n in Day.objects.all()[:8]:
-#         if n.no_show == True:
-#             count
-#             avg_noshows_past_week = n.
