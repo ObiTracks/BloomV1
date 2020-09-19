@@ -32,17 +32,18 @@ class Customer(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, related_name="customer_set", null=True, on_delete=models.SET_NULL)
     lease_owner = models.ForeignKey('self', default=user, null=True, blank=True, on_delete=models.SET_NULL)
-    name = models.CharField(default='Person Name', max_length=200, null=True)
-    apt = models.IntegerField(default='205', blank=False)
-    phone = models.CharField(default='805.555.3809', max_length=200, null=True)
+    first_name = models.CharField(default='Person Name', max_length=200, null=True)
+    last_name = models.CharField(default='Person Name', max_length=200, null=True)
     email = models.CharField(default='someemail@gmail.com', max_length=200, null=True)
-    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    apt = models.IntegerField(default='205', blank=False)
+    # phone = models.CharField(default='805.555.3809', max_length=200, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True, editable=False)
     id = models.AutoField(primary_key=True, editable=False)
     lease_members = models.ManyToManyField('self', blank=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
     def __str__(self):
-        return "{} ID-{}".format(self.name, self.id)
+        return "{} {}".format(self.first_name, self.last_name)
 
 
 class Day(models.Model):

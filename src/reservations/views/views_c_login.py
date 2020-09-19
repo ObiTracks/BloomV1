@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 #View imports here
+from ..forms import CreateUserForm
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
@@ -21,7 +22,7 @@ def loginPage(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password1)
 
         if user is not None:
             login(request, user)
@@ -39,8 +40,42 @@ def logoutUser(request):
     return redirect('login')
 
 def registerPage(request):
-    pass
-    return redirect('login')
+    context = {}
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # user = form
+            
+            firstname = form.cleaned_data.get('first_name')
+            lastname = form.cleaned_data.get('last_name')
+            email = form.cleaned_data.get('email')
+            apt = form.cleaned_data.get('apt')
+            raw_password = form.cleaned_data.get('password1')
+
+            # group = Group.objects.get(name='resident')
+            # user.groups.add(group)
+            # Customer.objects.create(
+            #     user=user,
+            #     firstname=firstname,
+            #     lastname=lastname,
+            #     email=email,
+            #     apt=apt,
+            #     )
+            # messages.success(request, 'Account was created for {} {}'.format(firstname,lastname))
+
+            # return redirect('login')
+            return redirect('home')
+        else:
+            context['registration_form'] = form
+    else: # This would be a get request
+        form = CreateUserForm()
+        context['registration_form'] = form
+
+    # context = {'registration_form':registration_form}
+    return render(request,'../templates/login_templates/register.html', context)
+
 
 def profilePage(request):
     

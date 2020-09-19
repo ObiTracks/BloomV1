@@ -1,10 +1,10 @@
+from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from account.models import MyAccountManager
+from account.models import Account
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
 # from django.contrib.auth.models import User
-from django import forms
 
 
 from .models import *
@@ -20,7 +20,9 @@ class ReservationForm(ModelForm):
         fields = '__all__'
         exclude = ['no_show']
 
-class CreateUserForm(MyAccountManager):
+class CreateUserForm(UserCreationForm):
+    email = forms.EmailField(max_length=60, help_text='Required. Enter a valid email address')
+
     class Meta:
-        model = User
-        fields = ['first_name','last_name','email','apt']
+        model = Account
+        fields = ('first_name','last_name','email','apt','password1','password2')
