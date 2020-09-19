@@ -34,7 +34,7 @@ class Customer(models.Model):
     apt = models.IntegerField(default='205', blank=False)
     # phone = models.CharField(default='805.555.3809', max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, editable=False)
-    lease_members = models.TextField('self', blank=True)
+    lease_members = models.TextField('Lease Members', blank=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
     def __str__(self):

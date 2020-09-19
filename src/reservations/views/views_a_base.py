@@ -1,5 +1,5 @@
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import inlineformset_factory
 from datetime import date
@@ -16,7 +16,10 @@ from ..filters import CustomerFilter
 
 @login_required(login_url='login')
 def home_page(request):
-    days = Day.objects.all()[:3]
+    if Day.objects.all() != None or Day.objects.count() <= 2:
+        return HttpResponse("<html><h1>There are not enough days available to book</h1></html>")
+    else:
+        days = Day.objects.all()[:3]
     # days = Day.objects.all().reverse()[:2]
     residents = Customer.objects.all()[:20]
     today_date = date.today()
