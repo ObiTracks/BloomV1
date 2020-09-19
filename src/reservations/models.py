@@ -1,11 +1,7 @@
 from django.db import models
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
-# from django.contrib.auth.models import User
 from django_countries.fields import CountryField
-# from django_counter_field import CounterField
-# from django_counter_field import CounterMixin, connect_counter
-# from .slotclass import Slot
 import calendar
 from datetime import date, time, timedelta
 
@@ -32,13 +28,12 @@ class Customer(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, related_name="customer_set", null=True, on_delete=models.SET_NULL)
     lease_owner = models.ForeignKey('self', default=user, null=True, blank=True, on_delete=models.SET_NULL)
-    first_name = models.CharField(default='Person Name', max_length=200, null=True)
-    last_name = models.CharField(default='Person Name', max_length=200, null=True)
+    first_name = models.CharField(max_length=200, null=True)
+    last_name = models.CharField(max_length=200, null=True)
     email = models.CharField(default='someemail@gmail.com', max_length=200, null=True)
     apt = models.IntegerField(default='205', blank=False)
     # phone = models.CharField(default='805.555.3809', max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, editable=False)
-    id = models.AutoField(primary_key=True, editable=False)
     lease_members = models.ManyToManyField('self', blank=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     

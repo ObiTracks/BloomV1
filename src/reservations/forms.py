@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from account.models import Account
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
+from django.contrib.auth.models import Group
 # from django.contrib.auth.models import User
 
 
@@ -22,7 +23,8 @@ class ReservationForm(ModelForm):
 
 class CreateUserForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Required. Enter a valid email address')
-
+    group = forms.ModelChoiceField(queryset=Group.objects.all(),
+                                   required=False)
     class Meta:
         model = Account
-        fields = ('first_name','last_name','email','apt','password1','password2')
+        fields = ('first_name','last_name','email','apt','password1','password2','group')

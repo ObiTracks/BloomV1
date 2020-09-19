@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 
 #View imports here
 from ..forms import CreateUserForm
@@ -45,25 +46,27 @@ def registerPage(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            # user = form
+            # form.save()
             
-            firstname = form.cleaned_data.get('first_name')
-            lastname = form.cleaned_data.get('last_name')
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
             apt = form.cleaned_data.get('apt')
+            group = form.cleaned_data.get('group')
+            print(group)
             raw_password = form.cleaned_data.get('password1')
+            
+            user = form.save()
+            print(user.groups.add(group))
 
-            # group = Group.objects.get(name='resident')
-            # user.groups.add(group)
-            # Customer.objects.create(
-            #     user=user,
-            #     firstname=firstname,
-            #     lastname=lastname,
-            #     email=email,
-            #     apt=apt,
-            #     )
-            # messages.success(request, 'Account was created for {} {}'.format(firstname,lastname))
+            Customer.objects.create(
+                user=user,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                apt=apt,
+                )
+            messages.success(request, 'Account was created for {} {}'.format(first_name, last_name))
 
             # return redirect('login')
             return redirect('home')
