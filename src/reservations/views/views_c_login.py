@@ -27,25 +27,19 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            print("Path B")
-            staff_roles = ['Manager','Staff','SiteAdmin']
-            resident_roles = ['Resident']
-
-            # print(user.groups.all())
-            in_group = user.groups.all().exists()
-            print(in_group)
-            if in_group == True:
-                group = user.groups.all()[0]
-                print(group)
-
-                if group in staff_roles:
-                    print("Path B1")
-                    return redirect('/staff')
-                elif group in resident_roles:
-                    print("Path B2")
-                    return redirect('/user')
-            else:
+            staff_roles = [Group.objects.get(name='SiteAdmin'),Group.objects.get(name='Manager'),Group.objects.get(name='Staff')]
+            resident_roles = [Group.objects.get(name='Resident')]
+            group = user.groups.all()[0]
+            print(group)
+            messages.success(request, 'Successfully logged in as {} {}'.format(user.first_name, user.last_name))
+            
+            if group in staff_roles:
+                print("Path A")
                 return redirect('/staff')
+            else:
+                print("Path B")
+                return redirect('/user')
+            
         else:
             messages.info(request, 'Username or password is incorrect')
 
@@ -152,6 +146,9 @@ def registerUserPage(request):
     return render(request,template_name, context)
 
 def logoutUser(request):
+    customer = request.user.customer
+    messages.success(request, 'Sucessfully logged out {} {}'.format(customer.first_name, customer.last_name))
+    
     logout(request)
     return redirect('/login')
 

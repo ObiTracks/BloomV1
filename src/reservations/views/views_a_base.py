@@ -47,7 +47,7 @@ def home_page(request):
     total_days = days.count()
     today_date = date.today()
         
-    total_reservations = total_reservations(days)
+    # total_reservations = total_reservations(days)
     yesterday_date = date.today() - timedelta(days=1)
     tomorrow_date = date.today() + timedelta(days=1)   
 
@@ -59,7 +59,7 @@ def home_page(request):
         },
         'stat2': {
             'title': 'Total Reservations',
-            'value': total_reservations
+            'value': "Some value"
         },
         'stat3': {
             'title': 'Total Residents',
