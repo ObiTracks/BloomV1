@@ -12,22 +12,22 @@
 <div class="card card-md resident-card" id='residents'>
     <header>
         <h2><a href='{% url "residents" None %}'>Recently Added Residents</a></h2>
-        <h4>Total {{residents.count}}</h4>
+        <h4>Total: {{residents.count}}</h4>
     </header>
 
     <div class="body">
         <table class="table-resident">
             <tr>
                 <th id="name">Name</th>
-                <th>Apartment</th>
-                <th>Phone</th>
+                <th>Email</th>
+                <th>Apt</th>
             </tr>
 
             {% for resident in residents %}
             <tr class="data" onclick="window.location='{% url "resident" resident.id %}';">
                 <td>{{resident.first_name}} {{resident.last_name}}</td>
+                <td>{{resident.email}}</td>
                 <td>{{resident.apt}}</td>
-                <td>{{resident.phone}}</td>
             </tr>
             {% endfor %}
         </table>

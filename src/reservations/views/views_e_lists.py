@@ -16,7 +16,10 @@ from ..filters import CustomerFilter, DayFilter
 
 
 def customers(request, tk):
-    residents = Customer.objects.all().order_by('-date_created')
+    current_user = request.user
+    user_company = current_user.customer.company
+
+    residents = user_company.customer_set.all().order_by('-date_created')
     myFilter = CustomerFilter(request.GET, queryset=residents)
     residents = myFilter.qs
 
@@ -52,7 +55,10 @@ def customers(request, tk):
     return render(request, template_name, context)
 
 def days(request):
-    days = Day.objects.all().order_by('-day')
+    current_user = request.user
+    user_company = current_user.customer.company
+    days = user_company.day_set
+
     myFilter = DayFilter(request.GET, queryset=days)
     days = myFilter.qs
 

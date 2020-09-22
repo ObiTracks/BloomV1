@@ -9,17 +9,34 @@
 {% block content %}
 <div class="card resident-card">
     <header>
-        <h2>{{resident.name}}</h2>
+        <h2>{{resident.first_name}} {{resident.last_name}}</h2>
+        <h2>{{resident.email}}</h2>
     </header>
 
     <div class="body">
         <div class="info-container">
-            <h2>Name: {{resident.name}}</h2>
-            <h2>Apartment: {{resident.apt_number}}</h2>
-            <h2>Email: {{resident.email}}</h2>
-            <h2>Phone: {{resident.phone}}</h2>
-            <h2>Date Added: {{resident.date_created}}</h2>
-            <h2>Notes: {{resident.notes}}</h2>
+            <table>
+                <tr>
+                    <td><h2>Name</h2></td>
+                    <td>{{resident.first_name}} {{resident.last_name}}</td>
+                </tr>
+                <tr>
+                    <td><h2>Apartment</h2></td>
+                    <td>{{resident.apt}}</td>
+                </tr>
+                <tr>
+                    <td><h2>Email</h2></td>
+                    <td>{{resident.email}}</2></td>
+                </tr>
+                <tr>
+                    <td><h2>Date Added:</h2></td>
+                    <td>{{resident.date_created}}</td>
+                </tr>
+                <tr>
+                    <td><h2>Notes:</h2></td>
+                    <td>{{resident.notes}}</td>
+                </tr>
+            </table>
         </div>
 
         <table class="table-slot">

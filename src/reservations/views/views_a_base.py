@@ -22,18 +22,33 @@ def home_page(request):
     #     return HttpResponse("<html><h1>There are not enough days available to book</h1></html>")
     # else:
     #     days = Day.objects.all()[:3]
-    if Day.objects.count() < 2:
-        days = Day.objects.all()
-    else:
-        days = Day.objects.all()[:2]
-    residents = Customer.objects.all()[:20]
-    today_date = date.today()
-    yesterday_date = date.today() - timedelta(days=1)
-    tomorrow_date = date.today() + timedelta(days=1)
+    current_user = request.user
+    print(current_user)
+    user_company = current_user.customer.company
+    print(user_company)
+    days = user_company.day_set
 
-    total_days = Day.objects.count()
-    total_residents = Customer.objects.count()
-    total_reservations = Reservation.objects.count()
+    if days.count() < 2:
+        days = days.all()
+    else:
+        days = days.all()[:2]
+
+    residents = user_company.customer_set.all()[:20]
+    total_residents = residents.count()
+    total_days = days.count()
+    today_date = date.today()
+
+    def total_reservations(days):
+        count = 0
+        for day in days:
+            timeslots = day.timeslot_set.all()
+            for timeslot in timeslots:
+                count += timeslot.reservation_set.count()
+        
+        return total_reservations
+    total_reservations = total_reservations(days)
+    yesterday_date = date.today() - timedelta(days=1)
+    tomorrow_date = date.today() + timedelta(days=1)   
 
     page_title = "Dashboard"
     stats = {

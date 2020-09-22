@@ -18,7 +18,7 @@ from ..filters import CustomerFilter
 def customer(request, pk):
     resident = Customer.objects.get(id=pk)
     reservations = resident.reservation_set.all()
-    page_title = "Profile: {} {}".format(resident.first_name, resident.last_name)
+    page_title = "Resident Profile ↓".format(resident.first_name, resident.last_name)
     context = {
         "page_title": page_title,
         'resident': resident,
