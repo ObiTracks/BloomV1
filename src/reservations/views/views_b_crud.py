@@ -2,13 +2,17 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+import datetime
 
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
 from ..logic import reservation_exists
+from ..decorators import unauthenticated_user, allowed_users
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
 def createReservation(request, tk, pk, *args, **kwargs):
     customer = Customer.objects.get(id=pk)
     current_user = request.user
@@ -62,6 +66,60 @@ def createReservation(request, tk, pk, *args, **kwargs):
     }
     return render(request, '../templates/crud_templates/reservation_form.html', context)
 
+
+def dayValidation(request, form):
+    is_valid = False
+    cleaned_data = form.cleaned_data
+    day = cleaned_data['day']
+    day_exists = Day.objects.filter(day=day).exists()
+    today = datetime.date.today()
+
+    if day >= today:
+        print(day_exists)
+        if day_exists == False:
+            is_valid = True
+            messages.success(request, "New day added {}".format(day))
+        else:
+            messages.error(request, 'This day already exists: {}'.format(day))
+    else:
+        messages.error(request, "The selected day must be in the future")
+
+    return is_valid
+
+# def createFollowingDay(request, form):
+#     most_recent_day = Day.objects.first()
+#     print(most_recent_day)
+#     return
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Manager','SiteAdmin'])
+def createDay(request, *args, **kwargs):
+    
+    TIMESLOTS = TimeSlot.TIMESLOTS
+    print(TIMESLOTS)
+    form = AddDayForm()
+    if request.method == 'POST':
+        form = AddDayForm(request.POST)
+        if form.is_valid():
+            if dayValidation(request, form) is True:
+                day = form.save()
+                # createFollowingDay(request, form)
+                for slot in TIMESLOTS:
+                    timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0])
+                    print(timeslot)
+
+            return redirect('days')
+
+    stats = {}
+
+    context = {
+        'form': form,
+        'page_title': 'New Reservation',
+    }
+    return render(request, '../templates/crud_templates/day_form.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
 def updateReservation(request, pk):
     reservation = Reservation.objects.get(id=pk)
     form = ReservationForm(instance=reservation)
@@ -75,6 +133,8 @@ def updateReservation(request, pk):
     context = {'form': form, 'page_title': 'Update Reservation'}
     return render(request, '../templates/crud_templates/reservation_form.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
 def updateResident(request, pk):
     resident = Customer.objects.get(id=pk)
     form = ReservationForm(instance=resident)
@@ -88,12 +148,14 @@ def updateResident(request, pk):
     context = {'form': form, 'page_title': "Update {}'s ".format(resident.name), 'resident':resident}
     return render(request, '../templates/crud_templates/customer_form.html', context)
 
-def deletePage(request, pk):
-    reservation = Reservation.objects.get(id=pk)
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
+def deleteDay(request, pk):
+    day = Day.objects.get(id=pk)
     if request.method == 'POST':
-        reservation.delete()
-        return redirect('/')
+        day.delete()
+        return redirect('/staff/')
         
-    context = {'item': reservation}
-    template_name = '../templates/crud_templates/delete.html'
+    context = {'item': day}
+    template_name = '../templates/crud_templates/delete_day.html'
     return render(request, template_name, context)

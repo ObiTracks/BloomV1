@@ -52,11 +52,11 @@ def customers(request, tk):
     return render(request, template_name, context)
 
 def days(request):
-    days = Day.objects.all().order_by('date_created')
+    days = Day.objects.all().order_by('-day')
     myFilter = DayFilter(request.GET, queryset=days)
     days = myFilter.qs
 
-    paginator = Paginator(days, 10)
+    paginator = Paginator(days, 15)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     

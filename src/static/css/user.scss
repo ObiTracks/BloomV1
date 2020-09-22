@@ -68,7 +68,9 @@ hr{
     height: 3px;
 }
 a{
+    color: black;
     text-decoration: none;
+    transition: ease 0.05s;
 }
 // NAVBAR
 .navbar{
@@ -104,22 +106,32 @@ a{
             margin: 0 10px 0 10px;
             a{
                 text-decoration: none;
-                color: white;
+                color: rgba(255, 255, 255, 0.248);
+                transition: ease 0.05s;
+                
+                &:hover{
+                    color: white;
+                }
             }
         }
+        
     }
-    .login{
+    
+    .logout{
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 40px;
-        width: 40px;
-        font-family: $font1;
-        font-size: 9px;
-        text-transform: uppercase;
-        border-radius: 50%;
-        background: grey;
-        color: white;
+        a{
+            font-family: $font1;
+            font-weight: 700;
+            color: rgb(13, 127, 140);
+            transition: ease-in 0.1s;
+
+            &:hover{
+                color: rgb(20, 187, 206);
+            }
+            
+        }
     }
 }
 
@@ -244,7 +256,7 @@ a{
     }
     &.change-card{
         header{
-            background: linear-gradient(to right, #5433ff, #20bdff, #a5ebfe);
+            background: linear-gradient(to right, #5433ff, #20bdff , #36a2c0);
         }
     }
 
@@ -277,6 +289,7 @@ a{
     }
 
     footer{
+        min-height: 3rem;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
@@ -288,10 +301,10 @@ a{
             padding: 0;
         }
         & > .buttons{
-            justify-content: center;
-            width: 20rem;
+            justify-content: center;height: 100%;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
         }
         h2{
             font-size: 0.8rem;
@@ -497,10 +510,13 @@ button{
     }
 
     &.btn-confirm{
-        background: linear-gradient(to right, rgb(0, 202, 101) 55%, #31c7d8 60%, #14d8a7);
+        // margin: 0;
+        flex: 1;
+        background: linear-gradient(to right, rgb(19, 155, 87) 55%, #31c7d8 60%, #14d8a7);
         background-size: 250% 100%;
         background-position-x: 99%;
         padding: 10px;
+        transition: ease 0.2s;
         &:hover{
             background-position-x: 1%;
             // background: rgb(26, 194, 65);
@@ -514,16 +530,21 @@ button{
     }
 
     &.btn-cancel{
-        color: black;
-        background: rgb(255, 255, 255);
-        border: solid black 2px;
-        border-radius: 3px;
+        // margin: 0;
+        flex: 1;
+        border: solid black 3px;
+        // outline: none;
+        color: white;
+        background: black;
+        // border-radius: 3px;
+        padding: 10px;
         
         &:hover{
-            border: solid black 3px;
-            outline: none;
-            color: white;
-            background: black;
+            color: black;
+            background: rgb(255, 255, 255);
+            // border: solid black 2px;
+
+            
             // padding: 7px;
         }
         &:active{

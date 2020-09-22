@@ -4,11 +4,13 @@
 
     <ul>
         <li><a href="{% url 'home' %}">Dashboard</a></li>
-        <li><a href="{% url 'reservations' %}">Reservations</a></li>
+        <li><a href="{% url 'reservations' %}">Your Reservations</a></li>
+        <li><a href="{% url 'profile' %}">Your Profile</a></li>
+        <div class="underbar"></div>
     </ul>
 
     
-    <div class="login">
-        <div style="color: white">Hello, {{request.user}}</div>
-        <a href="{% url 'logout' %}">Logout</a></div>
+    <div class="logout">
+        <a href="{% url 'logout' %}">logout</a>
+    </div>
 </nav>

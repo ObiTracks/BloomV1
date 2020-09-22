@@ -8,13 +8,14 @@ from datetime import date, time, timedelta
 
 
 class Company(models.Model):
-    company_name = models.CharField(max_length=200, null=False, blank=False)
-    company_email = models.EmailField(max_length=60,null=False, blank=False)
-    address_line = models.CharField(max_length=200, null=False, blank=False)
+    company_name = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    company_email = models.EmailField(max_length=60,null=False, blank=False, unique=True)
+    address_line = models.CharField(max_length=200, null=False, blank=False, unique=True)
     city = models.CharField("City", max_length=1024, null=False, blank=False)
     zip_code = models.CharField("ZIP/Postal code", max_length=12, null=True, blank=True)
     country = CountryField(blank_label="Select country", null=False, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    
 
     
     class Meta:
@@ -30,7 +31,7 @@ class Customer(models.Model):
     lease_owner = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
     first_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
-    email = models.CharField(default='someemail@gmail.com', max_length=200, null=True)
+    email = models.CharField(default='someemail@gmail.com', max_length=200, null=True, unique=True)
     apt = models.IntegerField(default='205', blank=False)
     # phone = models.CharField(default='805.555.3809', max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, editable=False)
@@ -52,7 +53,7 @@ class Day(models.Model):
     notes = models.TextField(max_length=2000, null=True, blank=True)
 
     class Meta:
-        ordering = ['-date_created']
+        ordering = ['-day']
 
     def name_day(self):
         date = self.day
@@ -92,7 +93,9 @@ class TimeSlot(models.Model):
     # print(day_num)
     # dayname = calendar.day_name[date.weekday()]
     # print(dayname)
-
+    def return_constants(self):
+        return self.TIMESLOTS
+        
     def __str__(self):
         return "{} {}".format(self.day, self.time_slot)
 

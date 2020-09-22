@@ -108,17 +108,17 @@ def createReservation(request, tk, *args, **kwargs):
     return render(request, '../templates/user_templates/reservation_form.html', context)
 
     
-@login_required(login_url='login')
-def deleteReservation(request, pk):
-    reservation = Reservation.objects.get(id=pk)
-    if request.method == 'POST':
-        sleep(1)
-        reservation.delete()
-        return redirect('/')
+# @login_required(login_url='login')
+# # @allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
+# def deleteReservation(request, pk):
+#     reservation = Reservation.objects.get(id=pk)
+#     if request.method == 'POST':
+#         reservation.delete()
+#         return redirect('/')
         
-    context = {'reservation': reservation}
-    template_name = '../templates/user_templates/delete.html'
-    return render(request, template_name, context)
+#     context = {'item': reservation}
+#     template_name = '../templates/crud_templates/delete_user-v.html'
+#     return render(request, template_name, context)
 
     
 @login_required(login_url='login')

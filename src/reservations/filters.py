@@ -3,15 +3,14 @@ from django_filters import DateFilter, CharFilter
 from .models import *
 
 class CustomerFilter(django_filters.FilterSet):
-    name = CharFilter(field_name='name', lookup_expr='icontains', label='Name')
+    first_name = CharFilter(field_name='first_name', lookup_expr='icontains', label='First Name')
+    last_name = CharFilter(field_name='last_name', lookup_expr='icontains', label='Last Name')
     apt = CharFilter(field_name='apt', lookup_expr='icontains', label='Apartment')
-    phone = CharFilter(field_name='phone', lookup_expr='icontains', label='Phone #')
     email = CharFilter(field_name='email', lookup_expr='icontains', label='Email')
-    day = DateFilter(field_name='date_created', label='Date Created')
 
     class Meta:
         model = Customer
-        fields = '__all__'
+        fields = ('first_name','last_name','apt','email')
         exclude = ['user','lease_members','date_created', 'id']
         
 

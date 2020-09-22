@@ -13,14 +13,19 @@ from django.contrib.auth.decorators import login_required
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
+from ..decorators import unauthenticated_user, allowed_users
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
 def home_page(request):
-    if Day.objects.all() != None or Day.objects.count() <= 2:
-        return HttpResponse("<html><h1>There are not enough days available to book</h1></html>")
+    # if Day.objects.all() == None or Day.objects.count() <= 2:
+    #     return HttpResponse("<html><h1>There are not enough days available to book</h1></html>")
+    # else:
+    #     days = Day.objects.all()[:3]
+    if Day.objects.count() < 2:
+        days = Day.objects.all()
     else:
-        days = Day.objects.all()[:3]
-    # days = Day.objects.all().reverse()[:2]
+        days = Day.objects.all()[:2]
     residents = Customer.objects.all()[:20]
     today_date = date.today()
     yesterday_date = date.today() - timedelta(days=1)

@@ -18,7 +18,7 @@ from ..filters import CustomerFilter
 def customer(request, pk):
     resident = Customer.objects.get(id=pk)
     reservations = resident.reservation_set.all()
-    page_title = "Customer " + resident.name
+    page_title = "Profile: {} {}".format(resident.first_name, resident.last_name)
     context = {
         "page_title": page_title,
         'resident': resident,
@@ -29,6 +29,11 @@ def customer(request, pk):
     return render(request, template_name, context)
 
 def day(request, pk):
+    
+    testslot = TimeSlot.objects.all().first()
+    timeslot_constants = testslot.return_constants()
+    print(testslot)
+    print(timeslot_constants)
     day = Day.objects.get(id=pk)
 
     # DATE FORMATTING

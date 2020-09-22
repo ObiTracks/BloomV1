@@ -1,7 +1,12 @@
-{% extends "user_templates/base.html" %}
+{% extends "base_templates/base.html" %}
 {% load static %}
+{% load bootstrap4 %} {# import bootstrap4/bootstrap3 #}
+{% bootstrap_css %} {# Embed Bootstrap CSS #}
+{% bootstrap_javascript jquery='full' %} {# Embed Bootstrap JS+jQuery #}
+{{ form.media }} {# Adds date-picker required JS and CSS #} 
 
 {% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/CUD/forms.css' %}">
 <title>{{page_title}}</title>
 {% endblock %}
 
@@ -10,7 +15,7 @@
 <div class="section">
     <div class="card change-card">
         <header>
-            <h2>New Reservation</h2>
+            <h2>Add Days</h2>
         </header>
 
         <div class="body item-info">
@@ -21,7 +26,7 @@
         </div>
         
         
-        <footer class="footer-shell">
+        <footer>
             <div class="buttons">
                 <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>
                 <button class="btn btn-confirm" type="submit" action="submit" value="Confirm" form='res-form'>Confirm</button>

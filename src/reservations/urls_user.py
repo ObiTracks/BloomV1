@@ -8,10 +8,10 @@ urlpatterns = [
 
     # CRUD URLS
     path('create_reservation/<str:tk>/<str:pk>/', views_user.createReservation,name='create_reservation'),
-    path('delete/<str:pk>/', views_user.deleteReservation, name='delete'),
+    # path('delete/<int:pk>/', views_user.deleteReservation, name='delete'),
 
     # LOGIN URLS
-    path('register', views_c_login.registerPage, name='register'),
+    # path('register', views_c_login.registerUserPage, name='register'),
     path('login', views_c_login.loginPage, name='login'),
     path('logout', views_c_login.logoutUser, name='logout'),
     path('profile', views_c_login.profilePage, name='profile'),
