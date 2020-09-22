@@ -1,12 +1,16 @@
 from django.contrib import admin
 from django.urls import path, re_path, include # url
-from reservations.views import (home_page)
+from reservations.views.views_c_login import loginPage, registerCompanyPage, logoutUser
 # from reservations.views import (home_page, reservations_page, booked_page, about_page, contact_page)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('staff/', include('reservations.urls_staff')),
-    path('', include('reservations.urls_user')),
+    path('user/', include('reservations.urls_user')),
+
+    path('login/', loginPage, name='login'),
+    path('register-company/', registerCompanyPage, name='register_company'),
+    path('logout/', logoutUser, name='logout'),
     # path('about/', about_page),
     # path('contact/', contact_page),
 ]

@@ -635,7 +635,7 @@ button.btn-info:hover {
 button.btn-info:active {
   background-position-x: 1%;
   background: white;
-  border: solid black 3px;
+  border: solid black 2px;
   color: black;
 }
 
@@ -649,6 +649,10 @@ button.btn-info:focus {
 
 button.btn-alternate {
   border: solid white;
+}
+
+button.btn-alternate:hover {
+  background: white;
 }
 
 button.btn-danger {

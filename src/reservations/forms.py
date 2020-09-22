@@ -22,7 +22,7 @@ class CustomerForm(ModelForm):
         model = Customer
         fields = '__all__'
 
-class UserReservationForm(ModelForm):
+class ReservationForm(ModelForm):
     # def get_available_timeslots():
     #     today = datetime.date.today()
     #     tomorrow = today + datetime.timedelta(days=1)

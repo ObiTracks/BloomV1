@@ -11,7 +11,8 @@
 <!-- RESIDENT CARD -->
 <div class="card card-md resident-card" id='residents'>
     <header>
-        <h2><a href='{% url "residents" None %}'>Recently Added Residents</a></h2>
+        <h2><a href='{% url "residents" None %}'>Recent Residents</a></h2>
+        <button class="btn-info"><a href="/staff/register-user">+ add</a></button>
         <h4>Total: {{residents.count}}</h4>
     </header>
 
@@ -20,7 +21,7 @@
             <tr>
                 <th id="name">Name</th>
                 <th>Email</th>
-                <th>Apt</th>
+                <th>Apartment</th>
             </tr>
 
             {% for resident in residents %}

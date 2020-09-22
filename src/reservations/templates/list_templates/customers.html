@@ -35,8 +35,6 @@
                     <th>Apartment</th>
                     <th>Email</th>
                     <th>New Reservation</th>
-                    <th>Update</th>
-                    <th>Delete</th>
                 </tr>
 
                 {% for resident in page_obj %}
@@ -45,9 +43,6 @@
                     <td>{{resident.apt}}</td>
                     <td>{{resident.email}}</td>
                     <td><button class="btn"><a href="{% url 'create_reservation' time_id resident.id %}">reserve +</a></button></td>
-                    <td><button class='btn btn-info'><a
-                                href="{% url 'update_resident' resident.id %}">Update</a></button></td>
-                    <td><button class='btn btn-danger'>Delete</button></td>
                 </tr>
                 {% endfor %}
             </table>

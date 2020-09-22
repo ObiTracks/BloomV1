@@ -23,9 +23,8 @@ urlpatterns = [
 
     # LOGIN URLS
     path('register-user/', views_c_login.registerUserPage, name='register_user'),
-    path('register-company/', views_c_login.registerCompanyPage, name='register_company'),
-    path('login/', views_c_login.loginPage, name='login'),
-    path('logout/', views_c_login.logoutUser, name='logout'),
+#     path('login/', views_c_login.loginPage, name='login'),
+#     path('logout/', views_c_login.logoutUser, name='logout'),
     path('profile/', views_c_login.profilePage, name='profile'),
 
     # OBJECT URLS

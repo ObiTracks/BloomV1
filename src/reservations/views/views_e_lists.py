@@ -8,6 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from ..views.views_a_base import total_reservations
+from datetime import date
 
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
@@ -37,7 +39,7 @@ def customers(request, tk):
     stats = {
         'stat1': {
             'title': 'Total Residents',
-            'value': Customer.objects.all().count()
+            'value': residents.count()
         },
     }
 
@@ -59,6 +61,8 @@ def days(request):
     user_company = current_user.customer.company
     days = user_company.day_set
 
+    today = date.today()  
+
     myFilter = DayFilter(request.GET, queryset=days)
     days = myFilter.qs
 
@@ -73,21 +77,14 @@ def days(request):
         },
         'stat2': {
             'title': 'Total Reservations',
-            'value': 'some_value'
-        },
-        'stat3': {
-            'title': 'Total Residents',
-            'value': 'some_value'
-        },
-        'stat4': {
-            'title': 'Avg No Shows per Day',
-            'value': 'some_value'
+            'value': total_reservations(days)
         }
     }
 
     page_title = "All Days"
     context = {
         'page_title': page_title,
+        'today':today,
         'days': days,
         'stats': stats,
         'myFilter':myFilter,

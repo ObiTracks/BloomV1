@@ -15,8 +15,17 @@ from ..forms import *
 from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
 
+def total_reservations(days):
+    count = 0
+    for day in days:
+        timeslots = day.timeslot_set.all()
+        for timeslot in timeslots:
+            count += timeslot.reservation_set.count()
+    
+    return total_reservations
+
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
+@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
 def home_page(request):
     # if Day.objects.all() == None or Day.objects.count() <= 2:
     #     return HttpResponse("<html><h1>There are not enough days available to book</h1></html>")
@@ -37,15 +46,7 @@ def home_page(request):
     total_residents = residents.count()
     total_days = days.count()
     today_date = date.today()
-
-    def total_reservations(days):
-        count = 0
-        for day in days:
-            timeslots = day.timeslot_set.all()
-            for timeslot in timeslots:
-                count += timeslot.reservation_set.count()
         
-        return total_reservations
     total_reservations = total_reservations(days)
     yesterday_date = date.today() - timedelta(days=1)
     tomorrow_date = date.today() + timedelta(days=1)   
@@ -64,10 +65,6 @@ def home_page(request):
             'title': 'Total Residents',
             'value': total_residents
         },
-        'stat4': {
-            'title': 'Avg No Shows per Day',
-            'value': 'some_value'
-        }
     }
 
     context = {

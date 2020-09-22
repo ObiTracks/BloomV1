@@ -32,21 +32,26 @@ def loginPage(request):
             resident_roles = ['Resident']
 
             # print(user.groups.all())
-            group = user.groups.all()[0].name
-            print(group)
+            in_group = user.groups.all().exists()
+            print(in_group)
+            if in_group == True:
+                group = user.groups.all()[0]
+                print(group)
 
-            if group in staff_roles:
-                print("Path B1")
+                if group in staff_roles:
+                    print("Path B1")
+                    return redirect('/staff')
+                elif group in resident_roles:
+                    print("Path B2")
+                    return redirect('/user')
+            else:
                 return redirect('/staff')
-            elif group in resident_roles:
-                print("Path B2")
-                return redirect('')
         else:
             messages.info(request, 'Username or password is incorrect')
 
 
     context = {}
-    return render(request, '../templates/login_templates/login.html', context)
+    return render(request, '../templates/login_templates/login_templates/login.html', context)
 
 
 # @login_required(login_url='login')
@@ -109,7 +114,8 @@ def registerUserPage(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            # form.save()
+            current_user = request.user
+            user_company = current_user.customer.company
             
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
@@ -123,6 +129,7 @@ def registerUserPage(request):
             print(user.groups.add(group))
 
             Customer.objects.create(
+                company=user_company,
                 user=user,
                 first_name=first_name,
                 last_name=last_name,
@@ -132,7 +139,7 @@ def registerUserPage(request):
             messages.success(request, 'Account was created for {} {}'.format(first_name, last_name))
 
             # return redirect('login')
-            return redirect('home')
+            return redirect('/staff')
         else:
             context['registration_form'] = form
     else: # This would be a get request
@@ -141,12 +148,12 @@ def registerUserPage(request):
 
     # context = {'registration_form':registration_form}
     # template_name = '../templates/login_templates/register.html'
-    template_name = 'src/reservations/templates/login_templates/registration_templates/register_customer.html'
+    template_name = '../templates/login_templates/registration_templates/register_customer.html'
     return render(request,template_name, context)
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('/login')
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager','staff','SiteAdmin'])

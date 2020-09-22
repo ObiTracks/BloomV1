@@ -51,7 +51,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
                 num_res = timeslot.reservation_set.all().count()
                 if num_res < timeslot.capacity:
                     form.save()
-                    return redirect('/reservations')
+                    return redirect('/staf')
                 else:
                     print("Timeslot at capacity of {}".format(num_res))
     #
@@ -71,7 +71,12 @@ def dayValidation(request, form):
     is_valid = False
     cleaned_data = form.cleaned_data
     day = cleaned_data['day']
-    day_exists = Day.objects.filter(day=day).exists()
+    
+    current_user = request.user
+    user_company = current_user.customer.company
+    days = user_company.day_set
+
+    day_exists = days.filter(day=day).exists()
     today = datetime.date.today()
 
     if day >= today:
@@ -86,11 +91,6 @@ def dayValidation(request, form):
 
     return is_valid
 
-# def createFollowingDay(request, form):
-#     most_recent_day = Day.objects.first()
-#     print(most_recent_day)
-#     return
-
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','SiteAdmin'])
 def createDay(request, *args, **kwargs):
@@ -102,7 +102,10 @@ def createDay(request, *args, **kwargs):
         form = AddDayForm(request.POST)
         if form.is_valid():
             if dayValidation(request, form) is True:
+                user_company = request.user.customer.company
                 day = form.save()
+                day.company = user_company
+                day.save()
                 # createFollowingDay(request, form)
                 for slot in TIMESLOTS:
                     timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0])
@@ -119,6 +122,18 @@ def createDay(request, *args, **kwargs):
     return render(request, '../templates/crud_templates/day_form.html', context)
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
+def deleteDay(request, pk):
+    day = Day.objects.get(id=pk)
+    if request.method == 'POST':
+        day.delete()
+        return redirect('/staff/')
+        
+    context = {'item': day}
+    template_name = '../templates/crud_templates/delete_day.html'
+    return render(request, template_name, context)
+
+@login_required(login_url='login')
 @allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
 def updateReservation(request, pk):
     reservation = Reservation.objects.get(id=pk)
@@ -128,7 +143,7 @@ def updateReservation(request, pk):
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/staff')
 
     context = {'form': form, 'page_title': 'Update Reservation'}
     return render(request, '../templates/crud_templates/reservation_form.html', context)
@@ -148,14 +163,3 @@ def updateResident(request, pk):
     context = {'form': form, 'page_title': "Update {}'s ".format(resident.name), 'resident':resident}
     return render(request, '../templates/crud_templates/customer_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
-def deleteDay(request, pk):
-    day = Day.objects.get(id=pk)
-    if request.method == 'POST':
-        day.delete()
-        return redirect('/staff/')
-        
-    context = {'item': day}
-    template_name = '../templates/crud_templates/delete_day.html'
-    return render(request, template_name, context)

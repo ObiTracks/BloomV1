@@ -9,6 +9,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from calendar import weekday, week
+from ..views.views_a_base import total_reservations
+
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
@@ -66,8 +68,8 @@ def day(request, pk):
             'value': num_reservations
         },
         'stat2': {
-            'title': 'Total No Shows',
-            'value': num_noshows
+            'title': 'Notes',
+            'value': day.notes
         }
     }
 

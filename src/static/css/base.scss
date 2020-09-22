@@ -502,7 +502,7 @@ button{
         &:active{
             background-position-x: 1%;
             background: white;
-            border: solid black 3px;
+            border: solid black 2px;
             color: black;
             
         }
@@ -518,7 +518,7 @@ button{
         border: solid white;
 
         &:hover{
-            
+            background: white;
         }
     }
     &.btn-danger{
