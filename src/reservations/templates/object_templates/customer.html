@@ -60,7 +60,11 @@
                 <td>{{reservation.notes}}</td>
                 <td>{{reservation.no_show}}</td>
                 <td><button class='btn btn-info'><a href="{% url 'update_reservation' reservation.id %}">Update</a></button></td>
-                <td><button class='btn btn-danger' href="{% url 'delete_page' reservation.id %}">Delete</button></td>
+                <td>
+                    {% if slot.day.day > today_date %}
+                        <button class='btn btn-danger' href="{% url 'delete' reservation.id %}">Delete</button>
+                    {% endif %}
+                </td>
 
 
             </tr>

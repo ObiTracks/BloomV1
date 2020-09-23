@@ -27,8 +27,8 @@ class Company(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, related_name="customer_set", null=True, on_delete=models.SET_NULL)
-    lease_owner = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    company = models.ForeignKey(Company, related_name="customer_set", null=True, on_delete=models.CASCADE)
+    lease_owner = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
     email = models.CharField(default='someemail@gmail.com', max_length=200, null=True, unique=True)
@@ -43,7 +43,7 @@ class Customer(models.Model):
 
 
 class Day(models.Model):
-    company = models.ForeignKey(Company, related_name="day_set", null=True, on_delete=models.SET_NULL)
+    company = models.ForeignKey(Company, related_name="day_set", null=True, on_delete=models.CASCADE)
     today = date.today()
     tomorrow = today + timedelta(days=1)
 

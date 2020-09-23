@@ -21,10 +21,27 @@ def customer(request, pk):
     resident = Customer.objects.get(id=pk)
     reservations = resident.reservation_set.all()
     page_title = "Resident Profile ↓".format(resident.first_name, resident.last_name)
+
+    # Dates
+    today_date = date.today()
+    yesterday_date = date.today() - timedelta(days=1)
+    tomorrow_date = date.today() + timedelta(days=1) 
+
+    stats = {
+        'stat1': {
+            'title': 'Lifetime Reservations',
+            'value': reservations.count()
+        },
+    }
+
     context = {
+        'stats':stats,
         "page_title": page_title,
         'resident': resident,
-        'reservations': reservations
+        'reservations': reservations,
+        'today_date': today_date,
+        'yesterday_date':yesterday_date,
+        'tomorrow_date':tomorrow_date
     }
     template_name = 'object_templates/customer.html'
 

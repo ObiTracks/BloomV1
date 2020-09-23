@@ -408,9 +408,14 @@ form {
         align-items: flex-start;
         vertical-align: top;
         border: solid grey 1px;
-        border-radius: 6px;
-        padding: 5px;
+        border-radius: 3rem;
+        padding: 6px;
         margin: 0 0.6rem 3px 4px;
+        outline: none;
+        &:focus{
+            outline: none;
+            border-color: rgb(0, 153, 255);
+        }
     }
     select{
         display: flex;
@@ -524,7 +529,7 @@ button{
     &.btn-danger{
         color: black;
         background: rgb(255, 212, 207);
-        background: linear-gradient(to right, red 55%, #fff6f4 65%);
+        background: linear-gradient(to right, red 55%, #ffffff 65%);
         background-size: 300% 100%;
         background-position-x: 99%;
         outline: solid black 3px;
@@ -624,7 +629,7 @@ table{
     th, td{
         height: 2rem;
         max-width: 100px;
-        overflow: hidden;
+        overflow: auto;
         text-overflow: ellipsis;
         white-space: nowrap;
 

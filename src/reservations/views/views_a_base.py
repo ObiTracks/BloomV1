@@ -70,10 +70,10 @@ def home_page(request):
     context = {
         'page_title': page_title,
         'days': days,
-        'today_date': today_date,
         'stats': stats,
         'residents':residents,
         'total_days': total_days,
+        'today_date': today_date,
         'yesterday_date':yesterday_date,
         'tomorrow_date':tomorrow_date
     }

@@ -31,7 +31,6 @@ def loginPage(request):
             resident_roles = [Group.objects.get(name='Resident')]
             group = user.groups.all()[0]
             print(group)
-            messages.success(request, 'Successfully logged in as {} {}'.format(user.first_name, user.last_name))
             
             if group in staff_roles:
                 print("Path A")

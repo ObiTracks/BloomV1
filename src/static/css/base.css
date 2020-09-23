@@ -521,9 +521,15 @@ form input {
           align-items: flex-start;
   vertical-align: top;
   border: solid grey 1px;
-  border-radius: 6px;
-  padding: 5px;
+  border-radius: 3rem;
+  padding: 6px;
   margin: 0 0.6rem 3px 4px;
+  outline: none;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #0099ff;
 }
 
 form select {
@@ -658,8 +664,8 @@ button.btn-alternate:hover {
 button.btn-danger {
   color: black;
   background: #ffd4cf;
-  background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, #fff6f4));
-  background: linear-gradient(to right, red 55%, #fff6f4 65%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, #ffffff));
+  background: linear-gradient(to right, red 55%, #ffffff 65%);
   background-size: 300% 100%;
   background-position-x: 99%;
   outline: solid black 3px;
@@ -765,7 +771,7 @@ table th {
 table th, table td {
   height: 2rem;
   max-width: 100px;
-  overflow: hidden;
+  overflow: auto;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: 'Nunito', sans-serif;
