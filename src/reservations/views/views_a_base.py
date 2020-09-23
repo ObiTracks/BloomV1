@@ -45,9 +45,9 @@ def home_page(request):
     residents = user_company.customer_set.all()[:20]
     total_residents = residents.count()
     total_days = days.count()
+
+    # Dates
     today_date = date.today()
-        
-    # total_reservations = total_reservations(days)
     yesterday_date = date.today() - timedelta(days=1)
     tomorrow_date = date.today() + timedelta(days=1)   
 

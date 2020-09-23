@@ -57,7 +57,7 @@ def profilePage(request):
 
     
 @login_required(login_url='login')
-def createReservation(request, tk, *args, **kwargs):
+def createUserReservation(request, tk, *args, **kwargs):
     customer = request.user.customer
     # Check to pass through a prefilled timeslot if it recieves an id for one
     if tk != 'None':

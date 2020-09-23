@@ -14,24 +14,22 @@ from ..decorators import unauthenticated_user, allowed_users
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
 def createReservation(request, tk, pk, *args, **kwargs):
-    customer = Customer.objects.get(id=pk)
     current_user = request.user
     current_user_id = current_user.id
     print(current_user)
 
     # Check to pass through a prefilled timeslot if it recieves an id for one
+    
+    customer = Customer.objects.get(id=pk)
     if tk != 'None':
+        print("Path A")
         timeslot = TimeSlot.objects.get(id=tk)
         form = ReservationForm(initial={
             'customer': customer,
             'timeslot': timeslot
         })
-        # print('Path A: tk='+ tk)
-        form = ReservationForm(initial={
-            'customer': customer,
-            'timeslot': timeslot
-        })
     else:
+        print("Path B")
         timeslot = None
         form = ReservationForm(initial={
             'customer': customer,
@@ -51,7 +49,8 @@ def createReservation(request, tk, pk, *args, **kwargs):
                 num_res = timeslot.reservation_set.all().count()
                 if num_res < timeslot.capacity:
                     form.save()
-                    return redirect('/staf')
+                    messages.success(request,"Reservation created for {} at {}".format(customer,timeslot))
+                    return redirect('/staff')
                 else:
                     print("Timeslot at capacity of {}".format(num_res))
     #

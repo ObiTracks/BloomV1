@@ -43,7 +43,7 @@
         <h2><a href='{% url "day" day.id %}'>Today</a></h2>
         {% elif day.day == tomorrow_date %}
         <h2><a href='{% url "day" day.id %}'>Tomorrow</a></h2>
-        {% else %}
+        {% elif day.day == yesterday_date %}
         <h2><a href='{% url "day" day.id %}'>Yesterday</a></h2>
         {% endif %}
 
@@ -56,7 +56,7 @@
             <h3 class="name">{{slot.time_slot}}</h3>
             <h2 class="name">{{slot.reservation_set.count}}/{{slot.capacity}}</h2>
             
-            {% if slot.day != yesterday_date %}
+            {% if slot.day.day >= yesterday_date %}
                 <button><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
             {% endif %}
 

@@ -23,27 +23,15 @@ class CustomerForm(ModelForm):
         fields = '__all__'
 
 class ReservationForm(ModelForm):
-    # def get_available_timeslots():
-    #     today = datetime.date.today()
-    #     tomorrow = today + datetime.timedelta(days=1)
+    # def __init__(self, *args, **kwargs): 
+    #     self.user = kwargs.pop('user')
+        # timeless30 = datetime.datetime.now() - datetime.timedelta(seconds=3610)
+        # timeless30 = timeless30.replace(tzinfo=pytz.utc)
 
-    #     day_one = Day.objects.filter(day=today)
-    #     day_two = Day.objects.filter(day=tomorrow)
-    #     print("This IS DAY ONE")
-    #     print(day_one)
-    #     # if day_one = None:
-    #     #     slotset_one = day_one.timeslot_set()
-    #     # if day_two != None:
-    #     #     slotset_two = day_two.timeslot_set()
-        
-    #     # available_timeslots = chain(slotset_one, slotset_two)
-    #     available_timeslots = True
-    #     return available_timeslots
+        # if date_joined > timeless30:
+        #     self.fields['currentCharities'] = forms.ModelChoiceField(queryset=Charity.objects.filter(enabled=1))
+        # ...
 
-    # available_timeslots = get_available_timeslots()
-    # print(available_timeslots)
-    
-    # timeslot = forms.ModelChoiceField(queryset=TimeSlot.objects.all().reverse()[:4])
     class Meta:
         model = Reservation
         fields = ('customer','timeslot','notes')

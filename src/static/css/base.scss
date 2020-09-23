@@ -489,7 +489,7 @@ button{
 
     &.btn-info{
         background: rgb(0, 128, 255);
-        background: linear-gradient(to left, #e9f8ff 40%, #4ebeee 45%, rgb(36, 87, 228) 55%);
+        background: linear-gradient(to left, #ffffff 40%, #4ebeee 45%, rgb(36, 87, 228) 55%);
         background-size: 250% 100%;
         background-position-x: 99%;
         border: solid 3px rgb(36, 87, 228);
@@ -515,7 +515,7 @@ button{
         }
     }
     &.btn-alternate{
-        border: solid white;
+        border-color: white;
 
         &:hover{
             background: white;
