@@ -71,11 +71,6 @@ def registerCompanyPage(request):
                 apt=apt,
                 password=raw_password
             )
-            # else:
-            #     form = CreateCompanyForm()
-            #     messages.error(request, 'New company created and managed by {} {}'.format(first_name, last_name))
-
-            # print(user.groups.add('Manager'))
 
             Customer.objects.create(
                 user=user,
@@ -84,6 +79,10 @@ def registerCompanyPage(request):
                 last_name=last_name,
                 email=email,
                 apt=apt,
+                )
+
+            Day.objects.create(
+                company=company,
                 )
             messages.success(request, 'New company created and managed by {} {}'.format(first_name, last_name))
             

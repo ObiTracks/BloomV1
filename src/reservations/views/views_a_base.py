@@ -37,10 +37,6 @@ def home_page(request):
     print(user_company)
     days = user_company.day_set
 
-    if days.count() < 2:
-        days = days.all()
-    else:
-        days = days.all()[:2]
 
     residents = user_company.customer_set.all()[:20]
     total_residents = residents.count()
@@ -50,6 +46,20 @@ def home_page(request):
     today_date = date.today()
     yesterday_date = date.today() - timedelta(days=1)
     tomorrow_date = date.today() + timedelta(days=1)   
+
+    if days.count() < 3:
+        days = days.all()
+    else:
+        
+        today_day = days.get(day=today_date)
+        tomorrow_day = days.get(day=tomorrow_date)
+        # print(days.filter(day=yesterday_date).exists())
+        if days.filter(day=yesterday_date).exists() != False:
+            yesterday_day = days.get(day=yesterday_date)
+            days = [tomorrow_day, today_day,yesterday_day]
+        else:
+            days = [tomorrow_day, today_day]
+            print(yesterday_date)
 
     page_title = "Dashboard"
     stats = {

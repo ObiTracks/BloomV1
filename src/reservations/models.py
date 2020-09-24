@@ -49,20 +49,17 @@ class Day(models.Model):
 
     # Fields
     day = models.DateField(default=tomorrow, blank=False) 
-    date_created = models.DateField(default=today, blank=False, editable=True)
+    date_created = models.DateField(default=today, blank=False, editable=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
-
+    pool_capacity = models.IntegerField(null=True, blank=False)
     class Meta:
         ordering = ['-day']
 
     def name_day(self):
         date = self.day
         year = date.year
-        # print(year)
         month = calendar.month_abbr[date.month]
-        # print(month)
         day_num = date.day
-        # print(day_num)
         dayname = calendar.day_name[date.weekday()]
         # print(dayname)
 

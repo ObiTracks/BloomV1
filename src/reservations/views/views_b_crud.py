@@ -8,7 +8,6 @@ import datetime
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
-from ..logic import reservation_exists
 from ..decorators import unauthenticated_user, allowed_users
 
 @login_required(login_url='login')
@@ -36,6 +35,16 @@ def createReservation(request, tk, pk, *args, **kwargs):
         })
         # print('Path B: tk=' + tk)
 
+    def multipleBookingCheck(timeslot, customer):
+        timeslot_day = timeslot.day
+        for slot in timeslot_day.timeslot_set.all():
+            res_exists = slot.reservation_set.filter(customer=customer).exists()
+            if res_exists == True:
+                messages.error(request,"{} has already booked a timeslot for this day".format(customer))
+                return redirect('/staff')
+        return res_exists
+
+        
     # Creating for creating a reservation from post data
     if request.method == 'POST':
         # print('Printing POST:', request.POST)
@@ -44,15 +53,17 @@ def createReservation(request, tk, pk, *args, **kwargs):
             print(request.POST)
             timeslot_id = request.POST.get('timeslot')
             timeslot = TimeSlot.objects.get(pk=timeslot_id)
-            print(timeslot)
+            
             if request.POST.get('timeslot') != None:
-                num_res = timeslot.reservation_set.all().count()
-                if num_res < timeslot.capacity:
-                    form.save()
-                    messages.success(request,"Reservation created for {} at {}".format(customer,timeslot))
-                    return redirect('/staff')
-                else:
-                    print("Timeslot at capacity of {}".format(num_res))
+                res_exists = multipleBookingCheck(timeslot, customer)
+                if res_exists == False:
+                    num_res = timeslot.reservation_set.all().count()
+                    if num_res < timeslot.capacity:
+                        form.save()
+                        messages.success(request,"Reservation created for {} at {}".format(customer,timeslot))
+                        return redirect('/staff')
+                    else:
+                        print("Timeslot at capacity of {}".format(num_res))
     #
 
     stats = {}

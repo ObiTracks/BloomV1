@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
-    <title>Register</title>
+    <title>New Resident</title>
 </head>
 <body>
-    <h2>Register</h2>
+    <h2>Register New Resident</h2>
     <form method="post">
         {% csrf_token %}
         {% for field in registration_form %}
