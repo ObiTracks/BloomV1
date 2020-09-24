@@ -19,10 +19,15 @@ def home_page(request):
     if Day.objects.all() == None or Day.objects.count() < 2:
         return HttpResponse("<html>There are not enough days avaialable to book</html>")
     else:
-        days = Day.objects.all()[:2]
+        company = request.user.customer.company
+        days = company.day_set.all()
 
-        today = days[0]
-        tomorrow = days[1]
+        today_date = date.today()
+        tomorrow_date = date.today() + timedelta(days=1)
+
+        today_day = days.get(day=today_date)
+        tomorrow_day = days.get(day=tomorrow_date)
+        days = [tomorrow_day, today_day]
 
         customer = request.user.customer
         today_date = date.today()

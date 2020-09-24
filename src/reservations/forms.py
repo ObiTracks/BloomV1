@@ -23,15 +23,6 @@ class CustomerForm(ModelForm):
         fields = '__all__'
 
 class ReservationForm(ModelForm):
-    # def __init__(self, *args, **kwargs): 
-    #     self.user = kwargs.pop('user')
-        # timeless30 = datetime.datetime.now() - datetime.timedelta(seconds=3610)
-        # timeless30 = timeless30.replace(tzinfo=pytz.utc)
-
-        # if date_joined > timeless30:
-        #     self.fields['currentCharities'] = forms.ModelChoiceField(queryset=Charity.objects.filter(enabled=1))
-        # ...
-
     class Meta:
         model = Reservation
         fields = ('customer','timeslot','notes')

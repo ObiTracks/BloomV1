@@ -853,4 +853,14 @@ table tr:hover {
 .info-container h2 {
   margin-bottom: 4px;
 }
+
+messages .success {
+  font-family: "Poppins", sans-serif;
+  font-color: #086d2a;
+}
+
+messages .error {
+  font-family: "Poppins", sans-serif;
+  font-color: #9e091d;
+}
 /*# sourceMappingURL=base.css.map */

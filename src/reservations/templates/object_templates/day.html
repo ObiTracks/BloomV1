@@ -25,16 +25,16 @@
                     <th>Apartment</th>
                     <th>Phone</th>
                     <th>Total On Lease</th>
-                    <th>No Show</th>
+                    <!-- <th>No Show</th> -->
                 </tr>
         
                 {% for reservation in slot.reservation_set.all %}
                 <tr class="data" onclick="window.location='{% url "resident" reservation.customer.id %}';">
-                    <td>{{reservation.customer.name}}</td>
+                    <td>{{reservation.customer.first_name}} {{reservation.customer.last_name}}</td>
                     <td>{{reservation.customer.apt}}</td>
-                    <td>{{reservation.customer.phone}}</td>
+                    <td>{{reservation.customer.email}}</td>
                     <td>{{reservation.customer.lease_members.count}}</td>
-                    <td>{{reservation.no_show}}</td>
+                    <!-- <td>{{reservation.no_show}}</td> -->
                 </tr>
                 {% endfor %}
             </table>

@@ -746,3 +746,15 @@ table{
         margin-bottom: 4px;
     }
 }
+
+// DJANGO HANDLED ELEMENTS
+messages{
+    .success{
+        font-family: $font1;
+        font-color: rgb(8, 109, 42);
+    }
+    .error{
+        font-family: $font1;
+        font-color: rgb(158, 9, 29);
+    }
+}

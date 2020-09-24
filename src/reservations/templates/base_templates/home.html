@@ -45,6 +45,8 @@
         <h2><a href='{% url "day" day.id %}'>Tomorrow</a></h2>
         {% elif day.day == yesterday_date %}
         <h2><a href='{% url "day" day.id %}'>Yesterday</a></h2>
+        {% else %}
+        <h2><a href='{% url "day" day.id %}'>{{day}}</a></h2>
         {% endif %}
 
         <h4>{{day}}</h4>
