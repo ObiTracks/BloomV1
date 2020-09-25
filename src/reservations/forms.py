@@ -22,11 +22,27 @@ class CustomerForm(ModelForm):
         model = Customer
         fields = '__all__'
 
+# RESERVATIONS
 class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
         fields = ('customer','timeslot','notes')
         exclude = ['no_show']
+
+class LeaseMemberReservationForm(ModelForm):
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        self.lease_members = self.user.customer.lease_member_set.all()
+        self.set_lease_members = forms.ModelMultipleChoiceField(queryset=self.lease_members)
+        # self.fields['set_lease_members'] = self.set_lease_members
+        super(LeaseMemberReservationForm, self).__init__(*args, **kwargs)
+        
+    # print(lease_members)
+    # set_lease_members = forms.ModelMultipleChoiceField()
+    
+    class Meta:
+        model = LeaseMember
+        fields = '__all__'
 
 class CreateCompanyForm(ModelForm):
     first_name = forms.CharField(max_length=60, required=True)

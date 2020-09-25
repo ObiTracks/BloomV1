@@ -1,6 +1,7 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.forms import inlineformset_factory
 from django.contrib import messages
 import datetime
 
@@ -44,11 +45,15 @@ def createReservation(request, tk, pk, *args, **kwargs):
                 return redirect('/staff')
         return res_exists
 
-        
-    # Creating for creating a reservation from post data
+    # def capacityCheck(timeslot,customer,lease_member_form):
+
+    lease_member_form = LeaseMemberReservationForm(request.user)
+    # CREATING RESERVATION FROM FORM POST DATA Creating for creating a reservation from post data
     if request.method == 'POST':
-        # print('Printing POST:', request.POST)
         form = ReservationForm(request.POST)
+        lease_member_form = LeaseMemberReservationForm(request.user, request.POST)
+        print(lease_member_form)
+
         if form.is_valid():
             print(request.POST)
             timeslot_id = request.POST.get('timeslot')
@@ -60,6 +65,9 @@ def createReservation(request, tk, pk, *args, **kwargs):
                     num_res = timeslot.reservation_set.all().count()
                     if num_res < timeslot.capacity:
                         form.save()
+                        # for person in lease_member_form:
+                        #     person_name
+                        #     Reservation.objects.create()
                         messages.success(request,"Reservation created for {} at {}".format(customer,timeslot))
                         return redirect('/staff')
                     else:
@@ -70,6 +78,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
 
     context = {
         'form': form,
+        'lease_member_form':lease_member_form,
         'page_title': 'New Reservation',
         'customer': customer,
         'time_slot': timeslot

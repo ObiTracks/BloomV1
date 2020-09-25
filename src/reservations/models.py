@@ -41,6 +41,20 @@ class Customer(models.Model):
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
 
+class LeaseMember(models.Model):
+    RELATIONSHIP = (
+        ('husband','Husband'),
+        ('wife','Wife'),
+        ('daughter','Daughter'),
+        ('son','Son'),
+        ('relative','Relative')
+    )
+    lease_owner = models.ForeignKey(Customer, related_name="lease_member_set", on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100,null=False, blank=False)
+    relation = models.CharField(max_length=100,null=True, choices=RELATIONSHIP)
+    
+    def __str__(self):
+        return "{}".format(self.full_name)
 
 class Day(models.Model):
     company = models.ForeignKey(Company, related_name="day_set", null=True, on_delete=models.CASCADE)
@@ -75,7 +89,7 @@ class TimeSlot(models.Model):
         ('3pm-5pm','3pm-5pm'),
     )
 
-    time_slot = models.CharField(max_length=10, null=True, choices=TIMESLOTS, default="Choose a time window")
+    time_slot = models.CharField(max_length=100,null=True, choices=TIMESLOTS, default="Choose a time window")
     day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
     # day = models.ForeignKey(Day, related_name="timeslot_set", default=Day.objects.first(), null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
