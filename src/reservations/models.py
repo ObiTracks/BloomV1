@@ -35,7 +35,7 @@ class Customer(models.Model):
     apt = models.IntegerField(default='205', blank=False)
     # phone = models.CharField(default='805.555.3809', max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, editable=False)
-    lease_members = models.TextField('Lease Members', blank=True)
+    # lease_members = models.TextField('Lease Members', blank=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
     def __str__(self):
@@ -93,6 +93,7 @@ class TimeSlot(models.Model):
     day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
     # day = models.ForeignKey(Day, related_name="timeslot_set", default=Day.objects.first(), null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
+    current_capacity = models.IntegerField(default=0, blank=True, null=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
     # date = day
@@ -119,7 +120,10 @@ class Reservation(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     # Bring alongs
-    party_members = models.ManyToManyField(Customer, related_name="party_members", blank=True)
+    party_members = models.CharField(max_length=1000,null=True, blank=True,)
+    # party_members = models.ManyToManyField(LeaseMember, null=True, blank=True,)
+    # party_members = models.ForeignKey(LeaseMember, null=True, blank=True, on_delete=models.CASCADE)
+    # party_members = models.ManyToManyField(Customer, related_name="party_members", blank=True)
 
     def __str__(self):
         return "{}".format(self.timeslot)

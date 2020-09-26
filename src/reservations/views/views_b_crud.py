@@ -47,24 +47,48 @@ def createReservation(request, tk, pk, *args, **kwargs):
 
     # def capacityCheck(timeslot,customer,lease_member_form):
 
-    lease_member_form = LeaseMemberReservationForm(request.user)
+    # lease_member_form = LeaseMemberReservationForm(request.user)
+    form2 = LeaseMemberReservationForm(customer)
+
     # CREATING RESERVATION FROM FORM POST DATA Creating for creating a reservation from post data
     if request.method == 'POST':
         form = ReservationForm(request.POST)
-        lease_member_form = LeaseMemberReservationForm(request.user, request.POST)
-        print(lease_member_form)
+        # lease_member_form = LeaseMemberReservationForm(request.user, request.POST)
+        form2 = LeaseMemberReservationForm(customer, request.POST)
+        print(form2)
+        party_members = form2.cleaned_data.get("set_lease_members")
+        
+        party_list = ''
+        for person in party_members:
+            party_list += '{}, '.format(person.full_name)
+
+        # print(party_members[0].full_name)
+        print(party_list)
 
         if form.is_valid():
-            print(request.POST)
+            # print(request.POST)
             timeslot_id = request.POST.get('timeslot')
             timeslot = TimeSlot.objects.get(pk=timeslot_id)
-            
+            form.cleaned_data['party_members'] = party_list
+            print("This is the party list: {}".format(form.cleaned_data['party_members']))
             if request.POST.get('timeslot') != None:
                 res_exists = multipleBookingCheck(timeslot, customer)
                 if res_exists == False:
-                    num_res = timeslot.reservation_set.all().count()
-                    if num_res < timeslot.capacity:
-                        form.save()
+                    num_res = timeslot.current_capacity
+                    res_size = party_members.count() + 1
+                    total_res = num_res + res_size
+                    print(total_res)
+                    
+                    if total_res < timeslot.capacity:
+                        timeslot.current_capacity = total_res
+                        timeslot.save()
+                        reservation = form.save()
+                        reservation.party_members = party_list
+                        reservation.save()
+                        # reservation.party_members = party_list
+                        # print(reservation.party_members)
+                        # form.party_members = party_list
+
                         # for person in lease_member_form:
                         #     person_name
                         #     Reservation.objects.create()
@@ -78,7 +102,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
 
     context = {
         'form': form,
-        'lease_member_form':lease_member_form,
+        'form2':form2,
         'page_title': 'New Reservation',
         'customer': customer,
         'time_slot': timeslot

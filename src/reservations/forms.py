@@ -30,14 +30,14 @@ class ReservationForm(ModelForm):
         exclude = ['no_show']
 
 class LeaseMemberReservationForm(ModelForm):
-    full_name = forms.CharField(max_length=100,)
+    # full_name = forms.CharField(max_length=100,)
     # set_lease_members = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=None)
 
-    def __init__(self, user, *args, **kwargs):
+    def __init__(self, customer, *args, **kwargs):
         super(LeaseMemberReservationForm, self).__init__(*args, **kwargs)
-        self.user = user
-        self.lease_members = self.user.customer.lease_member_set.all()
-        print("The user for this form is" + str(user))
+        self.customer = customer
+        self.lease_members = self.customer.lease_member_set.all()
+        print("The user for this form is" + str(customer))
         # self.fields.append(set_lease_members)
         self.fields['set_lease_members'] = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=self.lease_members)
         print(self.fields['set_lease_members'])
@@ -49,8 +49,8 @@ class LeaseMemberReservationForm(ModelForm):
     
     class Meta:
         model = LeaseMember
-        fields = ('full_name',)
-        # fields = '__all__'
+        fields = ()
+        # exclude = ('lease_owner','full_name','relation',)
 
 
 class CreateCompanyForm(ModelForm):
