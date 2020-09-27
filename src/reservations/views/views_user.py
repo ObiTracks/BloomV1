@@ -19,19 +19,27 @@ def home_page(request):
     if Day.objects.all() == None or Day.objects.count() < 2:
         return HttpResponse("<html>There are not enough days avaialable to book</html>")
     else:
-        company = request.user.customer.company
+        customer = request.user.customer
+        company = customer.company
         days = company.day_set.all()
 
         today_date = date.today()
         tomorrow_date = date.today() + timedelta(days=1)
 
-        today_day = days.get(day=today_date)
-        tomorrow_day = days.get(day=tomorrow_date)
-        days = [tomorrow_day, today_day]
+        today_day = days.filter(day=today_date).exists()
+        tomorrow_day = days.filter(day=tomorrow_date).exists()
+        
+        temp_list = []
 
-        customer = request.user.customer
-        today_date = date.today()
-        tomorrow_date = date.today() + timedelta(days=1)
+        if today_day != False:
+            today_day = days.get(day=today_date)
+            temp_list.append(today_day)
+        if tomorrow_day != False:
+            tomorrow_day = days.get(day=tomorrow_date)
+            temp_list.append(tomorrow_day)
+        days = temp_list
+        print(days)
+
 
         page_title = "Resident Dashboard"
         context = {
@@ -139,6 +147,7 @@ def reservationsPage(request):
         'customer':customer,
         'reservations':reservations,
         'page_title': page_title,
+        'today_date':today_date,
     }
 
 

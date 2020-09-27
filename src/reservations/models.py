@@ -52,7 +52,7 @@ class LeaseMember(models.Model):
     lease_owner = models.ForeignKey(Customer, related_name="lease_member_set", on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100,null=False, blank=False)
     relation = models.CharField(max_length=100,null=True, choices=RELATIONSHIP)
-    
+
     def __str__(self):
         return "{}".format(self.full_name)
 
@@ -96,15 +96,6 @@ class TimeSlot(models.Model):
     current_capacity = models.IntegerField(default=0, blank=True, null=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
-    # date = day
-    # year = date.day.year
-    # print(year)
-    # month = calendar.month_abbr[date.month]
-    # print(month)
-    # day_num = date.day
-    # print(day_num)
-    # dayname = calendar.day_name[date.weekday()]
-    # print(dayname)
     def return_constants(self):
         return self.TIMESLOTS
         
@@ -121,6 +112,7 @@ class Reservation(models.Model):
     notes = models.TextField(max_length=2000, null=True, blank=True)
     # Bring alongs
     party_members = models.CharField(max_length=1000,null=True, blank=True,)
+    # lease_members = models.ManyToManyField(LeaseMember)
     # party_members = models.ManyToManyField(LeaseMember, null=True, blank=True,)
     # party_members = models.ForeignKey(LeaseMember, null=True, blank=True, on_delete=models.CASCADE)
     # party_members = models.ManyToManyField(Customer, related_name="party_members", blank=True)

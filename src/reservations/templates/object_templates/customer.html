@@ -38,7 +38,10 @@
                 </tr>
                 <tr>
                     <td><h2>Delete Resident</h2></td>
-                    <td><button class='btn btn-danger'>Delete Resident</button></td>
+                    <td>
+                        <button class='btn btn-danger' type="submit"><a href="{% url 'deleteCustomer' resident.id %}">Delete</a>
+                        </button>
+                    </td>
                 </tr>
             </table>
         </div>

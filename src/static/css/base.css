@@ -288,11 +288,6 @@ a {
   height: -moz-fit-content;
   height: fit-content;
   min-height: 2rem;
-  min-width: 500px;
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-  width: 100%;
   position: relative;
   background: white;
   -webkit-box-shadow: #e4e4e4 0 0 10px 9px;
@@ -305,11 +300,15 @@ a {
 }
 
 .card.card-lg {
+  min-width: 40rem;
   width: 60%;
+  max-width: 50rem;
 }
 
 .card.card-md {
-  width: 37%;
+  min-width: 30rem;
+  width: 35%;
+  max-width: 60rem;
 }
 
 .card.card-form {
@@ -591,7 +590,7 @@ button {
   border: none;
   border-radius: 4px;
   overflow: hidden;
-  padding: 5px;
+  padding: 5px 6px;
   margin: 5px;
   -webkit-transition: all ease-in-out 0.1s;
   transition: all ease-in-out 0.1s;
@@ -628,7 +627,9 @@ button.btn-info {
   background: linear-gradient(to left, #ffffff 40%, #4ebeee 45%, #2457e4 55%);
   background-size: 250% 100%;
   background-position-x: 99%;
-  border: solid 3px #2457e4;
+  border: solid 3px white;
+  -webkit-box-shadow: grey 4px 4px 4px;
+          box-shadow: grey 4px 4px 4px;
   color: #2457e4;
   padding: 3px;
 }
@@ -636,6 +637,7 @@ button.btn-info {
 button.btn-info:hover {
   background-position-x: 1%;
   color: white;
+  border-color: #2457e4;
 }
 
 button.btn-info:active {
@@ -643,6 +645,7 @@ button.btn-info:active {
   background: white;
   border: solid black 2px;
   color: black;
+  border-color: #2457e4;
 }
 
 button.btn-info:focus {

@@ -40,9 +40,9 @@
                     <td>{{day.timeslot_set.all.count}}</td>
                     <td>
                         {% if day.day >= today %}
-                        <button class='btn btn-danger' type="submit"><a href="{% url 'delete' day.id %}">Delete</a>
-                        {% endif %}
+                        <button class='btn btn-danger' type="submit"><a href="{% url 'deleteDay' day.id %}">Delete</a>
                         </button>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}

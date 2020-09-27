@@ -233,9 +233,6 @@ a{
 .card{
     height: fit-content;
     min-height: 2rem;
-    min-width: 500px;
-    min-width: fit-content;
-    width: 100%;
     position: relative;
     background: white;
     box-shadow: rgb(228, 228, 228) 0 0 10px 9px;
@@ -248,10 +245,16 @@ a{
     &:hover{
     }
     &.card-lg{
+        // width: 60%;
+        // max-width: 60%;
+        min-width: 40rem;
         width: 60%;
+        max-width: 50rem;
     }
     &.card-md{
-        width: 37%;
+        min-width: 30rem;
+        width: 35%;
+        max-width: 60rem;
     }
     &.editable{
         // background: blue;
@@ -463,7 +466,7 @@ button{
     border: none;
     border-radius: 4px;
     overflow: hidden;
-    padding: 5px;
+    padding: 5px 6px;
     margin: 5px;
     transition: all ease-in-out 0.1s;
   
@@ -497,18 +500,21 @@ button{
         background: linear-gradient(to left, #ffffff 40%, #4ebeee 45%, rgb(36, 87, 228) 55%);
         background-size: 250% 100%;
         background-position-x: 99%;
-        border: solid 3px rgb(36, 87, 228);
+        border: solid 3px white;
+        box-shadow: grey 4px 4px 4px;
         color: rgb(36, 87, 228);
         padding: 3px;
         &:hover{
             background-position-x: 1%;
             color: white;
+            border-color: rgb(36, 87, 228);
         }
         &:active{
             background-position-x: 1%;
             background: white;
             border: solid black 2px;
             color: black;
+            border-color: rgb(36, 87, 228);
             
         }
         &:focus{

@@ -48,23 +48,15 @@ def customer(request, pk):
     return render(request, template_name, context)
 
 def day(request, pk):
-    
-    testslot = TimeSlot.objects.all().first()
-    timeslot_constants = testslot.return_constants()
-    print(testslot)
-    print(timeslot_constants)
+    today = datetime.date.today
     day = Day.objects.get(id=pk)
 
     # DATE FORMATTING
     date = day.day
     year = date.year
-    print(year)
     month = calendar.month_abbr[date.month]
-    print(month)
     day_num = date.day
-    print(day_num)
     dayname = calendar.day_name[date.weekday()]
-    print(dayname)
 
     timeslots = day.timeslot_set.all()
     num_reservations = 0
@@ -93,7 +85,12 @@ def day(request, pk):
 
     page_title = '{}, {}. {}'.format(dayname, month, day_num)
     bg_title = 'Day'
-    context = {"page_title": page_title, 'day': day, 'stats': stats, 'bg_title':bg_title}
+    context = {
+        'page_title': page_title, 
+        'day': day, 'stats': stats, 
+        'today':today,
+        'bg_title':bg_title
+        }
     template_name = 'object_templates/day.html'
 
     return render(request, template_name, context)

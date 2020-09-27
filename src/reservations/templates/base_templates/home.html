@@ -13,7 +13,7 @@
     <header>
         <h2><a href='{% url "residents" None %}'>Recent Residents</a></h2>
         <button class="btn-info"><a href="/staff/register-user">+ add</a></button>
-        <h4>Total: {{residents.count}}</h4>
+        <!-- <h4>Total: {{residents.count}}</h4> -->
     </header>
 
     <div class="body">
@@ -58,7 +58,7 @@
             <h3 class="name">{{slot.time_slot}}</h3>
             <h2 class="name">{{slot.current_capacity}}/{{slot.capacity}}</h2>
             
-            {% if slot.day.day >= yesterday_date %}
+            {% if slot.day.day > yesterday_date %}
                 <button><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
             {% endif %}
 

@@ -17,19 +17,22 @@
             <tr>
                 <th id="name">Day</th>
                 <th id="name">Timeslot</th>
-                <th>Name</th>
                 <th>Party Size</th>
                 <th>Delete</th>
             </tr>
 
             {% for reservation in reservations %}
             <tr class="data">
-                <td>{{reservation.day}}</td>
+                <td>{{reservation.timeslot.day}}</td>
                 <td>{{reservation.timeslot}}</td>
                 <td>{{reservation}}</td>
-                <td><button class='btn btn-danger'>
-                    <a href="{% url 'delete' reservation.id %}">Delete</a>
-                </button></td>
+                <td>
+                    {% if reservation.timeslot.day.day >= today_date %}
+                    <button class='btn btn-danger'>
+                        <a href="{% url 'delete' reservation.id %}">Delete</a>
+                    </button>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>

@@ -27,16 +27,11 @@ def total_reservations(days):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
 def home_page(request):
-    # if Day.objects.all() == None or Day.objects.count() <= 2:
-    #     return HttpResponse("<html><h1>There are not enough days available to book</h1></html>")
-    # else:
-    #     days = Day.objects.all()[:3]
     current_user = request.user
     print(current_user)
     user_company = current_user.customer.company
     print(user_company)
     days = user_company.day_set
-
 
     residents = user_company.customer_set.all()[:20]
     total_residents = residents.count()
@@ -47,19 +42,27 @@ def home_page(request):
     yesterday_date = date.today() - timedelta(days=1)
     tomorrow_date = date.today() + timedelta(days=1)   
 
-    if days.count() < 3:
-        days = days.all()
-    else:
         
-        today_day = days.get(day=today_date)
-        tomorrow_day = days.get(day=tomorrow_date)
+        # today_day = days.get(day=today_date)
+        # tomorrow_day = days.get(day=tomorrow_date)
         # print(days.filter(day=yesterday_date).exists())
-        if days.filter(day=yesterday_date).exists() != False:
-            yesterday_day = days.get(day=yesterday_date)
-            days = [tomorrow_day, today_day,yesterday_day]
-        else:
-            days = [tomorrow_day, today_day]
-            print(yesterday_date)
+    yesterday_day = days.filter(day=yesterday_date).exists()
+    today_day = days.filter(day=today_date).exists()
+    tomorrow_day = days.filter(day=tomorrow_date).exists()
+    
+    temp_list = []
+
+    if tomorrow_day != False:
+        tomorrow_day = days.get(day=tomorrow_date)
+        temp_list.append(tomorrow_day)
+    if today_day != False:
+        today_day = days.get(day=today_date)
+        temp_list.append(today_day)
+    if yesterday_day != False:
+        yesterday_day = days.get(day=yesterday_date)
+        temp_list.append(yesterday_day)
+    
+    days = temp_list
 
     page_title = "Dashboard"
     stats = {

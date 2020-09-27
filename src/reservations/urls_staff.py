@@ -19,7 +19,9 @@ urlpatterns = [
     path('update_customer/<str:pk>/',
          views_b_crud.updateResident,
          name='update_resident'),
-    path('delete/<int:pk>/', views_b_crud.deleteDay, name='delete'),
+    path('delete-day/<int:pk>/', views_b_crud.deleteDay, name='deleteDay'),
+    path('delete-reservation/<int:pk>/', views_b_crud.deleteReservation, name='deleteReservation'),
+    path('delete-customer/<int:pk>/', views_b_crud.deleteCustomer, name='deleteCustomer'),
 
     # LOGIN URLS
     path('register-user/', views_c_login.registerUserPage, name='register_user'),

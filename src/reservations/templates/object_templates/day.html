@@ -18,13 +18,17 @@
         {% for slot in day.timeslot_set.all %}
         <div class="slot">
             <h3 class="name">{{slot.time_slot}}</h3>
+            {% if day.day >= today %}
             <button><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
+            {% endif %}
+
             <table class="table-slot">
                 <tr>
                     <th id="name">Name</th>
                     <th>Apartment</th>
                     <th>Phone</th>
                     <th>Total On Lease</th>
+                    <th>Delete Booking</th>
                     <!-- <th>No Show</th> -->
                 </tr>
         
@@ -33,34 +37,18 @@
                     <td>{{reservation.customer.first_name}} {{reservation.customer.last_name}}</td>
                     <td>{{reservation.customer.apt}}</td>
                     <td>{{reservation.customer.email}}</td>
-                    <td>{{reservation.customer.lease_members.count}}</td>
-                    <!-- <td>{{reservation.no_show}}</td> -->
+                    <td>{{reservation.customer.lease_member_set.count}}</td>
+                    <td>
+                        {% if day.day >= today %}
+                            <button class='btn btn-danger' type="submit"><a href="{% url 'deleteReservation' reservation.id %}">Delete</a>
+                            </button>
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
         {% endfor %}
-        <!-- <table class="table-slot">
-            <tr>
-                <th id="name">Timeslot</th>
-                <th>Total Reservations</th>
-                <th>Notes</th>
-                <th>Capacity</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-
-            {% for timeslot in day.timeslot_set.all %}
-            <tr class="data" onclick="window.location='{% url 'timeslot' timeslot.id %}';">
-                <td>{{timeslot.time_slot}}</td>
-                <td>{{timeslot.reservation_set.count}}</td>
-                <td>{{timeslot.notes}}</td>
-                <td>{{timeslot.capacity}}</td>
-                <td><button class='btn btn-info'>Update</button></td>
-                <td><button class='btn btn-danger'>Delete</button></td>
-            </tr>
-            {% endfor %}
-        </table> -->
     </div>
 </div>
 

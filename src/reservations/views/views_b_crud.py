@@ -12,7 +12,7 @@ from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
+@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
 def createReservation(request, tk, pk, *args, **kwargs):
     current_user = request.user
     current_user_id = current_user.id
@@ -59,8 +59,9 @@ def createReservation(request, tk, pk, *args, **kwargs):
         party_members = form2.cleaned_data.get("set_lease_members")
         
         party_list = ''
-        for person in party_members:
-            party_list += '{}, '.format(person.full_name)
+        if party_members != None:
+            for person in party_members:
+                party_list += '{}, '.format(person.full_name)
 
         # print(party_members[0].full_name)
         print(party_list)
@@ -69,13 +70,20 @@ def createReservation(request, tk, pk, *args, **kwargs):
             # print(request.POST)
             timeslot_id = request.POST.get('timeslot')
             timeslot = TimeSlot.objects.get(pk=timeslot_id)
-            form.cleaned_data['party_members'] = party_list
-            print("This is the party list: {}".format(form.cleaned_data['party_members']))
+            if len(party_list) > 0:
+                form.cleaned_data['party_members'] = party_list
+            else:
+                form.cleaned_data['party_members'] = []
+                print("This is the party list: {}".format(form.cleaned_data['party_members']))
+
             if request.POST.get('timeslot') != None:
                 res_exists = multipleBookingCheck(timeslot, customer)
                 if res_exists == False:
                     num_res = timeslot.current_capacity
-                    res_size = party_members.count() + 1
+                    if party_members != None:
+                        res_size = party_members.count() + 1
+                    else:
+                        res_size = 1
                     total_res = num_res + res_size
                     print(total_res)
                     
@@ -135,7 +143,7 @@ def dayValidation(request, form):
     return is_valid
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Manager','SiteAdmin'])
+@allowed_users(allowed_roles=['Manager','SiteAdmin','Staff'])
 def createDay(request, *args, **kwargs):
     
     TIMESLOTS = TimeSlot.TIMESLOTS
@@ -170,10 +178,41 @@ def deleteDay(request, pk):
     day = Day.objects.get(id=pk)
     if request.method == 'POST':
         day.delete()
+        messages.success(request,"Day successfully deleted {}".format(day))
         return redirect('/staff/')
         
     context = {'item': day}
-    template_name = '../templates/crud_templates/delete_day.html'
+    template_name = '../templates/crud_templates/delete_templates/delete_day.html'
+    return render(request, template_name, context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
+def deleteReservation(request, pk):
+    reservation = Reservation.objects.get(id=pk)
+    if request.method == 'POST':
+        reservation.delete()
+        messages.success(request,"Reservation successfully deleted {}".format(reservation))
+        return redirect('/staff/')
+        
+    context = {'item': reservation}
+    template_name = '../templates/crud_templates/delete_templates/delete_reservation.html'
+    return render(request, template_name, context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
+def deleteCustomer(request, pk):
+    customer = Customer.objects.get(id=pk)
+    user = customer.user
+    if request.method == 'POST':
+        if user == request.user or customer.user.groups.first().name not in  ['Manager','Staff','SiteAdmin']:
+            user.delete()
+            messages.success(request,"Resident successfully deleted {}".format(customer))
+        else:
+            messages.error(request,"Unable to delete this customer since they are a manager")
+        return redirect('/staff/')
+        
+    context = {'item': customer}
+    template_name = '../templates/crud_templates/delete_templates/delete_customer.html'
     return render(request, template_name, context)
 
 @login_required(login_url='login')

@@ -2,7 +2,7 @@
 <h1 class="title">{{page_title}}</h1>
 <div class="stats">
     {% for key, stat in stats.items %}
-    <div id="{% cycle 'stat1' 'stat2' 'stat3' 'stat4'%}" class="stat">
+    <div id="{% cycle 'stat1' 'stat2' 'stat4' 'stat3'%}" class="stat">
         <!-- <h2 class="title">{{stat}}</h2> -->
         {% for label, value in stat.items %}
         {% if label == 'title' %}
