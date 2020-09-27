@@ -93,7 +93,6 @@ class TimeSlot(models.Model):
     day = models.ForeignKey(Day, related_name="timeslot_set", null=True, on_delete= models.CASCADE)
     # day = models.ForeignKey(Day, related_name="timeslot_set", default=Day.objects.first(), null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
-    current_capacity = models.IntegerField(default=0, blank=True, null=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
     def getCurrentCapacity(self):

@@ -87,23 +87,16 @@ def createReservation(request, tk, pk, *args, **kwargs):
                     total_res = num_res + res_size
                     print(total_res)
                     
-                    if total_res < timeslot.capacity:
-                        timeslot.current_capacity = total_res
+                    if timeslot.getCurrentCapacity < timeslot.capacity:
                         timeslot.save()
                         reservation = form.save()
                         print('************RESERVATION**************')
                         if party_members != None:
                             for person in party_members:
                                 print(reservation.party_members.add(person))
-                        # reservation.party_members = party_list
+                                
                         reservation.save()
-                        # reservation.party_members = party_list
-                        # print(reservation.party_members)
-                        # form.party_members = party_list
 
-                        # for person in lease_member_form:
-                        #     person_name
-                        #     Reservation.objects.create()
                         messages.success(request,"Reservation created for {} at {}".format(customer,timeslot))
                         return redirect('/staff')
                     else:
