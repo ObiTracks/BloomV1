@@ -96,6 +96,14 @@ class TimeSlot(models.Model):
     current_capacity = models.IntegerField(default=0, blank=True, null=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     
+    def getCurrentCapacity(self):
+        reservations = self.reservation_set.all()
+        party_size = 0
+        for reservation in reservations:
+            party_size += reservation.party_members.count()
+            party_size += 1
+        return party_size
+
     def return_constants(self):
         return self.TIMESLOTS
         
@@ -111,8 +119,8 @@ class Reservation(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     # Bring alongs
-    party_members = models.CharField(max_length=1000,null=True, blank=True,)
-    # lease_members = models.ManyToManyField(LeaseMember)
+    # party_members = models.CharField(max_length=1000,null=True, blank=True,)
+    party_members = models.ManyToManyField(LeaseMember, blank=True)
     # party_members = models.ManyToManyField(LeaseMember, null=True, blank=True,)
     # party_members = models.ForeignKey(LeaseMember, null=True, blank=True, on_delete=models.CASCADE)
     # party_members = models.ManyToManyField(Customer, related_name="party_members", blank=True)

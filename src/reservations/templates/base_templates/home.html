@@ -56,7 +56,7 @@
         {% for slot in day.timeslot_set.all %}
         <div class="slot">
             <h3 class="name">{{slot.time_slot}}</h3>
-            <h2 class="name">{{slot.current_capacity}}/{{slot.capacity}}</h2>
+            <h2 class="name">{{slot.getCurrentCapacity}}/{{slot.capacity}}</h2>
             
             {% if slot.day.day > yesterday_date %}
                 <button><a href="{% url 'residents' slot.id %}">Add Reservation +</a></button>
@@ -66,14 +66,19 @@
                 <tr>
                     <th id="name">Name</th>
                     <th>Apartment</th>
-                    <th>Party Size</th>
+                    <th>Party Members</th>
                 </tr>
 
                 {% for reservation in slot.reservation_set.all %}
                 <tr class="data" onclick="window.location='{% url "resident" reservation.customer.id %}';">
                     <td>{{reservation.customer.first_name}} {{reservation.customer.last_name}}</td>
                     <td>{{reservation.customer.apt}}</td>
-                    <td>{{reservation.party_members}}</td>
+                    <td>
+                        ({{reservation.party_members.count}})
+                        {% for person in reservation.party_members.all %}
+                           {{person.full_name}},
+                        {% endfor %}
+                    </td>
                 </tr>
                 {% endfor %}
             </table>

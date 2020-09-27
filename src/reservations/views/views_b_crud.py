@@ -91,7 +91,11 @@ def createReservation(request, tk, pk, *args, **kwargs):
                         timeslot.current_capacity = total_res
                         timeslot.save()
                         reservation = form.save()
-                        reservation.party_members = party_list
+                        print('************RESERVATION**************')
+                        if party_members != None:
+                            for person in party_members:
+                                print(reservation.party_members.add(person))
+                        # reservation.party_members = party_list
                         reservation.save()
                         # reservation.party_members = party_list
                         # print(reservation.party_members)
