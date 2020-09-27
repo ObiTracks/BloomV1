@@ -628,8 +628,8 @@ button.btn-info {
   background-size: 250% 100%;
   background-position-x: 99%;
   border: solid 3px white;
-  -webkit-box-shadow: grey 4px 4px 4px;
-          box-shadow: grey 4px 4px 4px;
+  -webkit-box-shadow: #c9c9c9 0px 0px 4px;
+          box-shadow: #c9c9c9 0px 0px 4px;
   color: #2457e4;
   padding: 3px;
 }
@@ -773,7 +773,8 @@ table th {
 
 table th, table td {
   height: 2rem;
-  max-width: 100px;
+  min-width: 3rem;
+  max-width: 6rem;
   overflow: auto;
   text-overflow: ellipsis;
   white-space: nowrap;

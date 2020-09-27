@@ -501,7 +501,7 @@ button{
         background-size: 250% 100%;
         background-position-x: 99%;
         border: solid 3px white;
-        box-shadow: grey 4px 4px 4px;
+        box-shadow: rgb(201, 201, 201) 0px 0px 4px;
         color: rgb(36, 87, 228);
         padding: 3px;
         &:hover{
@@ -634,7 +634,8 @@ table{
     }
     th, td{
         height: 2rem;
-        max-width: 100px;
+        min-width: 3rem;
+        max-width: 6rem;
         overflow: auto;
         text-overflow: ellipsis;
         white-space: nowrap;

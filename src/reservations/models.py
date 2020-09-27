@@ -94,7 +94,11 @@ class TimeSlot(models.Model):
     # day = models.ForeignKey(Day, related_name="timeslot_set", default=Day.objects.first(), null=True, on_delete= models.CASCADE)
     capacity = models.IntegerField(blank=True, default=13, editable=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
+
     
+    class Meta:
+        ordering = ['day']
+
     def getCurrentCapacity(self):
         reservations = self.reservation_set.all()
         party_size = 0
