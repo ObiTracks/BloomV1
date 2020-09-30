@@ -9,6 +9,25 @@
 
 
 {% block content %}
+<!-- <div class="staff-dashboard-left-side">
+    <div class="boxy-box">Hello
+        <div class="content-box">Some Content</div>
+    </div>
+    <div class="boxy-box">Hello
+        <div class="content-box">Some Content</div>
+    </div>
+</div>
+
+<div class="staff-dashboard-right-side">
+    <div class="boxy-box">Hello
+        <div class="content-box">Some Content</div>
+    </div>
+    <div class="boxy-box">Hello
+        <div class="content-box">Some Content</div>
+    </div>
+</div> -->
+
+
 <div class="staff-dashboard-left-side">
 <!-- RESIDENT CARD -->
 <div class="card card-md resident-card" id='residents'>
@@ -71,10 +90,6 @@
                     <th id="name">Name</th>
                     <th>Apartment</th>
                     <th>Party Members</th>
-                    {% if slot.day.day == today_date or slot.day.day == yesterday_date %}
-                    <th>Showed Up?</th>
-                    {% endif %}
-
                 </tr>
 
                 {% for reservation in slot.reservation_set.all %}
@@ -87,13 +102,6 @@
                            {{person.full_name}},
                         {% endfor %}
                     </td>
-                    {% if slot.day.day == today_date or slot.day.day == yesterday_date %}
-                        {% if reservation.no_show == true %}
-                            <td>⛝</td>
-                        {% else %}
-                            <td>✅</td>
-                        {% endif %}
-                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>

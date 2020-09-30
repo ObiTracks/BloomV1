@@ -115,6 +115,7 @@ class TimeSlot(models.Model):
 
 class Reservation(models.Model):
     # Foreign relations
+    company = models.ForeignKey(Company, related_name="reservation_set", null=True, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, related_name="reservation_set", null=True, on_delete= models.CASCADE)
     timeslot = models.ForeignKey(TimeSlot, related_name="reservation_set", null=True, on_delete=models.CASCADE)
     # Details

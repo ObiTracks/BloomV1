@@ -26,7 +26,11 @@
         
         <footer>
             <div class="buttons">
-                <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>
+                <button class="btn btn-cancel">
+                    <a href="{% url 'staff_dashboard' %}">
+                        Cancel
+                    </a>
+                </button>
                 <button class="btn btn-confirm" type="submit" action="submit" value="Confirm" form='res-form'>Confirm</button>
             </div>
         </footer>

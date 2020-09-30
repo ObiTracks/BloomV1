@@ -22,8 +22,10 @@
 
             {% csrf_token %}
             <div class='buttons'>
-                <button class="btn btn-cancel" href="{% url 'home' %}">
-                    Cancel
+                <button class="btn btn-cancel">
+                    <a href="{% url 'staff_dashboard' %}">
+                        Cancel
+                    </a>
                 </button>
 
                 <input class="btn btn-danger" type="submit" name="Confirm">

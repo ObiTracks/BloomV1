@@ -16,6 +16,7 @@ from ..decorators import unauthenticated_user, allowed_users
 def createReservation(request, tk, pk, *args, **kwargs):
     current_user = request.user
     current_user_id = current_user.id
+    user_company = current_user.customer.company
     print(current_user)
 
     # Check to pass through a prefilled timeslot if it recieves an id for one
@@ -78,18 +79,13 @@ def createReservation(request, tk, pk, *args, **kwargs):
 
             if request.POST.get('timeslot') != None:
                 res_exists = multipleBookingCheck(timeslot, customer)
-                if res_exists == False:
-                    num_res = timeslot.current_capacity
-                    if party_members != None:
-                        res_size = party_members.count() + 1
-                    else:
-                        res_size = 1
-                    total_res = num_res + res_size
-                    print(total_res)
-                    
-                    if timeslot.getCurrentCapacity < timeslot.capacity:
+                current_capacity = timeslot.getCurrentCapacity()
+                
+                if res_exists == False:    
+                    if current_capacity < timeslot.capacity:
                         timeslot.save()
                         reservation = form.save()
+                        reservation.company = user_company
                         print('************RESERVATION**************')
                         if party_members != None:
                             for person in party_members:
@@ -100,7 +96,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
                         messages.success(request,"Reservation created for {} at {}".format(customer,timeslot))
                         return redirect('/staff')
                     else:
-                        print("Timeslot at capacity of {}".format(num_res))
+                        messages.error(request,"Timeslot at capacity of {}".format(current_capacity))
     #
 
     stats = {}

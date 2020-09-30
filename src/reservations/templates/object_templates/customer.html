@@ -50,7 +50,6 @@
             <tr>
                 <th id="name">Time</th>
                 <th>Day</th>
-                <th>Notes</th>
                 <th>No Show</th>
                 <th>Update</th>
                 <th>Delete</th>
@@ -60,12 +59,11 @@
             <tr class="data">
                 <td>{{reservation.timeslot}}</td>
                 <td>{{reservation.timeslot.day}}</td>
-                <td>{{reservation.notes}}</td>
                 <td>{{reservation.no_show}}</td>
                 <td><button class='btn btn-info'><a href="{% url 'update_reservation' reservation.id %}">Update</a></button></td>
                 <td>
                     {% if slot.day.day > today_date %}
-                        <button class='btn btn-danger' href="{% url 'delete' reservation.id %}">Delete</button>
+                        <button class='btn btn-danger' href="{% url 'deleteReservation' reservation.id %}">Delete</button>
                     {% endif %}
                 </td>
 

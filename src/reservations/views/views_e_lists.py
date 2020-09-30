@@ -8,7 +8,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from ..views.views_a_base import total_reservations
 from datetime import date
 
 #View imports here
@@ -77,7 +76,7 @@ def days(request):
         },
         'stat2': {
             'title': 'Total Reservations',
-            'value': total_reservations(days)
+            'value': user_company.reservation_set.count ,
         }
     }
 

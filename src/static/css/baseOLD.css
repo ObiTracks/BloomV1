@@ -297,7 +297,6 @@ a {
   margin: 0rem 0 1rem 0;
   -webkit-transition: ease-in-out 0.1s;
   transition: ease-in-out 0.1s;
-  min-width: 90%;
 }
 
 .card.card-lg {
@@ -605,7 +604,7 @@ button:active {
 }
 
 button:hover {
-  background: #0e3cbb;
+  background: #4e7bf7;
   outline: none;
   cursor: pointer;
 }
@@ -662,17 +661,20 @@ button.btn-alternate:hover {
 }
 
 button.btn-danger {
-  color: white;
+  color: black;
   background: #ffd4cf;
-  background: black;
-  background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, black));
-  background: linear-gradient(to right, red 55%, black 65%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, #ffffff));
+  background: linear-gradient(to right, red 55%, #ffffff 65%);
   background-size: 300% 100%;
   background-position-x: 99%;
+  outline: solid black 3px;
 }
 
 button.btn-danger:hover {
   background-position-x: 1%;
+  border: none;
+  border-radius: 0;
+  outline: solid 3px red;
   color: white;
 }
 
@@ -771,12 +773,14 @@ table th, table td {
   max-width: 6rem;
   overflow: auto;
   text-overflow: ellipsis;
+  white-space: nowrap;
   font-family: 'Nunito', sans-serif;
   font-size: 0.8rem;
   color: grey;
   padding-left: 5px;
   border: solid #e6e6e6 1px;
   overflow: auto;
+  white-space: nowrap;
 }
 
 table th {
@@ -859,4 +863,4 @@ messages .error {
   font-family: "Poppins", sans-serif;
   font-color: #9e091d;
 }
-/*# sourceMappingURL=base.css.map */
+/*# sourceMappingURL=baseOLD.css.map */

@@ -15,14 +15,15 @@ from ..forms import *
 from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
 
-def total_reservations(days):
-    count = 0
-    for day in days:
-        timeslots = day.timeslot_set.all()
-        for timeslot in timeslots:
-            count += timeslot.reservation_set.count()
+def t_res(company):
+    reservations = company.reservation_set.all()
+    t_reservations = reservations.count()
+
+    for reservation in reservations:
+        party_size = reservation.party_members.count()
+        t_reservations += party_size
     
-    return total_reservations
+    return t_reservations
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
@@ -31,6 +32,7 @@ def home_page(request):
     print(current_user)
     user_company = current_user.customer.company
     print(user_company)
+    total_reservations = t_res(user_company)
     days = user_company.day_set
 
     residents = user_company.customer_set.all()[:20]
@@ -42,10 +44,6 @@ def home_page(request):
     yesterday_date = date.today() - timedelta(days=1)
     tomorrow_date = date.today() + timedelta(days=1)   
 
-        
-        # today_day = days.get(day=today_date)
-        # tomorrow_day = days.get(day=tomorrow_date)
-        # print(days.filter(day=yesterday_date).exists())
     yesterday_day = days.filter(day=yesterday_date).exists()
     today_day = days.filter(day=today_date).exists()
     tomorrow_day = days.filter(day=tomorrow_date).exists()
@@ -72,7 +70,7 @@ def home_page(request):
         },
         'stat2': {
             'title': 'Total Reservations',
-            'value': "Some value"
+            'value': total_reservations
         },
         'stat3': {
             'title': 'Total Residents',

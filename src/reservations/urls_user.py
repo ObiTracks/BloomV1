@@ -8,7 +8,6 @@ urlpatterns = [
 
     # CRUD URLS
     # path('create_reservation/<str:tk>/<str:pk>/', views_user.createUserReservation,name='create_reservation'),
-    # path('delete/<int:pk>/', views_user.deleteReservation, name='delete'),
 
     # LOGIN URLS
     # path('register', views_c_login.registerUserPage, name='register'),
