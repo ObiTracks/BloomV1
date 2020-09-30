@@ -286,8 +286,9 @@ a{
         transition: all ease-in-out 0.1s;
 
         h2{
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-family: $font1;
+            // font-style: italic;
             color: white;
             margin: 0;
             a{
@@ -414,6 +415,12 @@ form {
         &:focus{
             outline: none;
             border-color: rgb(0, 153, 255);
+        }
+        &#id_num_days{
+            max-height: 2rem;
+            font-size: 2rem;
+            justify-content: center;
+            text-align: center;
         }
     }
     select{
@@ -624,6 +631,7 @@ table{
     color: rgb(66, 66, 66);
     // overflow: auto;
     th{
+        font-size: 1rem;
         white-space: nowrap;
     }
     th, td{
@@ -633,7 +641,7 @@ table{
         overflow: auto;
         text-overflow: ellipsis;
         font-family: 'Nunito', sans-serif;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         color: grey;
         padding-left: 5px;
         border: solid rgb(230, 230, 230) 1px;
