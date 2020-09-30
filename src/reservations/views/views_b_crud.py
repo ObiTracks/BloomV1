@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import inlineformset_factory
 from django.contrib import messages
-import datetime
+from datetime import date, time, timedelta
 
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
@@ -111,29 +111,29 @@ def createReservation(request, tk, pk, *args, **kwargs):
     return render(request, '../templates/crud_templates/reservation_form.html', context)
 
 
-def dayValidation(request, form):
-    is_valid = False
-    cleaned_data = form.cleaned_data
-    day = cleaned_data['day']
+# def dayValidation(request, form):
+#     is_valid = False
+#     cleaned_data = form.cleaned_data
+#     day = cleaned_data['day']
     
-    current_user = request.user
-    user_company = current_user.customer.company
-    days = user_company.day_set
+#     current_user = request.user
+#     user_company = current_user.customer.company
+#     days = user_company.day_set
 
-    day_exists = days.filter(day=day).exists()
-    today = datetime.date.today()
+#     day_exists = days.filter(day=day).exists()
+#     today = datetime.date.today()
 
-    if day >= today:
-        print(day_exists)
-        if day_exists == False:
-            is_valid = True
-            messages.success(request, "New day added {}".format(day))
-        else:
-            messages.error(request, 'This day already exists: {}'.format(day))
-    else:
-        messages.error(request, "The selected day must be in the future")
+#     if day >= today:
+#         print(day_exists)
+#         if day_exists == False:
+#             is_valid = True
+#             messages.success(request, "New day added {}".format(day))
+#         else:
+#             messages.error(request, 'This day already exists: {}'.format(day))
+#     else:
+#         messages.error(request, "The selected day must be in the future")
 
-    return is_valid
+#     return is_valid
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','SiteAdmin','Staff'])
@@ -145,15 +145,36 @@ def createDay(request, *args, **kwargs):
     if request.method == 'POST':
         form = AddDayForm(request.POST)
         if form.is_valid():
-            if dayValidation(request, form) is True:
-                user_company = request.user.customer.company
-                day = form.save()
-                day.company = user_company
-                day.save()
-                # createFollowingDay(request, form)
+            # if dayValidation(request, form) is True:
+            user_company = request.user.customer.company
+
+            num_days = form.cleaned_data.get('num_days')
+            print(num_days)
+            company = request.user.customer.company
+            print(company.day_set.first())
+
+            previous_day = company.day_set.first().day
+            next_day = previous_day + timedelta(days=1)
+            
+            for i in range(0,num_days):
+                day_object = Day.objects.create(
+                    company = company,
+                    day = next_day
+                )
+                
                 for slot in TIMESLOTS:
-                    timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0])
+                    timeslot = TimeSlot.objects.create(day=day_object, time_slot=slot[0])
                     print(timeslot)
+
+                next_day = next_day + timedelta(days=1)
+
+            # day = form.save()
+            # day.company = user_company
+            # day.save()
+            # createFollowingDay(request, form)
+            # for slot in TIMESLOTS:
+            #     timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0])
+            #     print(timeslot)
 
             return redirect('days')
 

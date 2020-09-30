@@ -72,9 +72,8 @@ class CreateUserForm(UserCreationForm):
         fields = ('first_name','last_name','email','apt','password1','password2','group')
     
 class AddDayForm(ModelForm):
-    # day = forms.DateField(widget=DateInput(), initial=datetime.date.today)
-    day = forms.DateField(widget=DatePickerInput(format='%m/%d/%Y', attrs={'placeholder':'YYYY-MM-DD'}))
-
+    # day = forms.DateField(widget=DatePickerInput(format='%m/%d/%Y', attrs={'placeholder':'YYYY-MM-DD'}))
+    num_days = forms.IntegerField()
     class Meta:
         model = Day
-        fields = ('day','notes')
+        fields = ('num_days',)

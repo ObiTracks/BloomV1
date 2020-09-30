@@ -620,8 +620,8 @@ button:focus {
 
 button.btn-info {
   background: #0080ff;
-  background: -webkit-gradient(linear, right top, left top, color-stop(40%, #ffffff), color-stop(45%, #4ebeee), color-stop(55%, #2457e4));
-  background: linear-gradient(to left, #ffffff 40%, #4ebeee 45%, #2457e4 55%);
+  background: -webkit-gradient(linear, right top, left top, color-stop(40%, #ffffff), color-stop(45%, #4ebeee), color-stop(55%, rgba(36, 87, 228, 0)));
+  background: linear-gradient(to left, #ffffff 40%, #4ebeee 45%, rgba(36, 87, 228, 0) 55%);
   background-size: 250% 100%;
   background-position-x: 99%;
   border: solid 3px white;
@@ -635,6 +635,7 @@ button.btn-info:hover {
   background-position-x: 1%;
   color: white;
   border-color: #2457e4;
+  border: solid 3px white;
 }
 
 button.btn-info:active {

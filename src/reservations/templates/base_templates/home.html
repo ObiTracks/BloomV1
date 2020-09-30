@@ -53,6 +53,8 @@
         <h2><a href='{% url "day" day.id %}'>{{day}}</a></h2>
         {% endif %}
 
+        <button class='btn-info'><a href="{% url 'create_day' %}"> + Add Day</a></button>
+        
         <h4>{{day}}</h4>
     </header>
 

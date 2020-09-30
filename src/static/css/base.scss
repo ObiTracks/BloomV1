@@ -492,7 +492,7 @@ button{
 
     &.btn-info{
         background: rgb(0, 128, 255);
-        background: linear-gradient(to left, #ffffff 40%, #4ebeee 45%, rgb(36, 87, 228) 55%);
+        background: linear-gradient(to left, #ffffff 40%, #4ebeee 45%, rgba(36, 87, 228, 0) 55%);
         background-size: 250% 100%;
         background-position-x: 99%;
         border: solid 3px white;
@@ -503,6 +503,7 @@ button{
             background-position-x: 1%;
             color: white;
             border-color: rgb(36, 87, 228);
+            border: solid 3px white;
         }
         &:active{
             background-position-x: 1%;
