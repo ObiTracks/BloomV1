@@ -16,6 +16,7 @@ from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
+from ..tools import autoTimeSlots, threeTimeslots
 
 @unauthenticated_user
 def loginPage(request):
@@ -56,6 +57,7 @@ def registerCompanyPage(request):
         if form.is_valid():
             company = form.save()
             
+            logout(request)
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
@@ -71,6 +73,9 @@ def registerCompanyPage(request):
                 apt=apt,
                 password=raw_password
             )
+            
+            group = Group.objects.get(name='Manager')
+            print(group.user_set.add(user))
 
             Customer.objects.create(
                 user=user,
@@ -81,9 +86,16 @@ def registerCompanyPage(request):
                 apt=apt,
                 )
 
-            Day.objects.create(
+            day = Day.objects.create(
                 company=company,
                 )
+
+            
+            TIMESLOTS = TimeSlot.TIMESLOTS
+            
+            threeTimeslots(TIMESLOTS, day)
+                
+            user = authenticate(request, username=email, password=raw_password)
             messages.success(request, 'New company created and managed by {} {}'.format(first_name, last_name))
             
             user = authenticate(request, email=email, password=raw_password)

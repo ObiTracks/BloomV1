@@ -10,6 +10,7 @@ from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
+from ..tools import autoTimeSlots
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
@@ -135,6 +136,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
 
 #     return is_valid
 
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','SiteAdmin','Staff'])
 def createDay(request, *args, **kwargs):
@@ -153,20 +155,8 @@ def createDay(request, *args, **kwargs):
             company = request.user.customer.company
             print(company.day_set.first())
 
-            previous_day = company.day_set.first().day
-            next_day = previous_day + timedelta(days=1)
-            
-            for i in range(0,num_days):
-                day_object = Day.objects.create(
-                    company = company,
-                    day = next_day
-                )
-                
-                for slot in TIMESLOTS:
-                    timeslot = TimeSlot.objects.create(day=day_object, time_slot=slot[0])
-                    print(timeslot)
 
-                next_day = next_day + timedelta(days=1)
+            autoTimeSlots(TIMESLOTS,company, num_days)
 
             # day = form.save()
             # day.company = user_company
