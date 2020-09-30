@@ -221,45 +221,6 @@ a{
     margin: 0rem 0 1rem 0;
     transition: ease-in-out 0.1s;
 
-    &:hover{
-    }
-    &.card-lg{
-        width: 60%;
-    }
-    &.card-md{
-        width: 37%;
-    }
-    &.editable{
-        // background: blue;
-    }
-    &.non-editable{
-        // background: rgb(255, 231, 14);
-    }
-    &.card-form{
-        width: 30rem;
-        justify-self: center;
-    }
-    &.reservation-card{
-        header{
-            background: $color3;
-        }
-    }
-    &.day-card{
-        header{
-            background: $color1;
-        }
-    }
-    &.delete-card{
-        header{
-            background: linear-gradient(to right, $color4, purple);
-        }
-    }
-    &.change-card{
-        header{
-            background: linear-gradient(to right, #5433ff, #20bdff , #36a2c0);
-        }
-    }
-
     header{
         display: flex;
         align-items: center;
@@ -285,6 +246,50 @@ a{
             color: white;
             margin: 0;
             // text-transform: uppercase;
+        }
+        
+        &.reservation-header{
+            background: $color3;
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+        }
+    }
+
+        &:hover{
+    }
+    &.card-lg{
+        width: 60%;
+    }
+    &.card-md{
+        width: 37%;
+    }
+    &.editable{
+        // background: blue;
+    }
+    &.non-editable{
+        // background: rgb(255, 231, 14);
+    }
+    &.card-form{
+        width: 30rem;
+        justify-self: center;
+    }
+    &.reservation-card{
+            background: $color3;
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+    }
+    &.day-card{
+        header{
+            background: $color1;
+        }
+    }
+    &.delete-card{
+        header{
+            background: linear-gradient(to right, $color4, purple);
+        }
+    }
+    &.change-card{
+        header{
+            background: linear-gradient(to right, #5433ff, #20bdff , #36a2c0);
         }
     }
 

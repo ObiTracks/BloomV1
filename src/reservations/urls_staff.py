@@ -33,8 +33,7 @@ urlpatterns = [
     path('resident/<str:pk>/', views_d_objects.customer, name='resident'),
     path('days/day/<str:pk>/', views_d_objects.day, name='day'),
     path('timeslot/<str:pk>/', views_d_objects.timeslot, name='timeslot'),
-    path('reservation/<str:pk>/', views_d_objects.timeslot,
-         name='reservation'),
+    path('reservation/<str:pk>/', views_d_objects.timeslot, name='reservation'),
 
     # LISTS URLS
     path('residents/<str:tk>/', views_e_lists.customers, name='residents'),

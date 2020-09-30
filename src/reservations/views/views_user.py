@@ -54,12 +54,12 @@ def home_page(request):
 
 @login_required(login_url='login')
 def profilePage(request):
-    customer = request.user.customer
-    total_reservations = customer.reservation_set.count()
+    resident = request.user.customer
+    total_reservations = resident.reservation_set.count()
     page_title = "Resident Dashboard"
 
     context = {
-        'customer':customer,
+        'resident':resident,
         'total_reservations':total_reservations,
         'page_title': page_title,
     }
@@ -136,15 +136,15 @@ def createUserReservation(request, tk, *args, **kwargs):
     
 @login_required(login_url='login')
 def reservationsPage(request):
-    customer = request.user.customer
-    reservations = customer.reservation_set.all()[:2]
+    resident = request.user.customer
+    reservations = resident.reservation_set.all()[:2]
     today_date = date.today()
     tomorrow_date = date.today() + timedelta(days=1)
 
     page_title = "Upcoming Reservations"
 
     context = {
-        'customer':customer,
+        'resident':resident,
         'reservations':reservations,
         'page_title': page_title,
         'today_date':today_date,

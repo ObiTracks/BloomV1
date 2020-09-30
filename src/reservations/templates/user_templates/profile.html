@@ -2,51 +2,61 @@
 {% load static %}
 
 {% block extra_head %}
-<title>{Customer Name}</title>
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}"> -->
+<title>{{resident.name}}</title>
 {% endblock %}
 
 {% block content %}
-<div class="card">
-    <header>
-        <h1>{{resident.name}}</h1>
-        <h2>{{resident.apt}}</h2>
-        <h2>{{resident.phone}}</h2>
+<div class="card card-md resident-card" >
+    <header class="reservation-header">
+        <h2>{{resident.first_name}} {{resident.last_name}}</h2>
         <h2>{{resident.email}}</h2>
     </header>
 
     <div class="body">
         <div class="info-container">
-            <h2>Name: {{resident.name}}</h2>
-            <h2>Apartment: {{resident.apt_number}}</h2>
-            <h2>Email: {{resident.email}}</h2>
-            <h2>Phone: {{resident.phone}}</h2>
-            <h2>Date Added: {{resident.date_created}}</h2>
-            <h2>Notes: {{resident.notes}}</h2>
+            <table>
+                <tr>
+                    <td>
+                        <h2>Name</h2>
+                    </td>
+                    <td>{{resident.first_name}} {{resident.last_name}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Apartment</h2>
+                    </td>
+                    <td>{{resident.apt}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Email</h2>
+                    </td>
+                    <td>{{resident.email}}</2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Date Added:</h2>
+                    </td>
+                    <td>{{resident.date_created}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>Total Reservations</h2>
+                    </td>
+                    <td>{{resident.reservation_set.count}}</td>
+                </tr>
+                <tr>
+                    <td>
+                    <h2>New Reservations</h2>
+                    </td>
+                    <td>
+                        <button><a href="">Reserve Now +</a></button>
+                    </td>
+                </tr>
+            </table>
         </div>
-
-        <table class="table-slot">
-            <tr>
-                <th id="name">Time</th>
-                <th>Day</th>
-                <th>Notes</th>
-                <th>No Show</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-
-            {% for reservation in reservations %}
-            <tr class="data">
-                <td>{{reservation.timeslot}}</td>
-                <td>{{reservation.timeslot.day}}</td>
-                <td>{{reservation.notes}}</td>
-                <td>{{reservation.no_show}}</td>
-                <td><button class='btn btn-info'>Update</button></td>
-                <td><button class='btn btn-danger'>Delete</button></td>
-
-
-            </tr>
-            {% endfor %}
-        </table>
     </div>
 </div>
 

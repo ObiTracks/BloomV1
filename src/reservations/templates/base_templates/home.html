@@ -52,12 +52,12 @@
         {% else %}
         <h2><a href='{% url "day" day.id %}'>{{day}}</a></h2>
         {% endif %}
-
-        {% if day.day == tomorrow_date %}
-        <button class='btn-info'><a href="{% url 'create_day' %}"> + Add Day</a></button>
-        {% endif %}
         
         <h4>{{day}}</h4>
+
+        {% if day.day == tomorrow_date or day.day == today_date %}
+        <button class='btn-info'><a href="{% url 'create_day' %}"> + Add Day</a></button>
+        {% endif %}
     </header>
 
     <div class="body">

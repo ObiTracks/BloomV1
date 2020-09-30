@@ -1,7 +1,8 @@
-{% extends "user_templates/base.html" %}
+{% extends "base_templates/base.html" %}
 {% load static %}
 
 {% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/CUD/forms.css' %}">
 <title>{{page_title}}</title>
 {% endblock %}
 
@@ -17,14 +18,21 @@
             <form id="res-form" class="modify" action="" method="POST">
                 {% csrf_token %}
                 {{form}}
+                <hr>
+                {{form2}}
             </form>
         </div>
-        
-        
-        <footer class="footer-shell">
+
+
+        <footer>
             <div class="buttons">
-                <button class="btn btn-cancel" href="{% url 'home' %}">Cancel</button>
-                <button class="btn btn-confirm" type="submit" action="submit" value="Confirm" form='res-form'>Confirm</button>
+                <button class="btn btn-cancel">
+                    <a href="{% url 'staff_dashboard' %}">
+                        Cancel
+                    </a>
+                </button>
+                <button class="btn btn-confirm" type="submit" action="submit" value="Confirm"
+                    form='res-form'>Confirm</button>
             </div>
         </footer>
     </div>

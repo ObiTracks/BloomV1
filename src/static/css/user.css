@@ -274,38 +274,6 @@ a {
   transition: ease-in-out 0.1s;
 }
 
-.card.card-lg {
-  width: 60%;
-}
-
-.card.card-md {
-  width: 37%;
-}
-
-.card.card-form {
-  width: 30rem;
-  -ms-grid-column-align: center;
-      justify-self: center;
-}
-
-.card.reservation-card header {
-  background: #13b1bd;
-}
-
-.card.day-card header {
-  background: #2457e4;
-}
-
-.card.delete-card header {
-  background: -webkit-gradient(linear, left top, right top, from(#f03d10), to(purple));
-  background: linear-gradient(to right, #f03d10, purple);
-}
-
-.card.change-card header {
-  background: -webkit-gradient(linear, left top, right top, from(#5433ff), color-stop(#20bdff), to(#36a2c0));
-  background: linear-gradient(to right, #5433ff, #20bdff, #36a2c0);
-}
-
 .card header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -340,6 +308,48 @@ a {
   color: #828282;
   color: white;
   margin: 0;
+}
+
+.card header.reservation-header {
+  background: #13b1bd;
+  background: -webkit-gradient(linear, left top, right top, from(#8e2de2), to(#4a00e0));
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+}
+
+.card.card-lg {
+  width: 60%;
+}
+
+.card.card-md {
+  width: 37%;
+}
+
+.card.card-form {
+  width: 30rem;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.card.reservation-card {
+  background: #13b1bd;
+  background: -webkit-gradient(linear, left top, right top, from(#8e2de2), to(#4a00e0));
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  background: -webkit-gradient(linear, left top, right top, from(#0f0c29), color-stop(#302b63), to(#24243e));
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
+.card.day-card header {
+  background: #2457e4;
+}
+
+.card.delete-card header {
+  background: -webkit-gradient(linear, left top, right top, from(#f03d10), to(purple));
+  background: linear-gradient(to right, #f03d10, purple);
+}
+
+.card.change-card header {
+  background: -webkit-gradient(linear, left top, right top, from(#5433ff), color-stop(#20bdff), to(#36a2c0));
+  background: linear-gradient(to right, #5433ff, #20bdff, #36a2c0);
 }
 
 .card footer {
