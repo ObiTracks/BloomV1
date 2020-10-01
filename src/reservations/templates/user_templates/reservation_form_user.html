@@ -1,8 +1,7 @@
-{% extends "base_templates/base.html" %}
+{% extends "user_templates/base.html" %}
 {% load static %}
 
 {% block extra_head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/CUD/forms.css' %}">
 <title>{{page_title}}</title>
 {% endblock %}
 
@@ -11,15 +10,17 @@
 <div class="section">
     <div class="card change-card">
         <header>
-            <h2>New Reservation</h2>
+            <h2>Make a Reservation</h2>
         </header>
 
         <div class="body item-info">
             <form id="res-form" class="modify" action="" method="POST">
                 {% csrf_token %}
-                {{form}}
+                <h1>Going alone? Just press enter to reserve for <br> yourself now or click the green confirm button.</h1>
+                <h2>Bringing somebody? Select to add them to <br> the reservation below</h2>
+                <!-- {{form}} -->
                 <hr>
-                {{form2}}
+                {{form}}
             </form>
         </div>
 

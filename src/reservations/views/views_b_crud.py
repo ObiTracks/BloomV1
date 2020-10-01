@@ -1,6 +1,6 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.forms import inlineformset_factory
 from django.contrib import messages
 from datetime import date, time, timedelta
@@ -16,7 +16,6 @@ from ..tools import autoTimeSlots
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
 def createReservation(request, tk, pk, *args, **kwargs):
     current_user = request.user
-    current_user_id = current_user.id
     user_company = current_user.customer.company
     print(current_user)
 
@@ -82,8 +81,13 @@ def createReservation(request, tk, pk, *args, **kwargs):
                 res_exists = multipleBookingCheck(timeslot, customer)
                 current_capacity = timeslot.getCurrentCapacity()
                 
-                if res_exists == False:    
-                    if current_capacity < timeslot.capacity:
+                if res_exists == False:
+                    if party_members == None:
+                        party_size = 1
+                    else:
+                        party_size = party_members.count() + 1
+                        
+                    if (current_capacity + party_size) <= timeslot.capacity:
                         timeslot.save()
                         reservation = form.save()
                         reservation.company = user_company
@@ -95,7 +99,9 @@ def createReservation(request, tk, pk, *args, **kwargs):
                         reservation.save()
 
                         messages.success(request,"Reservation created for {} at {}".format(customer,timeslot))
-                        return redirect('/staff')
+                        # return redirect('/staff')
+                        return redirect('/staff/days/day/{}/'.format(timeslot.day.id))
+                        
                     else:
                         messages.error(request,"Timeslot at capacity of {}".format(current_capacity))
     #
@@ -193,10 +199,12 @@ def deleteDay(request, pk):
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])
 def deleteReservation(request, pk):
     reservation = Reservation.objects.get(id=pk)
+    day_id = reservation.timeslot.day.id
     if request.method == 'POST':
         reservation.delete()
         messages.success(request,"Reservation successfully deleted {}".format(reservation))
-        return redirect('/staff/')
+        # return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect('/staff/days/day/{}/'.format(day_id))
         
     context = {'item': reservation}
     template_name = '../templates/crud_templates/delete_templates/delete_reservation.html'

@@ -1,5 +1,21 @@
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from .models import (Customer, Day, TimeSlot, Reservation)
 from datetime import date, time, timedelta
+
+def multipleBookingCheck(request, timeslot, customer):
+    timeslot_day = timeslot.day
+    res_exists = False
+    i = 0
+
+    while i < timeslot_day.timeslot_set.count() and res_exists == False:
+        slot = timeslot_day.timeslot_set.all()[i]
+        res_exists = slot.reservation_set.filter(customer=customer).exists()
+        
+        i += 1
+
+    return res_exists
 
 def autoTimeSlots(TIMESLOTS, company, num_days):
     today_date = date.today()
@@ -27,3 +43,12 @@ def threeTimeslots(TIMESLOTS, day):
             timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0])
             print(timeslot)
     
+def t_res(company):
+    reservations = company.reservation_set.all()
+    t_reservations = reservations.count()
+
+    for reservation in reservations:
+        party_size = reservation.party_members.count()
+        t_reservations += party_size
+    
+    return t_reservations

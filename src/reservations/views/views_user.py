@@ -12,6 +12,8 @@ from time import sleep
 from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
+from ..tools import *
+from ..decorators import unauthenticated_user, allowed_users
 
 
 @login_required(login_url='login')
@@ -46,6 +48,8 @@ def home_page(request):
             'days':days,
             'customer':customer,
             'page_title': page_title,
+            'today_date':today_date,
+            'tomorrow_date':tomorrow_date
         }
         template_name = '../templates/user_templates/home.html'
     
@@ -70,68 +74,84 @@ def profilePage(request):
 
     
 @login_required(login_url='login')
-def createUserReservation(request, tk, *args, **kwargs):
-    customer = request.user.customer
-    # Check to pass through a prefilled timeslot if it recieves an id for one
-    if tk != 'None':
-        timeslot = TimeSlot.objects.get(id=tk)
-        form = ReservationForm(initial={
-            'customer': customer,
-            'timeslot': timeslot
-        })
-        # print('Path A: tk='+ tk)
-        form = ReservationForm(initial={
-            'customer': customer,
-            'timeslot': timeslot
-        })
-    else:
-        timeslot = None
-        form = ReservationForm(initial={
-            'customer': customer,
-        })
-        # print('Path B: tk=' + tk)
+def createReservation(request, tk, pk, *args, **kwargs):
+    current_user = request.user
+    customer = current_user.customer
+    company = current_user.customer.company
+    timeslot = TimeSlot.objects.get(id=tk)
 
-    # Creating for creating a reservation from post data
+    form = LeaseMemberReservationForm(customer)
+
+    # CREATING RESERVATION FROM FORM POST DATA Creating for creating a reservation from post data
     if request.method == 'POST':
-        # print('Printing POST:', request.POST)
-        form = ReservationForm(request.POST)
+        form = LeaseMemberReservationForm(customer, request.POST)
+        print(form.data)
+
         if form.is_valid():
-            print(request.POST)
-            timeslot_id = request.POST.get('timeslot')
-            timeslot = TimeSlot.objects.get(pk=timeslot_id)
-            print(timeslot)
-            if request.POST.get('timeslot') != None:
-                num_res = timeslot.reservation_set.all().count()
-                if num_res < timeslot.capacity:
-                    form.save()
-                    return redirect('/')
+            party_members = form.cleaned_data.get("set_lease_members")
+            res_exists = multipleBookingCheck(request, timeslot, customer)
+            print("Does this reservation exist? ", res_exists)
+
+            if res_exists == True:
+                messages.error(request,"You already have a reservation booked for today".format(customer))
+                # return redirect('/user')
+            else:
+                current_capacity = timeslot.getCurrentCapacity()   
+                if current_capacity < timeslot.capacity:
+                    reservation = Reservation.objects.create(
+                        company=company,
+                        customer = customer,
+                        timeslot=timeslot,
+                    )
+                    # reservation.save()
+                    # form.save()
+                    reservation.company = company
+                    print('************RESERVATION**************')
+                    if party_members != None:
+                        for person in party_members:
+                            print(reservation.party_members.add(person))
+                            # print(person.fullname)
+                            
+                    reservation.save()
+
+                    messages.success(request,"Successfully booked your reservation at {}. Remember to show up or delete your reservation to be courteous of attendance".format(timeslot))
+                    group = request.user.groups.first().name
+                    print(group)
+
+                    # if request.user.groups.first().name == "Resident":
+                    return redirect('/user/reservations/')
+                    # else:
+                        # return redirect('/staff')
                 else:
-                    messages.error(request, 'Timeslot is at capacity')
-                    print("Timeslot at capacity of {}".format(num_res))
+                    messages.error(request,"Timeslot at capacity of {}".format(current_capacity))
     #
 
     stats = {}
 
     context = {
-        'form': form,
-        'page_title': 'New Reservation',
+        'form':form,
+        'page_title': 'Create a reservation',
         'customer': customer,
         'time_slot': timeslot
     }
-    return render(request, '../templates/user_templates/reservation_form.html', context)
+    return render(request, '../templates/user_templates/reservation_form_user.html', context)
+
 
     
-# @login_required(login_url='login')
-# # @allowed_users(allowed_roles=['manager','staff','SiteAdmin'])
-# def deleteReservation(request, pk):
-#     reservation = Reservation.objects.get(id=pk)
-#     if request.method == 'POST':
-#         reservation.delete()
-#         return redirect('/')
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin','Resident'])
+def deleteUserReservation(request, pk):
+    reservation = Reservation.objects.get(id=pk)
+    day_id = reservation.timeslot.day.id
+    if request.method == 'POST':
+        reservation.delete()
+        messages.success(request,"Reservation successfully deleted {}".format(reservation))
+        # return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect('reservations')
         
-#     context = {'item': reservation}
-#     template_name = '../templates/crud_templates/delete_user-v.html'
-#     return render(request, template_name, context)
+    context = {'item': reservation}
+    template_name = '../templates/crud_templates/delete_templates/delete_reservation.html'
+    return render(request, template_name, context)
 
     
 @login_required(login_url='login')

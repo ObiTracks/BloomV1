@@ -14,16 +14,9 @@ from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
+from ..tools import *
 
-def t_res(company):
-    reservations = company.reservation_set.all()
-    t_reservations = reservations.count()
 
-    for reservation in reservations:
-        party_size = reservation.party_members.count()
-        t_reservations += party_size
-    
-    return t_reservations
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])

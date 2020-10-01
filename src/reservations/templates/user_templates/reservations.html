@@ -31,7 +31,13 @@
                     {{person.full_name}},
                     {% endfor %}
                 </td>
-                <td></td>
+                <td>
+                    {% if reservation.timeslot.day.day >= today_date %}
+                    <button class='btn btn-danger' type="submit">
+                        <a href="{% url 'deleteUserReservation' reservation.id %}">Delete</a>
+                    </button>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>
