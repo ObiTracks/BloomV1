@@ -618,20 +618,18 @@ button.btn-info:focus {
 }
 
 button.btn-danger {
-  color: black;
-  background: #ffd4cf;
-  background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, #fff6f4));
-  background: linear-gradient(to right, red 55%, #fff6f4 65%);
+  color: white;
+  background: black;
+  background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, black));
+  background: linear-gradient(to right, red 55%, black 65%);
   background-size: 300% 100%;
   background-position-x: 99%;
-  outline: solid black 3px;
 }
 
 button.btn-danger:hover {
   background-position-x: 1%;
   border: none;
-  border-radius: 0;
-  outline: solid 3px red;
+  outline: none;
   color: white;
 }
 

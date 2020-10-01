@@ -36,7 +36,13 @@
                 <button><a href="{% url 'new_reservation' slot.id customer.id %}">Make Reservation +</a></button>
             {% endif %}
 
-            {% if slot.capacity != slot.reservation_set.count %}
+            {% if slot|userResExists:customer == True %}
+                <div class="info" style="background: rgb(22, 158, 22); border: solid 5px rgb(11, 133, 35);">
+                    <h1 style="font-style: italic; font-family: 'Montserrat';">
+                        RESERVED
+                    </h1>
+                </div>
+            {% elif slot.capacity != slot.getCurrentCapacity %}
                 <div class="info">
                     <h1>
                         {{slot.capacity|subtract:slot.getCurrentCapacity}} spots left

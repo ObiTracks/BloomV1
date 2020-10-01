@@ -490,18 +490,16 @@ button{
     }
     
     &.btn-danger{
-        color: black;
-        background: rgb(255, 212, 207);
-        background: linear-gradient(to right, red 55%, #fff6f4 65%);
+        color: white;
+        background: black;
+        background: linear-gradient(to right, red 55%, black 65%);
         background-size: 300% 100%;
         background-position-x: 99%;
-        outline: solid black 3px;
         // padding: 5px;
         &:hover{
             background-position-x: 1%;
             border: none;
-            border-radius: 0;
-            outline: solid 3px red;
+            outline: none;
             color: white;
             // padding: 7px;
         }

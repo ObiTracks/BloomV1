@@ -16,7 +16,12 @@ from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
 from ..tools import *
 
+def landingPage(request):
 
+    context = {}
+    template_name = '../templates/base_templates/landingpage.html'
+
+    return render(request, template_name, context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin'])

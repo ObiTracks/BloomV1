@@ -70,7 +70,24 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = Account
         fields = ('first_name','last_name','email','apt','password1','password2','group')
+
+class CreateLeaseMemberForm(ModelForm):
+    RELATIONSHIP = (
+        ('husband','Husband'),
+        ('wife','Wife'),
+        ('daughter','Daughter'),
+        ('son','Son'),
+        ('relative','Relative')
+    )
+    full_name = forms.CharField(max_length=100,)
+    relation = forms.ChoiceField(choices=RELATIONSHIP)
     
+    widget=forms.CheckboxSelectMultiple,
+
+    class Meta:
+        model = LeaseMember
+        fields = ('full_name','relation')
+
 class AddDayForm(ModelForm):
     # day = forms.DateField(widget=DatePickerInput(format='%m/%d/%Y', attrs={'placeholder':'YYYY-MM-DD'}))
     num_days = forms.IntegerField()

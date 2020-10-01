@@ -26,7 +26,7 @@
                 <td>{{reservation.timeslot.day}}</td>
                 <td>{{reservation.timeslot.time_slot}}</td>
                 <td>
-                    ({{reservation.party_members.count}})
+                    ({{reservation.party_members.count|add:1}})
                     {% for person in reservation.party_members.all %}
                     {{person.full_name}},
                     {% endfor %}

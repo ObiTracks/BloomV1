@@ -103,7 +103,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
                         return redirect('/staff/days/day/{}/'.format(timeslot.day.id))
                         
                     else:
-                        messages.error(request,"Timeslot at capacity of {}".format(current_capacity))
+                        messages.error(request,"Timeslot at capacity of {}/{}. Your party size is too big".format(current_capacity,timeslot.capacity))
     #
 
     stats = {}
@@ -116,31 +116,6 @@ def createReservation(request, tk, pk, *args, **kwargs):
         'time_slot': timeslot
     }
     return render(request, '../templates/crud_templates/reservation_form.html', context)
-
-
-# def dayValidation(request, form):
-#     is_valid = False
-#     cleaned_data = form.cleaned_data
-#     day = cleaned_data['day']
-    
-#     current_user = request.user
-#     user_company = current_user.customer.company
-#     days = user_company.day_set
-
-#     day_exists = days.filter(day=day).exists()
-#     today = datetime.date.today()
-
-#     if day >= today:
-#         print(day_exists)
-#         if day_exists == False:
-#             is_valid = True
-#             messages.success(request, "New day added {}".format(day))
-#         else:
-#             messages.error(request, 'This day already exists: {}'.format(day))
-#     else:
-#         messages.error(request, "The selected day must be in the future")
-
-#     return is_valid
 
 
 @login_required(login_url='login')

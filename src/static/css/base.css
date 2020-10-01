@@ -674,7 +674,6 @@ button.btn-alternate:hover {
 
 button.btn-danger {
   color: white;
-  background: #ffd4cf;
   background: black;
   background: -webkit-gradient(linear, left top, right top, color-stop(55%, red), color-stop(65%, black));
   background: linear-gradient(to right, red 55%, black 65%);

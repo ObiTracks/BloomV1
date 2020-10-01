@@ -1,0 +1,40 @@
+{% extends "base_templates/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/CUD/delete.css' %}">
+<title>Delete</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="section">
+    <div class="card">
+        <header>
+            <h2>Delete</h2>
+        </header>
+
+
+        <form action="{% url 'deleteReservation' item.id  %}" method="POST">
+            <div class="info-container">
+                <h1>Are you sure you want to delete this reservation? "{{item}}"?</h1>
+            </div>
+
+            {% csrf_token %}
+            <div class='buttons'>
+                <button class="btn btn-cancel">
+                    <a href="{% url 'dashboard' %}">
+                        Cancel
+                    </a>
+                </button>
+
+                <input class="btn btn-danger" type="submit" name="Confirm">
+            </div>
+
+
+        </form>
+
+
+    </div>
+</div>
+{% endblock %}

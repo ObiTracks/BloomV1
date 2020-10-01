@@ -1,10 +1,13 @@
 from django.contrib import admin
 from django.urls import path, re_path, include # url
+from reservations.views.views_a_base import landingPage
 from reservations.views.views_c_login import loginPage, registerCompanyPage, logoutUser
 # from reservations.views import (home_page, reservations_page, booked_page, about_page, contact_page)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),    
+    path('', landingPage, name='landing_page'),
+
     path('staff/', include('reservations.urls_staff')),
     path('user/', include('reservations.urls_user')),
 

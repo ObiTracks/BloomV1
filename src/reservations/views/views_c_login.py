@@ -115,6 +115,7 @@ def registerCompanyPage(request):
 def registerUserPage(request):
     context = {}
     form = CreateUserForm()
+    form2 = CreateLeaseMemberForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
@@ -145,10 +146,12 @@ def registerUserPage(request):
             # return redirect('login')
             return redirect('/staff')
         else:
-            context['registration_form'] = form
+            # context['registration_form'] = form
+            context = {"form":form,"form2":form2}
     else: # This would be a get request
         form = CreateUserForm()
-        context['registration_form'] = form
+        context = {"form":form,"form2":form2}
+        # context['registration_form'] = form
 
     # context = {'registration_form':registration_form}
     # template_name = '../templates/login_templates/register.html'

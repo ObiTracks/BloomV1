@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from time import sleep
 #View imports here
 from ..models import (Customer, Day, TimeSlot, Reservation)
-from ..forms import *
+from ..forms_user import *
 from ..filters import CustomerFilter
 from ..tools import *
 from ..decorators import unauthenticated_user, allowed_users
@@ -33,12 +33,12 @@ def home_page(request):
         
         temp_list = []
 
-        if today_day != False:
-            today_day = days.get(day=today_date)
-            temp_list.append(today_day)
         if tomorrow_day != False:
             tomorrow_day = days.get(day=tomorrow_date)
             temp_list.append(tomorrow_day)
+        if today_day != False:
+            today_day = days.get(day=today_date)
+            temp_list.append(today_day)
         days = temp_list
         print(days)
 
@@ -119,7 +119,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
                     print(group)
 
                     # if request.user.groups.first().name == "Resident":
-                    return redirect('/user/reservations/')
+                    return redirect('reservations')
                     # else:
                         # return redirect('/staff')
                 else:
@@ -140,7 +140,7 @@ def createReservation(request, tk, pk, *args, **kwargs):
     
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin','Resident'])
-def deleteUserReservation(request, pk):
+def deleteReservationUser(request, pk):
     reservation = Reservation.objects.get(id=pk)
     day_id = reservation.timeslot.day.id
     if request.method == 'POST':
