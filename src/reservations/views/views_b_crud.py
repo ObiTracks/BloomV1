@@ -177,7 +177,7 @@ def deleteReservation(request, pk):
     day_id = reservation.timeslot.day.id
     if request.method == 'POST':
         reservation.delete()
-        messages.success(request,"Reservation successfully deleted {}".format(reservation))
+        messages.success(request,"Reservation successfully deleted (staff side){}".format(reservation))
         # return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         return redirect('/staff/days/day/{}/'.format(day_id))
         

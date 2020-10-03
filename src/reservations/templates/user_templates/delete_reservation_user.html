@@ -15,7 +15,7 @@
         </header>
 
 
-        <form action="{% url 'deleteReservation' item.id  %}" method="POST">
+        <form action="{% url 'deleteReservationUser' item.id  %}" method="POST">
             <div class="info-container">
                 <h1>Are you sure you want to delete this reservation? "{{item}}"?</h1>
             </div>
@@ -23,7 +23,7 @@
             {% csrf_token %}
             <div class='buttons'>
                 <button class="btn btn-cancel">
-                    <a href="{% url 'dashboard' %}">
+                    <a href="{% url 'home' %}">
                         Cancel
                     </a>
                 </button>

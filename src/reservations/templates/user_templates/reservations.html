@@ -34,7 +34,7 @@
                 <td>
                     {% if reservation.timeslot.day.day >= today_date %}
                     <button class='btn btn-danger' type="submit">
-                        <a href="{% url 'deleteUserReservation' reservation.id %}">Delete</a>
+                        <a href="{% url 'deleteReservationUser' reservation.id %}">Delete</a>
                     </button>
                     {% endif %}
                 </td>

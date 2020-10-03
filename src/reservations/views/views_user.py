@@ -60,7 +60,7 @@ def home_page(request):
 def profilePage(request):
     resident = request.user.customer
     total_reservations = resident.reservation_set.count()
-    page_title = "Resident Dashboard"
+    page_title = "Profile"
 
     context = {
         'resident':resident,
@@ -139,18 +139,18 @@ def createReservation(request, tk, pk, *args, **kwargs):
 
     
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Manager','Staff','SiteAdmin','Resident'])
+# @allowed_users(allowed_roles=['Manager','Staff','SiteAdmin','Resident'])
 def deleteReservationUser(request, pk):
     reservation = Reservation.objects.get(id=pk)
     day_id = reservation.timeslot.day.id
     if request.method == 'POST':
         reservation.delete()
-        messages.success(request,"Reservation successfully deleted {}".format(reservation))
+        messages.success(request,"Reservation successfully deleted (user side) {}".format(reservation))
         # return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-        return redirect('reservations')
+        return redirect('home')
         
     context = {'item': reservation}
-    template_name = '../templates/crud_templates/delete_templates/delete_reservation.html'
+    template_name = '../templates/user_templates/delete_reservation_user.html'
     return render(request, template_name, context)
 
     

@@ -11,6 +11,7 @@
 </head>
 <body>
     <h2>Register New Resident</h2>
+    <h3>Enter the information of the customer you are registering for pool access</h3>
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -28,6 +29,10 @@
             </p>
         {% endfor %}
 
+        <h2>Lease Members</h2>
+        <h3>Enter the names of the lease members you want to add to this customer's profile</h3>
+
+        
         {% for field in form2 %}
         <p>
             {{field.label_tag}}

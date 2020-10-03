@@ -113,14 +113,17 @@ def registerCompanyPage(request):
 
     
 def registerUserPage(request):
-    context = {}
+    current_user = request.user
+    customer = current_user.customer
+    user_company = current_user.customer.company
+
     form = CreateUserForm()
-    form2 = CreateLeaseMemberForm()
+    LeaseFormSet = inlineformset_factory(Customer, LeaseMember, fields=('full_name','relation'))
+    form2 = LeaseFormSet()
+
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            current_user = request.user
-            user_company = current_user.customer.company
             
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
@@ -133,7 +136,7 @@ def registerUserPage(request):
             user = form.save()
             print(user.groups.add(group))
 
-            Customer.objects.create(
+            customer = Customer.objects.create(
                 company=user_company,
                 user=user,
                 first_name=first_name,
@@ -143,6 +146,7 @@ def registerUserPage(request):
                 )
             messages.success(request, 'Account was created for {} {}'.format(first_name, last_name))
 
+            print(form2.data)
             # return redirect('login')
             return redirect('/staff')
         else:

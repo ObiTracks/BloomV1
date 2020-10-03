@@ -10,7 +10,8 @@
 <div class="card resident-card">
     <header>
         <h2>{{resident.first_name}} {{resident.last_name}}</h2>
-        <h2>{{resident.email}}</h2>
+
+        <button class="btn"><a href="{% url 'create_reservation' None resident.id %}">New Reservation +</a></button>
     </header>
 
     <div class="body">
