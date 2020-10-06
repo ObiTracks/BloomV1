@@ -12,3 +12,14 @@ def subtract(value, arg):
 def userResExists(timeslot, customer):
     res_exists = timeslot.reservation_set.filter(customer=customer).exists()
     return res_exists
+
+@register.filter
+def totalResDay(day):
+    timeslots = day.timeslot_set.all()
+    count = 0
+
+    for timeslot in timeslots:
+        n = timeslot.getCurrentCapacity()
+        count += n
+    
+    return count

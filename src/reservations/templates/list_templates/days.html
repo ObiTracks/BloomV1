@@ -1,5 +1,6 @@
 {% extends "../base_templates/base.html" %}
 {% load static %}
+{% load tag_extras %}
 
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
@@ -30,14 +31,14 @@
             <table class="table-slot">
                 <tr>
                     <th id="name">Date</th>
-                    <th>Timeslots</th>
+                    <th>Total Reservations</th>
                     <th>Delete</th>
                 </tr>
 
                 {% for day in days %}
                 <tr class="data" >
                     <td onclick="window.location='{% url 'day' day.id %}';">{{day.day}}</td>
-                    <td>{{day.timeslot_set.all.count}}</td>
+                    <td>{{ day|totalResDay}}</td>
                     <td>
                         {% if day.day >= today %}
                         <button class='btn btn-danger' type="submit"><a href="{% url 'deleteDay' day.id %}">Delete</a>
