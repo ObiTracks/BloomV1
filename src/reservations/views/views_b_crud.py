@@ -191,7 +191,7 @@ def deleteCustomer(request, pk):
     customer = Customer.objects.get(id=pk)
     user = customer.user
     if request.method == 'POST':
-        if user == request.user or customer.user.groups.first().name not in  ['Manager','Staff','SiteAdmin']:
+        if user != request.user or user.groups.first().name not in  ['Manager','Staff','SiteAdmin']:
             user.delete()
             messages.success(request,"Resident successfully deleted {}".format(customer))
         else:

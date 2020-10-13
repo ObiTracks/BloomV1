@@ -15,9 +15,7 @@ class Company(models.Model):
     zip_code = models.CharField("ZIP/Postal code", max_length=12, null=True, blank=True)
     country = CountryField(blank_label="Select country", null=False, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    
-
-    
+        
     class Meta:
         ordering = ["-company_name"]
         verbose_name = "Company"
