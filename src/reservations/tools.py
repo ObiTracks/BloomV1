@@ -37,6 +37,7 @@ def autoTimeSlots(TIMESLOTS, company, num_days):
         threeTimeslots(TIMESLOTS, day_object)
 
         next_day = next_day + timedelta(days=1)
+    return
 
 def threeTimeslots(TIMESLOTS, day):
     for slot in TIMESLOTS:
