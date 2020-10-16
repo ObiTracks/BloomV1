@@ -10,27 +10,10 @@
     <title>New Resident</title>
 </head>
 <body>
-    <h2>Register New Resident</h2>
-    <h3>Enter the information of the customer you are registering for pool access</h3>
+    <h2>Lease Members</h2>
+    <h3>Enter the names of the lease members you want to add to this customer's profile</h3>
     <form method="post">
         {% csrf_token %}
-        {% for field in form %}
-            <p>
-                {{field.label_tag}}
-                {{field}}
-
-                {% if field.help_text %}
-                    <small style="color: grey;">{{field.help_text}}</small>
-                {% endif %}
-
-                {% for error in field.errors %}
-                    <p style="color: red;">{{error}}</p>
-                {% endfor %}
-            </p>
-        {% endfor %}
-
-        <h2>Lease Members</h2>
-        <h3>Enter the names of the lease members you want to add to this customer's profile</h3>
 
         {{formset.management_form}}
         {% for field in formset %}
@@ -43,8 +26,8 @@
             {% endif %}
         
             {% for error in field.errors %}
-        <p style="color: red;">{{error}}</p>
-        {% endfor %}
+            <p style="color: red;">{{error}}</p>
+            {% endfor %}
         </p>
         {% endfor %}
         <button type='submit'>Register</button>

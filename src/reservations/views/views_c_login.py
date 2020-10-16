@@ -118,13 +118,9 @@ def registerUserPage(request):
     user_company = current_user.customer.company
 
     form = CreateUserForm()
-    LeaseFormSet = inlineformset_factory(Customer, LeaseMember, fields=('full_name','relation'),extra=5)
-    form2 = LeaseFormSet(queryset=LeaseMember.objects.none(), instance=customer)
-
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
-        if form.is_valid():
-            
+        if form.is_valid() and formset.is_valid():            
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
@@ -144,24 +140,38 @@ def registerUserPage(request):
                 email=email,
                 apt=apt,
                 )
-
             messages.success(request, 'Account was created for {} {}'.format(first_name, last_name))
 
-            print(form2.data)
-            # return redirect('login')
             return redirect('/staff')
-        else:
-            # context['registration_form'] = form
-            context = {"form":form,"form2":form2}
-    else: # This would be a get request
+    else:
         form = CreateUserForm()
-        context = {"form":form,"form2":form2}
-        # context['registration_form'] = form
-
-    # context = {'registration_form':registration_form}
-    # template_name = '../templates/login_templates/register.html'
+    
+    context = {"form":form,"formset":formset}
     template_name = '../templates/login_templates/registration_templates/register_customer.html'
     return render(request,template_name, context)
+
+def registerLeaseMembers(request, pk):
+    LeaseFormSet = inlineformset_factory(Customer, LeaseMember, fields=('full_name','relation'),extra=5)
+    customer = Customer.objects.get(id=pk)
+    formset = LeaseFormSet(queryset=LeaseMember.objects.none(),instance=customer)
+
+    if request.method == 'POST':
+        formset = LeaseFormSet(request.POST, instance=customer)
+        print("Formset might be valid")
+        
+        if formset.is_valid():
+            print("Formset is valid")
+            formset.save()
+            
+            # messages.success(request, 'Account was created for {} {}'.format(first_name, last_name))
+            return redirect('/staff')
+    # else:
+    #     formset = LeaseFormSet()
+
+    context = {"formset":formset}
+    template_name = '../templates/login_templates/registration_templates/register_lease-members.html'
+    return render(request,template_name, context)
+
 
 def logoutUser(request):
     customer = request.user.customer

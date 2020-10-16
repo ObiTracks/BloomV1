@@ -3,6 +3,19 @@
 
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/customer/customer.css' %}">
+<style>
+    h2{
+        font-size: 1.4rem;
+    }
+    p{
+        font-size: 1rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    tr:hover{
+        background: rgb(177, 27, 27)
+        cursor: pointer;
+    }
+</style>
 <title>{{resident.name}}</title>
 {% endblock %}
 
@@ -19,23 +32,33 @@
             <table>
                 <tr>
                     <td><h2>Name</h2></td>
-                    <td>{{resident.first_name}} {{resident.last_name}}</td>
-                </tr>
-                <tr>
-                    <td><h2>Apartment</h2></td>
-                    <td>{{resident.apt}}</td>
+                    <td><p>{{resident.first_name}} {{resident.last_name}}</p></td>
                 </tr>
                 <tr>
                     <td><h2>Email</h2></td>
-                    <td>{{resident.email}}</2></td>
-                </tr>
-                <tr>
-                    <td><h2>Date Added:</h2></td>
-                    <td>{{resident.date_created}}</td>
+                    <td><p>{{resident.email}}</p></2></td>
                 </tr>
                 <tr>
                     <td><h2>Notes</h2></td>
-                    <td>{{resident.notes}}</td>
+                    <td><p>{{resident.notes}}</p></td>
+                </tr>
+                <tr>
+                    <td><h2>Apartment</h2></td>
+                    <td><p>{{resident.apt}}</p></td>
+                </tr>
+                <tr>
+                    <td><h2>Date Added:</h2></td>
+                    <td><p>{{resident.date_created}}</p></td>
+                </tr>
+                <tr>
+                    <td><h2>Lease Members</h2></td>
+                    <td><p>{% for person in resident.lease_member_set.all%}
+                    {{person.full_name}},
+                    {% endfor %}</p>
+                        
+                        <button class='btn' type="submit"><a href="{% url 'register-lease-members' resident.id %}">Add +</a>
+                        </button>
+                    </td>
                 </tr>
                 <tr>
                     <td><h2>Delete Resident</h2></td>

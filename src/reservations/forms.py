@@ -50,7 +50,6 @@ class LeaseMemberReservationForm(ModelForm):
     class Meta:
         model = LeaseMember
         fields = ()
-        # exclude = ('lease_owner','full_name','relation',)
 
 
 class CreateCompanyForm(ModelForm):

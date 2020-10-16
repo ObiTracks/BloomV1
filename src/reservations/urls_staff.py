@@ -25,6 +25,7 @@ urlpatterns = [
 
     # LOGIN URLS
     path('register-user/', views_c_login.registerUserPage, name='register_user'),
+    path('register-lease-members/<int:pk>', views_c_login.registerLeaseMembers, name='register-lease-members'),
 #     path('login/', views_c_login.loginPage, name='login'),
 #     path('logout/', views_c_login.logoutUser, name='logout'),
     path('profile/', views_c_login.profilePage, name='profile'),

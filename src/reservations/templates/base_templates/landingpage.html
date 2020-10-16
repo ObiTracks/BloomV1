@@ -12,6 +12,7 @@
         html{
             min-width: 700px;
             padding: 0;
+            background: #F1F2F3;
         }
         body{
             padding-top: 0.5rem;
@@ -19,11 +20,11 @@
         }
         h1{
             font-family: 'Poppins', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             text-align: center;
             color: rgb(12, 21, 89);
             margin: 0;
-            background: linear-gradient(to bottom left, #17abb6, #9ab5f0);
+            background: linear-gradient(to bottom left, #0c84a9, #9ab5f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -35,31 +36,34 @@
             
             color: rgb(17, 58, 89);
             margin: 0;
-            background: linear-gradient(to bottom left, #17abb6, #9ab5f0);
+            background: linear-gradient(to bottom left, #1784b696, #9ab5f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         h3{
-            font-family: 'Rubik', sans-serif;
-            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
             font-size: 1rem;
+            line-height: 1.1rem;
             text-align: left;
             margin: 0;
             margin-bottom: 5px;
             color: rgb(38, 48, 123);
-            padding-bottom: 3px;
-            border-bottom: solid rgb(72, 87, 199) 6px;
-            /* background: linear-gradient(to bottom left, #17abb6, #5b86e5);
+            /* padding: 0 0rem 1rem 1rem; */
+            padding: 0 0 2px 0.8rem;
+            border-left: solid #ff00cc 5px;
+            background: linear-gradient(to bottom right, #ff00cc, #333399);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; */
+            -webkit-text-fill-color: transparent;
         }
         h4{
-            font-family: 'Raleway', sans-serif;
-            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
             font-size: 0.9rem;
             line-height: 1.5rem;
             text-align: left;
             margin: 0;
+            padding: 6px;
             color: rgb(126, 126, 126);
         }
         h5{
@@ -79,7 +83,7 @@
             } */
         }
         .container{
-            min-height: 50vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -88,18 +92,25 @@
         }
         .container-type2{
             /* border: solid black 2px; */
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             width: 100%;
-            max-width: 500px;
+            max-width: 700px;
+            border-radius: 5rem;
+            background: rgba(255, 255, 255, 0.611);
+            box-shadow: rgba(255, 255, 255, 0.611) 0px 0px 20px 10px;
         }
         .container-type3{
-            /* border: solid black 2px; */
             width: 100%;
             display: flex;
             justify-content: center;
             flex-direction: row;
             flex-wrap: wrap;
             background: white;
-            padding: 3rem 0;
+            padding: 5rem 0;
+            box-shadow: rgba(207, 207, 208, 0.508) 0px 0px 30px; 
+            z-index: 1000;
         }
         .box-type2{
             display: flex;
@@ -115,7 +126,6 @@
             margin: 5px;
             padding: 10px;
             border-radius: 6px;
-            /* box-shadow: inset rgba(0, 0, 0, 0.138) 0px 0px 10px; */
         }
         button{
             height: 2rem;
@@ -127,7 +137,7 @@
             border: none;
             border-radius: 4rem;
             margin: 5px;
-            background: linear-gradient(to right, white 50%,#48b1c9,#3078ca);
+            background: linear-gradient(to right, rgb(166, 46, 206),#48b1c9,#3078ca);
             background-size: 300% 100%;
             background-position: 98%;
             color: white;
@@ -138,15 +148,16 @@
             background-color: grey;
             background-position: 0%;
             color: #5b86e5;
+            cursor: pointer;
         }
         a{
             font-family: "Poppins", serif;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 1rem;
             text-decoration: none;
             text-transform: lowercase;
             margin: 0 5px 0 5px;
-            color: #ffffff;
+            color: rgb(255, 255, 255);
             text-shadow: rgba(0, 0, 0, 0.474) 4px 4px 20px;
         }
         a:hover{
@@ -162,53 +173,57 @@
     </style>
 </head>
 
-<body style="background-image: url('{% static 'images/waves.svg' %}'); background-size: 100%; background-position: top;background-repeat: no-repeat;">
-    <div style="display: flex; justify-content: space-between; padding: 0 1rem;">
-        <h5 style="font-size: 1.4rem; letter-spacing: 0px; color: rgb(34, 40, 85); box-shadow; 20px 20px black;
-            -webkit-background-clip: none;
-            -webkit-text-fill-color: rgb(34, 40, 85);">Bloom</h5>
+<body style="background-image: url('{% static 'images/waves.svg' %}'); background-size: 100%; background-position: top;background-repeat: no-repeat; display: flex; flex-direction: column; align-items: center;">
+    <div style="width: 90%; max-width: 1300px; display: flex; justify-content: space-between;">
+        <h5 style="font-size: 2rem; letter-spacing: 0px; color: rgb(34, 40, 85); box-shadow; 20px 20px black;
+            background: linear-gradient(to bottom right, white, white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;">Bloom</h5>
         <!-- <button>Get Started</button> -->
-        <div>
-            <a href="/register-company/">Register Apartment</a>
+        <div style="display: flex; align-items: center;">
+            <!-- <a href="/register-company/">Register Apartment</a> -->
             <a href="/login">Login</a>
-            <!-- <button>Register</button>
-            <button>Login</button> -->
+            <!-- <button>Login</button> -->
         </div>
         
     </div>
-    <div class="container">
-        <h5 style="margin-bottom: 2rem;">Bloom</h5>
+    <div class="container" style="display: flex; justify-content: center; flex-wrap: wrap;">
+        <h5 style="margin-bottom: 0rem;">
+            <!-- <img src="{% static 'images/poolicon2.png' %}" style="width: 5rem;"alt=""> -->
+            Bloom</h5>
         <div class="container-type2">
             <!-- Section Head -->
-            <h1>Book your pool with Bloom
+            <h1>Book out your apartment pool now with Bloom
             </h1>
             <h2>
-                A free and reliable pool booking platform. No credit card required.
+                A free and reliable pool booking platform to open up your pool during COVID. No credit card required.
             </h2>
+            <button style="height: 4rem;margin-top: 2rem;"><a href="/register-company/" style="text-transform: capitalize; " >Register</a></button>
         </div>
         
     </div>
 
-    <div class="container-type3" style="box-shadow: rgba(104, 152, 189, 0.611) 0px 0px 30px; z-index: 1000;">
-                <h1 style="width: 100%; margin-bottom: 1.5rem; color: black;
-            -webkit-background-clip: none;
-            -webkit-text-fill-color:  rgb(53, 57, 99);">Why Bloom?
-                </h1>
+    <div class="container-type3" style="">
+        <h1 style="width: 100%; margin-bottom: 1.5rem; font-size: 2rem; color: black;
+       
+        background: linear-gradient(to bottom right, #ff00cc, #333399);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">Get Started with Bloom
+        </h1>
         <div class="box-type3">
-            <img src="{% static 'images/poolicon.png' %}" alt="">
-            <img src="" alt="">
+            
             <h3>Simple pool reservations during COVID-19</h3>
             <h4>Let your residents get out of their apartments and enjoy your pool amenities and keep
                 their peace of mind that knowing that they can enjoy themselves in peace</h4>
         </div>
         <div class="box-type3">
-            <img src="{% static 'images/clipboardicon.png' %}" alt="">
+            <!-- <img src="{% static 'images/clipboardicon.png' %}" alt=""> -->
             <h3>Reservation management you can trust</h3>
             <h4>Bloom features robust reservation management dashboard, specifically designed to make adding residents and
                 managing their reseravations as simple as a few clicks.</h4>
         </div>
         <div class="box-type3">
-            <img src="{% static 'images/cloudsecureicon.png' %}" alt="">
+            <!-- <img src="{% static 'images/cloudsecureicon.png' %}" alt=""> -->
             <h3>Cloud based, simple booking management</h3>
             <h4>As simple as logging in and reserving, Bloom is the
                 simplest way to get your residents back in the water while ensuring cooperation with your county's COVID-19
@@ -223,7 +238,7 @@
                 flex-direction: column;
                 background: #F1F2F3;
                 padding:2rem 0 2rem 0;">
-                <h1 style="width: 100%; margin-bottom: 1.5rem;">Gallery
+                <h1 style="width: 100%; margin-bottom: 1.5rem; font-size: 2rem;">Gallery
                 </h1>
 
             <div style="max-width: 700px; display: flex;
@@ -241,6 +256,9 @@
         </div>
     </div>
     
+    <div class="container-type3">
+        By Obi Ihej - straightup.stack@gmail.com
+    </div>
 
     <script>
         var slideIndex = 1;
