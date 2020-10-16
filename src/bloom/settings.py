@@ -26,11 +26,7 @@ SECRET_KEY = 'byu459)yi17&4&7liot7as6j=ffypo^_!&spsmnw6qxqe-sw0w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-#remove https://from the url
-#use * if you want to allow all hosts.
-ALLOWED_HOSTS = ['https://bloomreservations.herokuapp.com/']
-# ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['bloomreservations.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -60,8 +56,6 @@ BOOTSTRAP4 = {
     'include_jquery': True,
 }
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -106,23 +100,23 @@ WSGI_APPLICATION = 'bloom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bloom_reservations',
-        'USER' : 'obi',
-        'PASSWORD' : 'strANG3_Grudge',
-        'HOST' : 'database-1.cxglhi6ry125.us-east-2.rds.amazonaws.com',
-        'PORT' : '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'bloom_reservations',
+#         'USER' : 'obi',
+#         'PASSWORD' : 'strANG3_Grudge',
+#         'HOST' : 'database-1.cxglhi6ry125.us-east-2.rds.amazonaws.com',
+#         'PORT' : '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
@@ -162,11 +156,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/images/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
