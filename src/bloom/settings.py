@@ -164,14 +164,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 #S3 BUCKETS CONFIG
 
-AWS_ACCESS_KEY_ID = 'AKIA5A5MWV6QLYRKA6BT'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'bloomres-crm-bucket'
+# AWS_ACCESS_KEY_ID = 'AKIA5A5MWV6QLYRKA6BT'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'bloomres-crm-bucket'
 
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 

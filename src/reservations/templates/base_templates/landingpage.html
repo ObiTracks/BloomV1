@@ -1,12 +1,273 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Rubik:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* *{border: solid black 1px;} */
+        html{
+            min-width: 700px;
+            padding: 0;
+        }
+        body{
+            padding-top: 0.5rem;
+            margin: 0;
+        }
+        h1{
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            text-align: center;
+            color: rgb(12, 21, 89);
+            margin: 0;
+            background: linear-gradient(to bottom left, #17abb6, #9ab5f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            text-align: center;
+            
+            color: rgb(17, 58, 89);
+            margin: 0;
+            background: linear-gradient(to bottom left, #17abb6, #9ab5f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h3{
+            font-family: 'Rubik', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: left;
+            margin: 0;
+            margin-bottom: 5px;
+            color: rgb(38, 48, 123);
+            padding-bottom: 3px;
+            border-bottom: solid rgb(72, 87, 199) 6px;
+            /* background: linear-gradient(to bottom left, #17abb6, #5b86e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; */
+        }
+        h4{
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            line-height: 1.5rem;
+            text-align: left;
+            margin: 0;
+            color: rgb(126, 126, 126);
+        }
+        h5{
+            font-size: 7rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -6px;
+            margin: 0;
+                
+            background: linear-gradient(to bottom left, #17abb6, #5b86e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* a{
+                text-decoration: none;
+                font-style: none;
+                color: white;
+                white-space: nowrap;
+            } */
+        }
+        .container{
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 6rem 3rem 2rem 3rem;
+        }
+        .container-type2{
+            /* border: solid black 2px; */
+            width: 100%;
+            max-width: 500px;
+        }
+        .container-type3{
+            /* border: solid black 2px; */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            background: white;
+            padding: 3rem 0;
+        }
+        .box-type2{
+            display: flex;
+            /* justify-content: flex-end; */
+            flex-wrap: wrap;
+            /* width: 100%;
+            max-width: 600px; */
+            margin: 1rem;
+        }
+        .box-type3{
+            width: 100%;
+            max-width: 13rem;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 6px;
+            /* box-shadow: inset rgba(0, 0, 0, 0.138) 0px 0px 10px; */
+        }
+        button{
+            height: 2rem;
+            width: 12rem;
+            padding: 5px 1rem 5px 1rem;
+            font-family: "Poppins", serif;
+            font-size: 1rem;
+            outline: none;
+            border: none;
+            border-radius: 4rem;
+            margin: 5px;
+            background: linear-gradient(to right, white 50%,#48b1c9,#3078ca);
+            background-size: 300% 100%;
+            background-position: 98%;
+            color: white;
+            transition: all 0.5s ease;
+        }
+        button:hover{
+            transition: all 0.5s ease;
+            background-color: grey;
+            background-position: 0%;
+            color: #5b86e5;
+        }
+        a{
+            font-family: "Poppins", serif;
+            font-weight: 400;
+            font-size: 1rem;
+            text-decoration: none;
+            text-transform: lowercase;
+            margin: 0 5px 0 5px;
+            color: #ffffff;
+            text-shadow: rgba(0, 0, 0, 0.474) 4px 4px 20px;
+        }
+        a:hover{
+            color: rgb(34, 40, 85);
+        }
+        img{
+            border: none;
+            outline: none;
+            width: 2rem;
+        }
+
+        
+    </style>
 </head>
-<body style="background-color: rgb(62, 202, 202);">
-    <h1>Welcome to Bloom. You can login here or register your company to start booking pool reserverations today.</h1>
+
+<body style="background-image: url('{% static 'images/waves.svg' %}'); background-size: 100%; background-position: top;background-repeat: no-repeat;">
+    <div style="display: flex; justify-content: space-between; padding: 0 1rem;">
+        <h5 style="font-size: 1.4rem; letter-spacing: 0px; color: rgb(34, 40, 85); box-shadow; 20px 20px black;
+            -webkit-background-clip: none;
+            -webkit-text-fill-color: rgb(34, 40, 85);">Bloom</h5>
+        <!-- <button>Get Started</button> -->
+        <div>
+            <a href="/register-company/">Register Apartment</a>
+            <a href="/login">Login</a>
+            <!-- <button>Register</button>
+            <button>Login</button> -->
+        </div>
+        
+    </div>
+    <div class="container">
+        <h5 style="margin-bottom: 2rem;">Bloom</h5>
+        <div class="container-type2">
+            <!-- Section Head -->
+            <h1>Book your pool with Bloom
+            </h1>
+            <h2>
+                A free and reliable pool booking platform. No credit card required.
+            </h2>
+        </div>
+        
+    </div>
+
+    <div class="container-type3" style="box-shadow: rgba(104, 152, 189, 0.611) 0px 0px 30px; z-index: 1000;">
+                <h1 style="width: 100%; margin-bottom: 1.5rem; color: black;
+            -webkit-background-clip: none;
+            -webkit-text-fill-color:  rgb(53, 57, 99);">Why Bloom?
+                </h1>
+        <div class="box-type3">
+            <img src="{% static 'images/poolicon.png' %}" alt="">
+            <img src="" alt="">
+            <h3>Simple pool reservations during COVID-19</h3>
+            <h4>Let your residents get out of their apartments and enjoy your pool amenities and keep
+                their peace of mind that knowing that they can enjoy themselves in peace</h4>
+        </div>
+        <div class="box-type3">
+            <img src="{% static 'images/clipboardicon.png' %}" alt="">
+            <h3>Reservation management you can trust</h3>
+            <h4>Bloom features robust reservation management dashboard, specifically designed to make adding residents and
+                managing their reseravations as simple as a few clicks.</h4>
+        </div>
+        <div class="box-type3">
+            <img src="{% static 'images/cloudsecureicon.png' %}" alt="">
+            <h3>Cloud based, simple booking management</h3>
+            <h4>As simple as logging in and reserving, Bloom is the
+                simplest way to get your residents back in the water while ensuring cooperation with your county's COVID-19
+                guidelines.</h4>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+        <div class="w3-content w3-display-container" 
+            style="width: 100%; display: flex;
+                align-items: center;
+                flex-direction: column;
+                background: #F1F2F3;
+                padding:2rem 0 2rem 0;">
+                <h1 style="width: 100%; margin-bottom: 1.5rem;">Gallery
+                </h1>
+
+            <div style="max-width: 700px; display: flex;
+                justify-content: center;
+                flex-wrap: wrap;">
+                <img class="mySlides" src="{% static 'images/screenshots/staffdashboard.png' %}" style="width:100%">
+                <img class="mySlides" src="{% static 'images/screenshots/residentdashboard.png' %}" style="width:100%">
+                <img class="mySlides" src="{% static 'images/screenshots/staffdays.png' %}" style="width:100%">
+                <img class="mySlides" src="{% static 'images/screenshots/staffdashboard.png' %}" style="width:100%">
+
+                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+        showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {
+            slideIndex = 1
+            }
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        x[slideIndex-1].style.display = "block";  
+        }
+    </script>
+
+    
+    
+
+    <!-- <h1>Welcome to Bloom. You can login here or register your company to start booking pool reserverations today.</h1>
     <div>
         <button class="btn-info"><a href="/register-company/">Register Apartment</a></button>
         <button class="btn-info"><a href="/login">Login</a></button>
@@ -14,6 +275,6 @@
 
     <h4>Created by Obi Ihej</h4>
     <h4>Contact me at straightup.stack@gmail.com with any questions, concerns or problems you might encounter</h4>
-    <h5 style="color: rgb(194, 67, 38);">Bloom is a work in progress</h5>
+    <h5 style="color: rgb(194, 67, 38);">Bloom is a work in progress</h5> -->
 </body>
 </html>
