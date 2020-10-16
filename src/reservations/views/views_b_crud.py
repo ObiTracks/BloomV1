@@ -129,7 +129,6 @@ def createDay(request, *args, **kwargs):
         form = AddDayForm(request.POST)
         if form.is_valid():
             # if dayValidation(request, form) is True:
-            user_company = request.user.customer.company
 
             num_days = form.cleaned_data.get('num_days')
             print(num_days)
@@ -137,14 +136,19 @@ def createDay(request, *args, **kwargs):
             print(company.day_set.first())
 
 
-            autoTimeSlots(TIMESLOTS,company, num_days)
+            autoTimeSlots(TIMESLOTS, company, num_days)
 
             # day = form.save()
-            # day.company = user_company
+            # day.company = company
+            # day.pool_capacity = company.pool_capacity
+            # print("This is the company pool capacity" + str(company.pool_capacity))
+            # print("This is the day pool capacity" + str(day.pool_capacity))
+            
             # day.save()
-            # createFollowingDay(request, form)
+            # print("This is the day pool capacity" + str(day.pool_capacity))
+            
             # for slot in TIMESLOTS:
-            #     timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0])
+            #     timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0], capacity=company.pool_capacity)
             #     print(timeslot)
 
             return redirect('days')

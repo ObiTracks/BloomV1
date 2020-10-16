@@ -61,7 +61,7 @@ class CreateCompanyForm(ModelForm):
 
     class Meta:
         model = Company
-        fields = ('company_name','company_email','city','address_line','zip_code','country','first_name','last_name','email','password')
+        fields = ('company_name','company_email','city','address_line','zip_code','country','pool_capacity','first_name','last_name','email','password')
     
 class CreateUserForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Required. Enter a valid email address')

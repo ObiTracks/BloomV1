@@ -78,6 +78,10 @@ def day(request, pk):
         'stat2': {
             'title': 'Notes',
             'value': day.notes
+        },
+        'stat3': {
+            'title': 'Pool Capacity',
+            'value': day.pool_capacity
         }
     }
 
@@ -86,7 +90,8 @@ def day(request, pk):
     bg_title = 'Day'
     context = {
         'page_title': page_title, 
-        'day': day, 'stats': stats, 
+        'day': day,
+        'stats': stats, 
         'today':today,
         'bg_title':bg_title
         }

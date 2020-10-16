@@ -31,18 +31,19 @@ def autoTimeSlots(TIMESLOTS, company, num_days):
     for i in range(0,num_days):
         day_object = Day.objects.create(
             company = company,
-            day = next_day
+            day = next_day,
+            pool_capacity = company.pool_capacity
         )
         
-        threeTimeslots(TIMESLOTS, day_object)
+        multipleTimeslots(TIMESLOTS, day_object)
 
         next_day = next_day + timedelta(days=1)
     return
 
-def threeTimeslots(TIMESLOTS, day):
+def multipleTimeslots(TIMESLOTS, day):
     for slot in TIMESLOTS:
-            timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0])
-            print(timeslot)
+        timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0], capacity=day.pool_capacity)
+        print(timeslot)
     
 def t_res(company):
     reservations = company.reservation_set.all()

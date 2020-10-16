@@ -15,6 +15,7 @@ class Company(models.Model):
     zip_code = models.CharField("ZIP/Postal code", max_length=12, null=True, blank=True)
     country = CountryField(blank_label="Select country", null=False, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    pool_capacity = models.IntegerField(null=True, blank=True)
         
     class Meta:
         ordering = ["-company_name"]
@@ -63,6 +64,7 @@ class Day(models.Model):
     date_created = models.DateField(default=today, blank=False, editable=False)
     notes = models.TextField(max_length=2000, null=True, blank=True)
     pool_capacity = models.IntegerField(null=True, blank=False)
+
     class Meta:
         ordering = ['-day']
 

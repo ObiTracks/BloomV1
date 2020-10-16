@@ -16,7 +16,7 @@ from ..models import (Customer, Day, TimeSlot, Reservation)
 from ..forms import *
 from ..filters import CustomerFilter
 from ..decorators import unauthenticated_user, allowed_users
-from ..tools import autoTimeSlots, threeTimeslots
+from ..tools import *
 
 @unauthenticated_user
 def loginPage(request):
@@ -93,7 +93,7 @@ def registerCompanyPage(request):
             
             TIMESLOTS = TimeSlot.TIMESLOTS
             
-            threeTimeslots(TIMESLOTS, day)
+            multipleTimeslots(TIMESLOTS, day)
                 
             user = authenticate(request, username=email, password=raw_password)
             messages.success(request, 'New company created and managed by {} {}'.format(first_name, last_name))
@@ -118,8 +118,8 @@ def registerUserPage(request):
     user_company = current_user.customer.company
 
     form = CreateUserForm()
-    LeaseFormSet = inlineformset_factory(Customer, LeaseMember, fields=('full_name','relation'))
-    form2 = LeaseFormSet()
+    LeaseFormSet = inlineformset_factory(Customer, LeaseMember, fields=('full_name','relation'),extra=5)
+    form2 = LeaseFormSet(queryset=LeaseMember.objects.none(), instance=customer)
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -144,6 +144,7 @@ def registerUserPage(request):
                 email=email,
                 apt=apt,
                 )
+
             messages.success(request, 'Account was created for {} {}'.format(first_name, last_name))
 
             print(form2.data)
