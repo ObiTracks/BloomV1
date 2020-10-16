@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import dj_database_url
+import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,9 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'byu459)yi17&4&7liot7as6j=ffypo^_!&spsmnw6qxqe-sw0w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+#remove https://from the url
+#use * if you want to allow all hosts.
+ALLOWED_HOSTS = ['https://bloomreservations.herokuapp.com/']
+# ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -65,6 +70,9 @@ MIDDLEWARE = [
 
     'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.RemoteUserBackend',
@@ -159,6 +167,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
@@ -187,3 +196,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 </CORSRule>
 </CORSConfiguration>
 '''
+
+django_heroku.settings(locals())
