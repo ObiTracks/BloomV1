@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'byu459)yi17&4&7liot7as6j=ffypo^_!&spsmnw6qxqe-sw0w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['desktop-rfm5am9','127.0.0.1']
 
 
 # Application definition
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # Installed apps
     'django_filters',
     'django_countries',
-    'bootstrap4',
     'bootstrap_datepicker_plus',
 
 ]
@@ -61,6 +60,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -146,4 +148,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
