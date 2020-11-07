@@ -1,2 +1,1 @@
-
-web: waitress-serve --port=$PORT bloom:app
+web: waitress-serve --port=$PORT bloom.wsgi:application
