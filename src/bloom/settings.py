@@ -26,7 +26,7 @@ SECRET_KEY = 'byu459)yi17&4&7liot7as6j=ffypo^_!&spsmnw6qxqe-sw0w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bloomreservations.herokuapp.com/','desktop-rfm5am9','127.0.0.1']
+ALLOWED_HOSTS = ['bloomreservations.herokuapp.com',]
 
 
 # Application definition
