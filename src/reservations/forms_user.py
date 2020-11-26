@@ -11,7 +11,6 @@ import datetime
 # Date picker imports
 from functools import partial
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
-from bootstrap_datepicker_plus import DatePickerInput
 from django import forms
 
 from .models import *

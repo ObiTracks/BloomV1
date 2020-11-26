@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_countries',
     'bootstrap4',
-    'bootstrap_datepicker_plus',
+    # 'bootstrap_datepicker_plus',
     'storages',
 
 ]
@@ -98,23 +98,23 @@ WSGI_APPLICATION = 'bloom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bloom_reservations',
-        'USER' : 'obi',
-        'PASSWORD' : 'strANG3_Grudge',
-        'HOST' : 'database-1.cxglhi6ry125.us-east-2.rds.amazonaws.com',
-        'PORT' : '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'bloom_reservations',
+#         'USER' : 'obi',
+#         'PASSWORD' : 'strANG3_Grudge',
+#         'HOST' : 'database-1.cxglhi6ry125.us-east-2.rds.amazonaws.com',
+#         'PORT' : '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
@@ -175,15 +175,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 
 
-'''
-<?xml version="1.0" encoding="UTF-8"?>
-<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-<CORSRule>
-    <AllowedOrigin>*</AllowedOrigin>
-    <AllowedMethod>GET</AllowedMethod>
-    <AllowedMethod>POST</AllowedMethod>
-    <AllowedMethod>PUT</AllowedMethod>
-    <AllowedHeader>*</AllowedHeader>
-</CORSRule>
-</CORSConfiguration>
-'''
+# '''
+# <?xml version="1.0" encoding="UTF-8"?>
+# <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+# <CORSRule>
+#     <AllowedOrigin>*</AllowedOrigin>
+#     <AllowedMethod>GET</AllowedMethod>
+#     <AllowedMethod>POST</AllowedMethod>
+#     <AllowedMethod>PUT</AllowedMethod>
+#     <AllowedHeader>*</AllowedHeader>
+# </CORSRule>
+# </CORSConfiguration>
+# '''

@@ -10,7 +10,6 @@ from itertools import chain
 # Date picker imports
 from functools import partial
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
-from bootstrap_datepicker_plus import DatePickerInput
 from django import forms
 
 import datetime
@@ -88,7 +87,6 @@ class CreateLeaseMemberForm(ModelForm):
         fields = ('full_name','relation')
 
 class AddDayForm(ModelForm):
-    # day = forms.DateField(widget=DatePickerInput(format='%m/%d/%Y', attrs={'placeholder':'YYYY-MM-DD'}))
     num_days = forms.IntegerField()
     class Meta:
         model = Day
