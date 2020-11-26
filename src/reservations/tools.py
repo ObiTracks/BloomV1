@@ -42,7 +42,7 @@ def autoTimeSlots(TIMESLOTS, company, num_days):
 
 def multipleTimeslots(TIMESLOTS, day):
     for slot in TIMESLOTS:
-        timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0], capacity=day.pool_capacity)
+        timeslot = TimeSlot.objects.create(day=day, time_slot=slot[0], capacity=day.company.pool_capacity)
         print(timeslot)
     
 def t_res(company):
