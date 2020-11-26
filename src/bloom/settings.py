@@ -46,14 +46,14 @@ INSTALLED_APPS = [
     # Installed apps
     'django_filters',
     'django_countries',
-    'bootstrap4',
+    # 'bootstrap4',
     # 'bootstrap_datepicker_plus',
     'storages',
 
 ]
-BOOTSTRAP4 = {
-    'include_jquery': True,
-}
+# BOOTSTRAP4 = {
+#     'include_jquery': True,
+# }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
