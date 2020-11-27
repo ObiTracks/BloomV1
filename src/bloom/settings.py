@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'byu459)yi17&4&7liot7as6j=ffypo^_!&spsmnw6qxqe-sw0w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bloomreservations.herokuapp.com',]
 
 
 # Application definition
@@ -46,9 +47,13 @@ INSTALLED_APPS = [
     # Installed apps
     'django_filters',
     'django_countries',
+<<<<<<< HEAD
     # 'bootstrap4',
     # 'bootstrap_datepicker_plus',
     'storages',
+=======
+    'bootstrap_datepicker_plus',
+>>>>>>> 65495d4ef92de4b4dcfbd5b29ed146bc954bc9eb
 
 ]
 # BOOTSTRAP4 = {
@@ -62,6 +67,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -98,6 +106,7 @@ WSGI_APPLICATION = 'bloom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+<<<<<<< HEAD
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -109,6 +118,8 @@ WSGI_APPLICATION = 'bloom.wsgi.application'
 #     }
 # }
 
+=======
+>>>>>>> 65495d4ef92de4b4dcfbd5b29ed146bc954bc9eb
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -158,6 +169,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 
@@ -187,3 +199,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 # </CORSRule>
 # </CORSConfiguration>
 # '''
+=======
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+
+import django_heroku
+django_heroku.settings(locals())-------
+>>>>>>> 65495d4ef92de4b4dcfbd5b29ed146bc954bc9eb
